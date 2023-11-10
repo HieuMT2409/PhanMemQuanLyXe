@@ -19,6 +19,13 @@ namespace ThueXeOTo.OrderCar
             InitializeComponent();
         }
 
+        private void HideItem()
+        {
+            dataDetailCar.Hide();
+            btnBack.Hide();
+            btnChoose.Hide();
+        }
+
         private void btnChoose_Click(object sender, EventArgs e)
         {
             DataGridViewRow selectedRow = dataDetailCar.SelectedRows[0];
@@ -28,6 +35,11 @@ namespace ThueXeOTo.OrderCar
 
             tinhNangXe.UpdateLabel(name);
 
+            tinhNangXe.TopLevel = false;
+            this.Controls.Add(tinhNangXe);
+            tinhNangXe.FormBorderStyle = FormBorderStyle.None;
+            tinhNangXe.Dock = DockStyle.Fill;
+            HideItem();
             tinhNangXe.Show();
         }
 
@@ -39,8 +51,13 @@ namespace ThueXeOTo.OrderCar
         private void button1_Click(object sender, EventArgs e)
         {
             Listcars listcars = new Listcars();
-            this.Hide();
-            listcars.ShowItem();
+
+            listcars.TopLevel = false;
+            this.Controls.Add(listcars);
+            listcars.FormBorderStyle = FormBorderStyle.None;
+            listcars.Dock = DockStyle.Fill;
+            HideItem();
+            listcars.Show();
         }
     }
 }

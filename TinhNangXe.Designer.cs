@@ -59,7 +59,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(24, 120);
+            label1.Location = new Point(43, 127);
             label1.Name = "label1";
             label1.Size = new Size(94, 23);
             label1.TabIndex = 0;
@@ -68,7 +68,7 @@
             // cbBando
             // 
             cbBando.AutoSize = true;
-            cbBando.Location = new Point(27, 153);
+            cbBando.Location = new Point(43, 168);
             cbBando.Name = "cbBando";
             cbBando.Size = new Size(82, 24);
             cbBando.TabIndex = 1;
@@ -79,7 +79,7 @@
             // 
             cbCameraCaple.AutoSize = true;
             cbCameraCaple.ForeColor = Color.Black;
-            cbCameraCaple.Location = new Point(27, 183);
+            cbCameraCaple.Location = new Point(43, 196);
             cbCameraCaple.Name = "cbCameraCaple";
             cbCameraCaple.Size = new Size(126, 24);
             cbCameraCaple.TabIndex = 2;
@@ -89,7 +89,7 @@
             // cbCambien
             // 
             cbCambien.AutoSize = true;
-            cbCambien.Location = new Point(27, 213);
+            cbCambien.Location = new Point(43, 226);
             cbCambien.Name = "cbCambien";
             cbCambien.Size = new Size(120, 24);
             cbCambien.TabIndex = 3;
@@ -99,7 +99,7 @@
             // cbCuaso
             // 
             cbCuaso.AutoSize = true;
-            cbCuaso.Location = new Point(27, 243);
+            cbCuaso.Location = new Point(43, 256);
             cbCuaso.Name = "cbCuaso";
             cbCuaso.Size = new Size(103, 24);
             cbCuaso.TabIndex = 4;
@@ -110,17 +110,18 @@
             // cbUSB
             // 
             cbUSB.AutoSize = true;
-            cbUSB.Location = new Point(27, 273);
+            cbUSB.Location = new Point(43, 286);
             cbUSB.Name = "cbUSB";
             cbUSB.Size = new Size(119, 24);
             cbUSB.TabIndex = 5;
             cbUSB.Text = "Khe cắm USB";
             cbUSB.UseVisualStyleBackColor = true;
+            cbUSB.CheckedChanged += cbUSB_CheckedChanged;
             // 
             // cbNap
             // 
             cbNap.AutoSize = true;
-            cbNap.Location = new Point(27, 303);
+            cbNap.Location = new Point(43, 316);
             cbNap.Name = "cbNap";
             cbNap.Size = new Size(170, 24);
             cbNap.TabIndex = 6;
@@ -131,7 +132,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(24, 355);
+            label2.Location = new Point(43, 362);
             label2.Name = "label2";
             label2.Size = new Size(93, 23);
             label2.TabIndex = 7;
@@ -140,7 +141,7 @@
             // cb360
             // 
             cb360.AutoSize = true;
-            cb360.Location = new Point(236, 303);
+            cb360.Location = new Point(267, 316);
             cb360.Name = "cb360";
             cb360.Size = new Size(110, 24);
             cb360.TabIndex = 13;
@@ -150,7 +151,7 @@
             // cbLop
             // 
             cbLop.AutoSize = true;
-            cbLop.Location = new Point(236, 273);
+            cbLop.Location = new Point(267, 286);
             cbLop.Name = "cbLop";
             cbLop.Size = new Size(125, 24);
             cbLop.TabIndex = 12;
@@ -160,7 +161,7 @@
             // cbGPS
             // 
             cbGPS.AutoSize = true;
-            cbGPS.Location = new Point(236, 243);
+            cbGPS.Location = new Point(267, 256);
             cbGPS.Name = "cbGPS";
             cbGPS.Size = new Size(107, 24);
             cbGPS.TabIndex = 11;
@@ -170,7 +171,7 @@
             // cbVar
             // 
             cbVar.AutoSize = true;
-            cbVar.Location = new Point(236, 213);
+            cbVar.Location = new Point(267, 226);
             cbVar.Name = "cbVar";
             cbVar.Size = new Size(153, 24);
             cbVar.TabIndex = 10;
@@ -180,7 +181,7 @@
             // cbCameraHT
             // 
             cbCameraHT.AutoSize = true;
-            cbCameraHT.Location = new Point(236, 183);
+            cbCameraHT.Location = new Point(267, 196);
             cbCameraHT.Name = "cbCameraHT";
             cbCameraHT.Size = new Size(152, 24);
             cbCameraHT.TabIndex = 9;
@@ -190,7 +191,7 @@
             // cbBluetooth
             // 
             cbBluetooth.AutoSize = true;
-            cbBluetooth.Location = new Point(236, 153);
+            cbBluetooth.Location = new Point(267, 166);
             cbBluetooth.Name = "cbBluetooth";
             cbBluetooth.Size = new Size(96, 24);
             cbBluetooth.TabIndex = 8;
@@ -200,7 +201,7 @@
             // cbCanhbao
             // 
             cbCanhbao.AutoSize = true;
-            cbCanhbao.Location = new Point(456, 183);
+            cbCanhbao.Location = new Point(496, 196);
             cbCanhbao.Name = "cbCanhbao";
             cbCanhbao.Size = new Size(141, 24);
             cbCanhbao.TabIndex = 15;
@@ -210,7 +211,7 @@
             // cbCameraLui
             // 
             cbCameraLui.AutoSize = true;
-            cbCameraLui.Location = new Point(456, 153);
+            cbCameraLui.Location = new Point(496, 166);
             cbCameraLui.Name = "cbCameraLui";
             cbCameraLui.Size = new Size(102, 24);
             cbCameraLui.TabIndex = 14;
@@ -220,7 +221,7 @@
             // rbAll
             // 
             rbAll.AutoSize = true;
-            rbAll.Location = new Point(26, 394);
+            rbAll.Location = new Point(43, 403);
             rbAll.Name = "rbAll";
             rbAll.Size = new Size(70, 24);
             rbAll.TabIndex = 16;
@@ -231,7 +232,7 @@
             // rbXang
             // 
             rbXang.AutoSize = true;
-            rbXang.Location = new Point(169, 394);
+            rbXang.Location = new Point(194, 403);
             rbXang.Name = "rbXang";
             rbXang.Size = new Size(64, 24);
             rbXang.TabIndex = 17;
@@ -242,7 +243,7 @@
             // rbDau
             // 
             rbDau.AutoSize = true;
-            rbDau.Location = new Point(302, 394);
+            rbDau.Location = new Point(358, 403);
             rbDau.Name = "rbDau";
             rbDau.Size = new Size(102, 24);
             rbDau.TabIndex = 18;
@@ -253,7 +254,7 @@
             // rbDien
             // 
             rbDien.AutoSize = true;
-            rbDien.Location = new Point(455, 394);
+            rbDien.Location = new Point(542, 403);
             rbDien.Name = "rbDien";
             rbDien.Size = new Size(61, 24);
             rbDien.TabIndex = 19;
@@ -263,9 +264,9 @@
             // 
             // button1
             // 
-            button1.Location = new Point(236, 438);
+            button1.Location = new Point(273, 444);
             button1.Name = "button1";
-            button1.Size = new Size(171, 44);
+            button1.Size = new Size(119, 50);
             button1.TabIndex = 20;
             button1.Text = "Thuê Xe";
             button1.UseVisualStyleBackColor = true;
@@ -275,17 +276,17 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Elephant", 23.9999981F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(159, 9);
+            label3.Location = new Point(131, 9);
             label3.Name = "label3";
-            label3.Size = new Size(350, 51);
+            label3.Size = new Size(472, 51);
             label3.TabIndex = 21;
-            label3.Text = "REFUND CAR";
+            label3.Text = "TÍNH NĂNG THÊM";
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(27, 75);
+            label4.Location = new Point(43, 81);
             label4.Name = "label4";
             label4.Size = new Size(134, 23);
             label4.TabIndex = 22;
@@ -295,17 +296,18 @@
             // 
             txtXe.AutoSize = true;
             txtXe.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            txtXe.Location = new Point(159, 75);
+            txtXe.Location = new Point(183, 81);
             txtXe.Name = "txtXe";
             txtXe.Size = new Size(51, 23);
             txtXe.TabIndex = 23;
             txtXe.Text = "Xe A";
+            txtXe.Click += txtXe_Click;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.Location = new Point(24, 97);
+            label6.Location = new Point(37, 104);
             label6.Name = "label6";
             label6.Size = new Size(598, 23);
             label6.TabIndex = 24;

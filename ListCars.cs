@@ -45,26 +45,6 @@ namespace ThueXeOTo
 
         }
 
-        public void ShowItem()
-        {
-            pictureBox1.Show();
-            pictureBox2.Show();
-            pictureBox3.Show();
-            pictureBox4.Show();
-            pictureBox5.Show();
-            pictureBox6.Show();
-            pictureBox7.Show();
-
-            label2.Show();
-            label3.Show();
-            label4.Show();
-            label5.Show();
-            label6.Show ();
-            label7.Show();
-            label8.Show();
-
-        }
-
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             using (SqlConnection connection = new SqlConnection(conectionString))

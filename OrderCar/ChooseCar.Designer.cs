@@ -37,7 +37,7 @@
             stateDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             carBindingSource = new BindingSource(components);
             btnChoose = new Button();
-            button1 = new Button();
+            btnBack = new Button();
             ((System.ComponentModel.ISupportInitialize)dataDetailCar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)carBindingSource).BeginInit();
             SuspendLayout();
@@ -121,16 +121,16 @@
             btnChoose.UseVisualStyleBackColor = true;
             btnChoose.Click += btnChoose_Click;
             // 
-            // button1
+            // btnBack
             // 
-            button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            button1.Location = new Point(23, 376);
-            button1.Name = "button1";
-            button1.Size = new Size(116, 62);
-            button1.TabIndex = 2;
-            button1.Text = "Quay lại";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            btnBack.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnBack.Location = new Point(23, 376);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(116, 62);
+            btnBack.TabIndex = 2;
+            btnBack.Text = "Quay lại";
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += button1_Click;
             // 
             // ChooseCar
             // 
@@ -138,7 +138,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLightLight;
             ClientSize = new Size(800, 450);
-            Controls.Add(button1);
+            Controls.Add(btnBack);
             Controls.Add(btnChoose);
             Controls.Add(dataDetailCar);
             Name = "ChooseCar";
@@ -159,6 +159,6 @@
         private DataGridViewTextBoxColumn companyDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn stateDataGridViewTextBoxColumn;
         private Button btnChoose;
-        private Button button1;
+        private Button btnBack;
     }
 }
