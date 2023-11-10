@@ -32,17 +32,20 @@ namespace ThueXeOTo
         {
             components = new System.ComponentModel.Container();
             dataCar = new DataGridView();
+            Id = new DataGridViewTextBoxColumn();
             nameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             typeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            stateDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             companyDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            stateDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             carBindingSource = new BindingSource(components);
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
+            btnDel = new Button();
+            btnFix = new Button();
+            btnAdd = new Button();
             carDBContextBindingSource = new BindingSource(components);
             initDBcarBindingSource = new BindingSource(components);
-            btnChoose = new Button();
+            txbSearch = new TextBox();
+            btnSearch = new Button();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataCar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)carBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)carDBContextBindingSource).BeginInit();
@@ -56,17 +59,27 @@ namespace ThueXeOTo
             dataCar.AutoGenerateColumns = false;
             dataCar.BackgroundColor = SystemColors.ControlLightLight;
             dataCar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataCar.Columns.AddRange(new DataGridViewColumn[] { nameDataGridViewTextBoxColumn, typeDataGridViewTextBoxColumn, stateDataGridViewTextBoxColumn, companyDataGridViewTextBoxColumn });
+            dataCar.Columns.AddRange(new DataGridViewColumn[] { Id, nameDataGridViewTextBoxColumn, typeDataGridViewTextBoxColumn, companyDataGridViewTextBoxColumn, stateDataGridViewTextBoxColumn });
             dataCar.DataSource = carBindingSource;
-            dataCar.Location = new Point(0, 66);
+            dataCar.Location = new Point(12, 60);
             dataCar.Margin = new Padding(3, 4, 3, 4);
             dataCar.Name = "dataCar";
             dataCar.ReadOnly = true;
             dataCar.RowHeadersWidth = 51;
             dataCar.RowTemplate.Height = 25;
-            dataCar.Size = new Size(843, 491);
+            dataCar.Size = new Size(831, 491);
             dataCar.TabIndex = 2;
             dataCar.CellContentClick += dataCar_CellContentClick;
+            // 
+            // Id
+            // 
+            Id.DataPropertyName = "ID";
+            Id.HeaderText = "ID";
+            Id.MinimumWidth = 6;
+            Id.Name = "Id";
+            Id.ReadOnly = true;
+            Id.Visible = false;
+            Id.Width = 125;
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -86,15 +99,6 @@ namespace ThueXeOTo
             typeDataGridViewTextBoxColumn.Name = "typeDataGridViewTextBoxColumn";
             typeDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // stateDataGridViewTextBoxColumn
-            // 
-            stateDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            stateDataGridViewTextBoxColumn.DataPropertyName = "State";
-            stateDataGridViewTextBoxColumn.HeaderText = "Trạng Thái";
-            stateDataGridViewTextBoxColumn.MinimumWidth = 6;
-            stateDataGridViewTextBoxColumn.Name = "stateDataGridViewTextBoxColumn";
-            stateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
             // companyDataGridViewTextBoxColumn
             // 
             companyDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -104,39 +108,51 @@ namespace ThueXeOTo
             companyDataGridViewTextBoxColumn.Name = "companyDataGridViewTextBoxColumn";
             companyDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // stateDataGridViewTextBoxColumn
+            // 
+            stateDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            stateDataGridViewTextBoxColumn.DataPropertyName = "State";
+            stateDataGridViewTextBoxColumn.HeaderText = "Trạng Thái";
+            stateDataGridViewTextBoxColumn.MinimumWidth = 6;
+            stateDataGridViewTextBoxColumn.Name = "stateDataGridViewTextBoxColumn";
+            stateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // carBindingSource
             // 
             carBindingSource.DataSource = typeof(Car);
             // 
-            // button2
+            // btnDel
             // 
-            button2.Location = new Point(508, 13);
-            button2.Margin = new Padding(3, 4, 3, 4);
-            button2.Name = "button2";
-            button2.Size = new Size(94, 50);
-            button2.TabIndex = 3;
-            button2.Text = "Xóa";
-            button2.UseVisualStyleBackColor = true;
+            btnDel.Location = new Point(679, 16);
+            btnDel.Margin = new Padding(3, 4, 3, 4);
+            btnDel.Name = "btnDel";
+            btnDel.Size = new Size(70, 36);
+            btnDel.TabIndex = 3;
+            btnDel.Text = "Xóa";
+            btnDel.UseVisualStyleBackColor = true;
+            btnDel.Click += btnDel_Click;
             // 
-            // button3
+            // btnFix
             // 
-            button3.Location = new Point(409, 13);
-            button3.Margin = new Padding(3, 4, 3, 4);
-            button3.Name = "button3";
-            button3.Size = new Size(93, 50);
-            button3.TabIndex = 4;
-            button3.Text = "Sửa";
-            button3.UseVisualStyleBackColor = true;
+            btnFix.Location = new Point(604, 16);
+            btnFix.Margin = new Padding(3, 4, 3, 4);
+            btnFix.Name = "btnFix";
+            btnFix.Size = new Size(69, 36);
+            btnFix.TabIndex = 4;
+            btnFix.Text = "Sửa";
+            btnFix.UseVisualStyleBackColor = true;
+            btnFix.Click += btnFix_Click;
             // 
-            // button4
+            // btnAdd
             // 
-            button4.Location = new Point(311, 13);
-            button4.Margin = new Padding(3, 4, 3, 4);
-            button4.Name = "button4";
-            button4.Size = new Size(92, 50);
-            button4.TabIndex = 5;
-            button4.Text = "Thêm";
-            button4.UseVisualStyleBackColor = true;
+            btnAdd.Location = new Point(530, 16);
+            btnAdd.Margin = new Padding(3, 4, 3, 4);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(68, 36);
+            btnAdd.TabIndex = 5;
+            btnAdd.Text = "Thêm";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
             // 
             // carDBContextBindingSource
             // 
@@ -146,16 +162,32 @@ namespace ThueXeOTo
             // 
             initDBcarBindingSource.DataSource = typeof(Migrations.InitDBcar);
             // 
-            // btnChoose
+            // txbSearch
             // 
-            btnChoose.Location = new Point(688, 484);
-            btnChoose.Margin = new Padding(3, 4, 3, 4);
-            btnChoose.Name = "btnChoose";
-            btnChoose.Size = new Size(143, 50);
-            btnChoose.TabIndex = 6;
-            btnChoose.Text = "Chọn";
-            btnChoose.UseVisualStyleBackColor = true;
-            btnChoose.Click += btnChoose_Click;
+            txbSearch.Location = new Point(117, 22);
+            txbSearch.Name = "txbSearch";
+            txbSearch.Size = new Size(315, 27);
+            txbSearch.TabIndex = 7;
+            // 
+            // btnSearch
+            // 
+            btnSearch.Location = new Point(438, 16);
+            btnSearch.Margin = new Padding(3, 4, 3, 4);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(86, 36);
+            btnSearch.TabIndex = 8;
+            btnSearch.Text = "Tìm kiếm";
+            btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += btnSearch_Click;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(12, 25);
+            label2.Name = "label2";
+            label2.Size = new Size(99, 20);
+            label2.TabIndex = 9;
+            label2.Text = "Nhập từ khóa";
             // 
             // DanhSachXe
             // 
@@ -163,10 +195,12 @@ namespace ThueXeOTo
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLightLight;
             ClientSize = new Size(843, 557);
-            Controls.Add(btnChoose);
-            Controls.Add(button4);
-            Controls.Add(button3);
-            Controls.Add(button2);
+            Controls.Add(label2);
+            Controls.Add(btnSearch);
+            Controls.Add(txbSearch);
+            Controls.Add(btnAdd);
+            Controls.Add(btnFix);
+            Controls.Add(btnDel);
             Controls.Add(dataCar);
             Margin = new Padding(3, 4, 3, 4);
             Name = "DanhSachXe";
@@ -177,22 +211,25 @@ namespace ThueXeOTo
             ((System.ComponentModel.ISupportInitialize)carDBContextBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)initDBcarBindingSource).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
         public DataGridView dataCar;
-        private Button button2;
-        private Button button3;
-        private Button button4;
+        private Button btnDel;
+        private Button btnFix;
+        private Button btnAdd;
         private BindingSource carBindingSource;
         private BindingSource carDBContextBindingSource;
         private BindingSource initDBcarBindingSource;
-        private DataGridViewTextBoxColumn numberDataGridViewTextBoxColumn;
-        private Button btnChoose;
         private Label label1;
+        private TextBox txbSearch;
+        private Button btnSearch;
+        private Label label2;
+        private DataGridViewTextBoxColumn Id;
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn stateDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn companyDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn stateDataGridViewTextBoxColumn;
     }
 }

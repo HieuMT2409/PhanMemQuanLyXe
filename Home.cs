@@ -32,9 +32,7 @@ namespace ThueXeOTo
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            ListCars listCars = new ListCars();
-
-            listCars.UpdateLabel(user.Text);
+            Listcars listCars = new Listcars();
 
             listCars.ShowDialog();
             Close();

@@ -22,7 +22,7 @@ namespace ThueXeOTo
         {
             return username.Text;
         }
-
+        //
         private void btnLogin_Click(object sender, EventArgs e)
         {
             using (SqlConnection connection = new SqlConnection(conectionString))
@@ -42,10 +42,9 @@ namespace ThueXeOTo
                     {
                         Home_New home = new Home_New();
                         //home.UpdateLabel(username.Text);
-
-                        home.ShowDialog();
-
-                        this.Close();
+                        home.Show();
+                        home.FormClosed += (s, args) => this.Close();
+                        this.Hide();
                     }
                     else
                     {

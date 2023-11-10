@@ -10,37 +10,63 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ThueXeOTo.OrderCar;
 
 namespace ThueXeOTo
 {
-    public partial class ListCars : Form
+
+    public partial class Listcars : Form
     {
         string conectionString = @"Data Source=HIEUMT-2491310\HIEUMT; Integrated Security=true; Database=CarDB";
-        public ListCars()
+
+        public ChooseCar chooseCar = new ChooseCar();
+        public Listcars()
         {
             InitializeComponent();
         }
 
-        private void ListCars_Load(object sender, EventArgs e)
+        private void HideItem()
         {
-            text.Visible = false;
-            if (text.Text == "admin")
-            {
-                adminPic.Visible = true;
-                adminText.Visible = true;
-                userPic.Visible = false;
-                userText.Visible = false;
-            }
+            pictureBox1.Hide();
+            pictureBox2.Hide();
+            pictureBox3.Hide();
+            pictureBox4.Hide();
+            pictureBox5.Hide();
+            pictureBox6.Hide();
+            pictureBox7.Hide();
+
+            label2.Hide();
+            label3.Hide();
+            label4.Hide();
+            label5.Hide();
+            label6.Hide();
+            label7.Hide();
+            label8.Hide();
+
         }
 
-        public void UpdateLabel(string username)
+        public void ShowItem()
         {
-            text.Text = username;
+            pictureBox1.Show();
+            pictureBox2.Show();
+            pictureBox3.Show();
+            pictureBox4.Show();
+            pictureBox5.Show();
+            pictureBox6.Show();
+            pictureBox7.Show();
+
+            label2.Show();
+            label3.Show();
+            label4.Show();
+            label5.Show();
+            label6.Show ();
+            label7.Show();
+            label8.Show();
+
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            DanhSachXe danhSachXe = new DanhSachXe();
             using (SqlConnection connection = new SqlConnection(conectionString))
             {
                 connection.Open();
@@ -54,17 +80,20 @@ namespace ThueXeOTo
                     adapter.Fill(dataTable);
 
                     // Gán dữ liệu vào DataGridView
-                    danhSachXe.dataCar.DataSource = dataTable;
+                    chooseCar.dataDetailCar.DataSource = dataTable;
                 }
             }
 
-            danhSachXe.ShowDialog();
-            Close();
+            chooseCar.TopLevel = false;
+            this.Controls.Add(chooseCar);
+            chooseCar.FormBorderStyle = FormBorderStyle.None;
+            chooseCar.Dock = DockStyle.Fill;
+            HideItem();
+            chooseCar.Show();
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            DanhSachXe danhSachXe = new DanhSachXe();
             using (SqlConnection connection = new SqlConnection(conectionString))
             {
                 connection.Open();
@@ -78,17 +107,20 @@ namespace ThueXeOTo
                     adapter.Fill(dataTable);
 
                     // Gán dữ liệu vào DataGridView
-                    danhSachXe.dataCar.DataSource = dataTable;
+                    chooseCar.dataDetailCar.DataSource = dataTable;
                 }
             }
 
-            danhSachXe.ShowDialog();
-            this.Close();
+            chooseCar.TopLevel = false;
+            this.Controls.Add(chooseCar);
+            chooseCar.FormBorderStyle = FormBorderStyle.None;
+            chooseCar.Dock = DockStyle.Fill;
+            HideItem();
+            chooseCar.Show();
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
         {
-            DanhSachXe danhSachXe = new DanhSachXe();
             using (SqlConnection connection = new SqlConnection(conectionString))
             {
                 connection.Open();
@@ -102,17 +134,20 @@ namespace ThueXeOTo
                     adapter.Fill(dataTable);
 
                     // Gán dữ liệu vào DataGridView
-                    danhSachXe.dataCar.DataSource = dataTable;
+                    chooseCar.dataDetailCar.DataSource = dataTable;
                 }
             }
 
-            danhSachXe.ShowDialog();
-            this.Close();
+            chooseCar.TopLevel = false;
+            this.Controls.Add(chooseCar);
+            chooseCar.FormBorderStyle = FormBorderStyle.None;
+            chooseCar.Dock = DockStyle.Fill;
+            HideItem();
+            chooseCar.Show();
         }
 
         private void pictureBox5_Click(object sender, EventArgs e)
         {
-            DanhSachXe danhSachXe = new DanhSachXe();
             using (SqlConnection connection = new SqlConnection(conectionString))
             {
                 connection.Open();
@@ -126,17 +161,20 @@ namespace ThueXeOTo
                     adapter.Fill(dataTable);
 
                     // Gán dữ liệu vào DataGridView
-                    danhSachXe.dataCar.DataSource = dataTable;
+                    chooseCar.dataDetailCar.DataSource = dataTable;
                 }
             }
 
-            danhSachXe.ShowDialog();
-            this.Close();
+            chooseCar.TopLevel = false;
+            this.Controls.Add(chooseCar);
+            chooseCar.FormBorderStyle = FormBorderStyle.None;
+            chooseCar.Dock = DockStyle.Fill;
+            HideItem();
+            chooseCar.Show();
         }
 
         private void pictureBox4_Click(object sender, EventArgs e)
         {
-            DanhSachXe danhSachXe = new DanhSachXe();
             using (SqlConnection connection = new SqlConnection(conectionString))
             {
                 connection.Open();
@@ -150,17 +188,20 @@ namespace ThueXeOTo
                     adapter.Fill(dataTable);
 
                     // Gán dữ liệu vào DataGridView
-                    danhSachXe.dataCar.DataSource = dataTable;
+                    chooseCar.dataDetailCar.DataSource = dataTable;
                 }
             }
 
-            danhSachXe.ShowDialog();
-            this.Close();
+            chooseCar.TopLevel = false;
+            this.Controls.Add(chooseCar);
+            chooseCar.FormBorderStyle = FormBorderStyle.None;
+            chooseCar.Dock = DockStyle.Fill;
+            HideItem();
+            chooseCar.Show();
         }
 
         private void pictureBox6_Click(object sender, EventArgs e)
         {
-            DanhSachXe danhSachXe = new DanhSachXe();
             using (SqlConnection connection = new SqlConnection(conectionString))
             {
                 connection.Open();
@@ -174,17 +215,20 @@ namespace ThueXeOTo
                     adapter.Fill(dataTable);
 
                     // Gán dữ liệu vào DataGridView
-                    danhSachXe.dataCar.DataSource = dataTable;
+                    chooseCar.dataDetailCar.DataSource = dataTable;
                 }
             }
 
-            danhSachXe.ShowDialog();
-            this.Close();
+            chooseCar.TopLevel = false;
+            this.Controls.Add(chooseCar);
+            chooseCar.FormBorderStyle = FormBorderStyle.None;
+            chooseCar.Dock = DockStyle.Fill;
+            HideItem();
+            chooseCar.Show();
         }
 
         private void pictureBox7_Click(object sender, EventArgs e)
         {
-            DanhSachXe danhSachXe = new DanhSachXe();
             using (SqlConnection connection = new SqlConnection(conectionString))
             {
                 connection.Open();
@@ -198,12 +242,16 @@ namespace ThueXeOTo
                     adapter.Fill(dataTable);
 
                     // Gán dữ liệu vào DataGridView
-                    danhSachXe.dataCar.DataSource = dataTable;
+                    chooseCar.dataDetailCar.DataSource = dataTable;
                 }
             }
 
-            danhSachXe.ShowDialog();
-            this.Close();
+            chooseCar.TopLevel = false;
+            this.Controls.Add(chooseCar);
+            chooseCar.FormBorderStyle = FormBorderStyle.None;
+            chooseCar.Dock = DockStyle.Fill;
+            HideItem();
+            chooseCar.Show();
         }
 
         private void label1_Click(object sender, EventArgs e)

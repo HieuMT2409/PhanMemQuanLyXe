@@ -2896,11 +2896,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\.NET\\GiuaKy\\ThueXeOTo\\ThueXeOTo.csproj",
+      "projectUniqueName": "D:\\.NET\\PhanMemQuanLyXe\\ThueXeOTo.csproj",
       "projectName": "ThueXeOTo",
-      "projectPath": "D:\\.NET\\GiuaKy\\ThueXeOTo\\ThueXeOTo.csproj",
+      "projectPath": "D:\\.NET\\PhanMemQuanLyXe\\ThueXeOTo.csproj",
       "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-      "outputPath": "D:\\.NET\\GiuaKy\\ThueXeOTo\\obj\\",
+      "outputPath": "D:\\.NET\\PhanMemQuanLyXe\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",

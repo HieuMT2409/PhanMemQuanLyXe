@@ -6,9 +6,13 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
+using ThueXeOTo.ControlCar;
+using ThueXeOTo.ControlCars;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ThueXeOTo
@@ -19,18 +23,6 @@ namespace ThueXeOTo
         public DanhSachXe()
         {
             InitializeComponent();
-        }
-
-        private void btnChoose_Click(object sender, EventArgs e)
-        {
-            DataGridViewRow selectedRow = dataCar.SelectedRows[0];
-            string name = selectedRow.Cells["nameDataGridViewTextBoxColumn"].Value.ToString();
-
-            TinhNangXe tinhNangXe = new TinhNangXe();
-
-            tinhNangXe.UpdateLabel(name);
-
-            tinhNangXe.Show();
         }
 
         private void DanhSachXe_Load(object sender, EventArgs e)
@@ -57,6 +49,92 @@ namespace ThueXeOTo
         private void dataCar_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(conectionString))
+            {
+                connection.Open();
+
+                // Truy vấn dữ liệu
+                string query = "SELECT * FROM Cars WHERE Company LIKE N'%" + txbSearch.Text + "%' OR Type LIKE N'%" + txbSearch.Text + "%' OR Name LIKE N'%" + txbSearch.Text + "%'";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+
+                    // Gán dữ liệu vào DataGridView
+                    this.dataCar.DataSource = dataTable;
+                }
+            }
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            AddCar addCar = new AddCar();
+
+            addCar.FormClosed += (s, args) => LoadData();
+
+            addCar.ShowDialog();
+        }
+
+        private void btnFix_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow selectedRow = dataCar.SelectedRows[0];
+            string id = selectedRow.Cells["Id"].Value.ToString();
+            string name = selectedRow.Cells["nameDataGridViewTextBoxColumn"].Value.ToString();
+            string type = selectedRow.Cells["typeDataGridViewTextBoxColumn"].Value.ToString();
+            string company = selectedRow.Cells["companyDataGridViewTextBoxColumn"].Value.ToString();
+
+            FixCar fixCar = new FixCar();
+            fixCar.UpdateInfo(id, name, type, company);
+
+            fixCar.FormClosed += (s, args) => LoadData();
+
+            fixCar.ShowDialog();
+        }
+
+        private void LoadData()
+        {
+            dataCar.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            using (SqlConnection connection = new SqlConnection(conectionString))
+            {
+                connection.Open();
+
+                // Truy vấn dữ liệu
+                string query = "SELECT * FROM Cars";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+
+                    // Gán dữ liệu vào DataGridView
+                    this.dataCar.DataSource = dataTable;
+                }
+            }
+        }
+
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(conectionString))
+            {
+                connection.Open();
+
+                // Truy vấn dữ liệu
+                string query = "DELETE FROM Cars WHERE ID = @id";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    DataGridViewRow selectedRow = dataCar.SelectedRows[0];
+                    string id = selectedRow.Cells["Id"].Value.ToString();
+                    command.Parameters.Add("@id", SqlDbType.NVarChar).Value = id;
+
+                    int rowCount = command.ExecuteNonQuery();
+                    LoadData();
+                }
+            }
         }
     }
 }
