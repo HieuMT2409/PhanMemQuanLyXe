@@ -15,18 +15,23 @@ namespace ThueXeOTo
     {
         DanhSachXe danhSachXe = new DanhSachXe();
         DanhSachHoaDon danhsachHoaDon = new DanhSachHoaDon();
+        Listcars listcars = new Listcars();
+        public bool check = true;
         public Home_New()
         {
             InitializeComponent();
-        }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
+            //render danh sách xe cho màn hình home
             danhSachXe.TopLevel = false;
             panel1.Controls.Add(danhSachXe);
             danhSachXe.FormBorderStyle = FormBorderStyle.None;
             danhSachXe.Dock = DockStyle.Fill;
             danhSachXe.Show();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+            
         }
 
         public void UpdateLabel(string username)
@@ -52,6 +57,16 @@ namespace ThueXeOTo
             danhsachHoaDon.FormBorderStyle = FormBorderStyle.None;
             danhsachHoaDon.Dock = DockStyle.Fill;
             danhsachHoaDon.Show();
+        }
+
+        public void LoadListCarForm()
+        {
+            listcars.TopLevel = false;
+            panel1.Controls.Clear();
+            panel1.Controls.Add(listcars);
+            listcars.FormBorderStyle = FormBorderStyle.None;
+            listcars.Dock = DockStyle.Fill;
+            listcars.Show();
         }
 
         //Danh Sách Xe

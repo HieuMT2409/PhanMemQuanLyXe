@@ -30,15 +30,16 @@
         {
             components = new System.ComponentModel.Container();
             dataOrder = new DataGridView();
-            orderBindingSource = new BindingSource(components);
-            carBindingSource = new BindingSource(components);
-            carDBContextBindingSource = new BindingSource(components);
-            initDBcarBindingSource = new BindingSource(components);
             IdOrder = new DataGridViewTextBoxColumn();
             nameUserDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             sDTDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             nameCarDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             typePayDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            orderBindingSource = new BindingSource(components);
+            carBindingSource = new BindingSource(components);
+            carDBContextBindingSource = new BindingSource(components);
+            initDBcarBindingSource = new BindingSource(components);
+            btnAdd = new Button();
             ((System.ComponentModel.ISupportInitialize)dataOrder).BeginInit();
             ((System.ComponentModel.ISupportInitialize)orderBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)carBindingSource).BeginInit();
@@ -55,31 +56,14 @@
             dataOrder.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataOrder.Columns.AddRange(new DataGridViewColumn[] { IdOrder, nameUserDataGridViewTextBoxColumn, sDTDataGridViewTextBoxColumn, nameCarDataGridViewTextBoxColumn, typePayDataGridViewTextBoxColumn });
             dataOrder.DataSource = orderBindingSource;
-            dataOrder.Dock = DockStyle.Fill;
             dataOrder.Location = new Point(0, 0);
             dataOrder.Margin = new Padding(3, 4, 3, 4);
             dataOrder.Name = "dataOrder";
             dataOrder.ReadOnly = true;
             dataOrder.RowHeadersWidth = 51;
             dataOrder.RowTemplate.Height = 25;
-            dataOrder.Size = new Size(846, 557);
+            dataOrder.Size = new Size(858, 515);
             dataOrder.TabIndex = 10;
-            // 
-            // orderBindingSource
-            // 
-            orderBindingSource.DataSource = typeof(Database.Order);
-            // 
-            // carBindingSource
-            // 
-            carBindingSource.DataSource = typeof(Database.Car);
-            // 
-            // carDBContextBindingSource
-            // 
-            carDBContextBindingSource.DataSource = typeof(Database.CarDBContext);
-            // 
-            // initDBcarBindingSource
-            // 
-            initDBcarBindingSource.DataSource = typeof(Migrations.InitDBcar);
             // 
             // IdOrder
             // 
@@ -128,12 +112,39 @@
             typePayDataGridViewTextBoxColumn.Name = "typePayDataGridViewTextBoxColumn";
             typePayDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // orderBindingSource
+            // 
+            orderBindingSource.DataSource = typeof(Database.Order);
+            // 
+            // carBindingSource
+            // 
+            carBindingSource.DataSource = typeof(Database.Car);
+            // 
+            // carDBContextBindingSource
+            // 
+            carDBContextBindingSource.DataSource = typeof(Database.CarDBContext);
+            // 
+            // initDBcarBindingSource
+            // 
+            initDBcarBindingSource.DataSource = typeof(Migrations.InitDBcar);
+            // 
+            // btnAdd
+            // 
+            btnAdd.Location = new Point(727, 522);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(122, 53);
+            btnAdd.TabIndex = 11;
+            btnAdd.Text = "Tạo hóa đơn";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
+            // 
             // DanhSachHoaDon
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLightLight;
-            ClientSize = new Size(846, 557);
+            ClientSize = new Size(861, 587);
+            Controls.Add(btnAdd);
             Controls.Add(dataOrder);
             Name = "DanhSachHoaDon";
             Text = "DanhSachHoaDon";
@@ -158,5 +169,6 @@
         private DataGridViewTextBoxColumn sDTDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn nameCarDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn typePayDataGridViewTextBoxColumn;
+        private Button btnAdd;
     }
 }
