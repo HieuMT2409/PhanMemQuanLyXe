@@ -250,24 +250,24 @@
 
         private Label label1;
         private Label label2;
-        private TextBox txtNameUser;
+        public TextBox txtNameUser;
         private Label label3;
-        private RadioButton radioButton1;
-        private RadioButton radioButton2;
-        private TextBox txtAddress;
+        public RadioButton radioButton1;
+        public RadioButton radioButton2;
+        public TextBox txtAddress;
         private Label label4;
         private Label label5;
-        private Label txtXethue;
+        public Label txtXethue;
         private Label label7;
-        private ListBox lbFeature;
-        private TextBox txtSDT;
+        public ListBox lbFeature;
+        public TextBox txtSDT;
         private Label label6;
-        private Button button1;
-        private DateTimePicker dtIN;
+        public Button button1;
+        public DateTimePicker dtIN;
         private Label label8;
         private Label label9;
-        private DateTimePicker dtOUT;
-        private ComboBox cbPAY;
+        public DateTimePicker dtOUT;
+        public ComboBox cbPAY;
         private Label label10;
     }
 }

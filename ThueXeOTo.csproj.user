@@ -25,6 +25,9 @@
     <Compile Update="OrderCar\ChooseCar.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="OrderCar\ThongTinHoaDon.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="ThongTinThueXe.cs">
       <SubType>Form</SubType>
     </Compile>

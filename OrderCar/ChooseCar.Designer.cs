@@ -158,7 +158,7 @@
         private DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn companyDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn stateDataGridViewTextBoxColumn;
-        private Button btnChoose;
+        public Button btnChoose;
         private Button btnBack;
     }
 }

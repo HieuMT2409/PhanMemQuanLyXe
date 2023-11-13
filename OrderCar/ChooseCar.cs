@@ -13,7 +13,6 @@ namespace ThueXeOTo.OrderCar
 {
     public partial class ChooseCar : Form
     {
-        string conectionString = @"Data Source=HIEUMT-2491310\HIEUMT; Integrated Security=true; Database=CarDB";
         public ChooseCar()
         {
             InitializeComponent();

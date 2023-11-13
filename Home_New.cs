@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,7 +17,8 @@ namespace ThueXeOTo
         DanhSachXe danhSachXe = new DanhSachXe();
         DanhSachHoaDon danhsachHoaDon = new DanhSachHoaDon();
         Listcars listcars = new Listcars();
-        public bool check = true;
+        ThongTinThueXe thongtinthuexe = new ThongTinThueXe();
+        ChooseCar chooseCar = new ChooseCar();
         public Home_New()
         {
             InitializeComponent();
@@ -39,16 +41,7 @@ namespace ThueXeOTo
             user.Text = username;
         }
 
-        public void LoadDanhSachXeForm()
-        {
-            danhSachXe.TopLevel = false;
-            panel1.Controls.Clear();
-            panel1.Controls.Add(danhSachXe);
-            danhSachXe.FormBorderStyle = FormBorderStyle.None;
-            danhSachXe.Dock = DockStyle.Fill;
-            danhSachXe.Show();
-        }
-
+        // Danh sách hóa đơn
         public void LoadDanhSachHoaDonForm()
         {
             danhsachHoaDon.TopLevel = false;
@@ -56,9 +49,13 @@ namespace ThueXeOTo
             panel1.Controls.Add(danhsachHoaDon);
             danhsachHoaDon.FormBorderStyle = FormBorderStyle.None;
             danhsachHoaDon.Dock = DockStyle.Fill;
+            danhsachHoaDon.btnAdd.Click += DanhSachHoaDon_ButtonClick;
+
+            danhsachHoaDon.dataOrder.CellDoubleClick += DataOrder_CellDoubleClick;
             danhsachHoaDon.Show();
         }
 
+        //List Car
         public void LoadListCarForm()
         {
             listcars.TopLevel = false;
@@ -69,7 +66,43 @@ namespace ThueXeOTo
             listcars.Show();
         }
 
+        private void DanhSachHoaDon_ButtonClick(object sender, EventArgs e)
+        {
+            LoadListCarForm();
+        }
+
+        private void DataOrder_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            DataGridViewRow selectedRow = danhsachHoaDon.dataOrder.SelectedRows[0];
+            string id = selectedRow.Cells["IdOrder"].Value.ToString();
+            string name = selectedRow.Cells["nameUserDataGridViewTextBoxColumn"].Value.ToString();
+            string sdt = selectedRow.Cells["sDTDataGridViewTextBoxColumn"].Value.ToString();
+            string address = selectedRow.Cells["Address"].Value.ToString();
+            string nameCar = selectedRow.Cells["nameCarDataGridViewTextBoxColumn"].Value.ToString();
+            string feature = selectedRow.Cells["Feature"].Value.ToString();
+            string timein = selectedRow.Cells["TimeIn"].Value.ToString();
+            string timeout = selectedRow.Cells["TimeOut"].Value.ToString();
+            string pay = selectedRow.Cells["typePayDataGridViewTextBoxColumn"].Value.ToString();
+
+            ThongTinHoaDon thongTinHoaDon = new ThongTinHoaDon();
+
+            thongTinHoaDon.UpdateData(id, name, sdt, address, nameCar, feature, timein, timeout, pay);
+            thongTinHoaDon.Show();
+
+        }
+
         //Danh Sách Xe
+        public void LoadDanhSachXeForm()
+        {
+            danhSachXe.TopLevel = false;
+            panel1.Controls.Clear();
+            panel1.Controls.Add(danhSachXe);
+            danhSachXe.FormBorderStyle = FormBorderStyle.None;
+            danhSachXe.Dock = DockStyle.Fill;
+            danhSachXe.Show();
+        }
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             LoadDanhSachXeForm();
@@ -91,6 +124,15 @@ namespace ThueXeOTo
             LoadDanhSachHoaDonForm();
         }
 
-       
+        //Thông tin thuê xe
+        public void LoadThongTinXeForm()
+        {
+            thongtinthuexe.TopLevel = false;
+            panel1.Controls.Clear();
+            panel1.Controls.Add(thongtinthuexe);
+            thongtinthuexe.FormBorderStyle = FormBorderStyle.None;
+            thongtinthuexe.Dock = DockStyle.Fill;
+            thongtinthuexe.Show();
+        }
     }
 }

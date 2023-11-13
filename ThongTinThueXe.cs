@@ -16,6 +16,7 @@ namespace ThueXeOTo
     public partial class ThongTinThueXe : Form
     {
         string conectionString = @"Data Source=HIEUMT-2491310\HIEUMT; Integrated Security=true; Database=CarDB";
+
         public ThongTinThueXe()
         {
             InitializeComponent();
@@ -56,17 +57,9 @@ namespace ThueXeOTo
             string combinedValues = string.Join(", ", allValues);
 
             //Kiểm tra yêu cầu nhập đủ các trường dữ liệu
-            if(txtNameUser.Text == "" || txtXethue.Text =="" || txtSDT.Text == "" || cbPAY.Text == "")
+            if (txtNameUser.Text == "" || txtXethue.Text == "" || txtSDT.Text == "" || cbPAY.Text == "")
             {
-                if (txtSDT.TextLength != 10)
-                {
-                    MessageBox.Show("Thông tin số điện thoại không phù hợp.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                }
-                else
-                {
-                    MessageBox.Show("Cần nhập đủ các thông tin.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                MessageBox.Show("Cần nhập đủ các thông tin.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
 
@@ -101,7 +94,7 @@ namespace ThueXeOTo
                         int rowCount = command.ExecuteNonQuery();
 
                         //Upload thành công thì cập nhật lại giá trị State của xe
-                        if(rowCount > 0)
+                        if (rowCount > 0)
                         {
                             string updateQuery = "UPDATE Cars SET State = N'Đang cho thuê' WHERE Name = @namecar";
 
@@ -113,9 +106,8 @@ namespace ThueXeOTo
                             }
                         }
                         MessageBox.Show("Dữ liệu đã được thêm thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                         this.Hide();
-                        Home_New home_New = new Home_New();
-                        home_New.LoadDanhSachXeForm();
                     }
                 }
             }

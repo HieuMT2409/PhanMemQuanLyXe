@@ -45,10 +45,10 @@ namespace ThueXeOTo
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            Home_New home_New = new Home_New();
-            this.Hide();
-            home_New.LoadListCarForm();
+        }
 
+        private void dataOrder_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
         }
     }
 }
