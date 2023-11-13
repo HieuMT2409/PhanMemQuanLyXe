@@ -12,8 +12,8 @@ using ThueXeOTo.Database;
 namespace ThueXeOTo.Migrations
 {
     [DbContext(typeof(CarDBContext))]
-    [Migration("20231108024855_Dataa")]
-    partial class Dataa
+    [Migration("20231111053954_NewDB")]
+    partial class NewDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -59,6 +59,14 @@ namespace ThueXeOTo.Migrations
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Feature")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("NameCar")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -91,23 +99,11 @@ namespace ThueXeOTo.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Gender")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("NameUser")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SDT")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

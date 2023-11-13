@@ -4,6 +4,9 @@
     <Compile Update="ControlCars\FixCar.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="DanhSachHoaDon.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="DanhSachXe.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -11,9 +14,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Home.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Home_New.cs">

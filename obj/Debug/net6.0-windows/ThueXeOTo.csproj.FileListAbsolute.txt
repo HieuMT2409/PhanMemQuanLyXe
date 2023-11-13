@@ -119,7 +119,6 @@ D:\.NET\PhanMemQuanLyXe\bin\Debug\net6.0-windows\runtimes\browser\lib\net6.0\Sys
 D:\.NET\PhanMemQuanLyXe\obj\Debug\net6.0-windows\ThueXeOTo.csproj.AssemblyReference.cache
 D:\.NET\PhanMemQuanLyXe\obj\Debug\net6.0-windows\ThueXeOTo.DanhSachXe.resources
 D:\.NET\PhanMemQuanLyXe\obj\Debug\net6.0-windows\ThueXeOTo.Form1.resources
-D:\.NET\PhanMemQuanLyXe\obj\Debug\net6.0-windows\ThueXeOTo.Home.resources
 D:\.NET\PhanMemQuanLyXe\obj\Debug\net6.0-windows\ThueXeOTo.Home_New.resources
 D:\.NET\PhanMemQuanLyXe\obj\Debug\net6.0-windows\ThueXeOTo.ListCars.resources
 D:\.NET\PhanMemQuanLyXe\obj\Debug\net6.0-windows\ThueXeOTo.Properties.Resources.resources
@@ -139,3 +138,4 @@ D:\.NET\PhanMemQuanLyXe\obj\Debug\net6.0-windows\ref\ThueXeOTo.dll
 D:\.NET\PhanMemQuanLyXe\obj\Debug\net6.0-windows\ThueXeOTo.ControlCar.AddCar.resources
 D:\.NET\PhanMemQuanLyXe\obj\Debug\net6.0-windows\ThueXeOTo.ControlCars.FixCar.resources
 D:\.NET\PhanMemQuanLyXe\obj\Debug\net6.0-windows\ThueXeOTo.OrderCar.ChooseCar.resources
+D:\.NET\PhanMemQuanLyXe\obj\Debug\net6.0-windows\ThueXeOTo.DanhSachHoaDon.resources

@@ -41,7 +41,7 @@ namespace ThueXeOTo
                     if (userCount > 0)
                     {
                         Home_New home = new Home_New();
-                        //home.UpdateLabel(username.Text);
+                        home.UpdateLabel(username.Text);
                         home.Show();
                         home.FormClosed += (s, args) => this.Close();
                         this.Hide();

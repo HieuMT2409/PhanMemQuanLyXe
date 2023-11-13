@@ -7,13 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ThueXeOTo.OrderCar;
 
 namespace ThueXeOTo
 {
     public partial class Home_New : Form
     {
         DanhSachXe danhSachXe = new DanhSachXe();
-        Listcars listCar = new Listcars();
+        DanhSachHoaDon danhsachHoaDon = new DanhSachHoaDon();
         public Home_New()
         {
             InitializeComponent();
@@ -33,46 +34,46 @@ namespace ThueXeOTo
             user.Text = username;
         }
 
+        public void LoadDanhSachXeForm()
+        {
+            danhSachXe.TopLevel = false;
+            panel1.Controls.Clear();
+            panel1.Controls.Add(danhSachXe);
+            danhSachXe.FormBorderStyle = FormBorderStyle.None;
+            danhSachXe.Dock = DockStyle.Fill;
+            danhSachXe.Show();
+        }
+
+        public void LoadDanhSachHoaDonForm()
+        {
+            danhsachHoaDon.TopLevel = false;
+            panel1.Controls.Clear();
+            panel1.Controls.Add(danhsachHoaDon);
+            danhsachHoaDon.FormBorderStyle = FormBorderStyle.None;
+            danhsachHoaDon.Dock = DockStyle.Fill;
+            danhsachHoaDon.Show();
+        }
+
         //Danh Sách Xe
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            danhSachXe.TopLevel = false;
-            panel1.Controls.Add(danhSachXe);
-            danhSachXe.FormBorderStyle = FormBorderStyle.None;
-            danhSachXe.Dock = DockStyle.Fill;
-            listCar.Hide();
-            danhSachXe.Show();
+            LoadDanhSachXeForm();
         }
         private void label2_Click(object sender, EventArgs e)
         {
-            danhSachXe.TopLevel = false;
-            panel1.Controls.Add(danhSachXe);
-            danhSachXe.FormBorderStyle = FormBorderStyle.None;
-            danhSachXe.Dock = DockStyle.Fill;
-            listCar.Hide();
-            danhSachXe.Show();
+            LoadDanhSachXeForm();
         }
 
         //Đơn Đặt Xe
 
         private void label4_Click(object sender, EventArgs e)
         {
-            listCar.TopLevel = false;
-            panel1.Controls.Add(listCar);
-            listCar.FormBorderStyle = FormBorderStyle.None;
-            listCar.Dock = DockStyle.Fill;
-            danhSachXe.Hide();
-            listCar.Show();
+            LoadDanhSachHoaDonForm();
         }
 
         public void pictureBox5_Click(object sender, EventArgs e)
         {
-            listCar.TopLevel = false;
-            panel1.Controls.Add(listCar);
-            listCar.FormBorderStyle = FormBorderStyle.None;
-            listCar.Dock = DockStyle.Fill;
-            danhSachXe.Hide();
-            listCar.Show();
+            LoadDanhSachHoaDonForm();
         }
 
        

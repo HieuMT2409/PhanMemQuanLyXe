@@ -19,7 +19,31 @@ namespace ThueXeOTo
         }
         private void HideItem()
         {
-
+            cbBando.Visible = false;
+            cbCameraCaple.Visible = false;
+            cbCambien.Visible = false;
+            cbCuaso.Visible = false;
+            cbUSB.Visible = false;
+            cbNap.Visible = false;
+            cb360.Visible = false;
+            cbLop.Visible = false;
+            cbGPS.Visible = false;
+            cbVar.Visible = false;
+            cbCameraHT.Visible = false;
+            cbBluetooth.Visible = false;
+            cbCanhbao.Visible = false;
+            cbCameraLui.Visible = false;
+            label1.Visible = false;
+            label2.Visible = false;
+            txtXe.Visible = false;
+            label3.Visible = false;
+            label4.Visible = false;
+            label6.Visible = false;
+            rbAll.Visible = false;
+            rbXang.Visible = false;
+            rbDau.Visible = false;
+            rbDien.Visible = false;
+            button1.Visible = false;
         }
         private void checkBox4_CheckedChanged(object sender, EventArgs e)
         {

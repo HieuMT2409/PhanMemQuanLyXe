@@ -12,8 +12,8 @@ using ThueXeOTo.Database;
 namespace ThueXeOTo.Migrations
 {
     [DbContext(typeof(CarDBContext))]
-    [Migration("20231108025631_AAAA")]
-    partial class AAAA
+    [Migration("20231111142314_Update")]
+    partial class Update
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -56,8 +56,19 @@ namespace ThueXeOTo.Migrations
 
             modelBuilder.Entity("ThueXeOTo.Database.Order", b =>
                 {
-                    b.Property<string>("ID")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Feature")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NameCar")
                         .IsRequired()
