@@ -225,7 +225,6 @@ namespace ThueXeOTo
                     chooseCar.dataDetailCar.DataSource = dataTable;
                 }
             }
-
             chooseCar.TopLevel = false;
             this.Controls.Add(chooseCar);
             chooseCar.FormBorderStyle = FormBorderStyle.None;
