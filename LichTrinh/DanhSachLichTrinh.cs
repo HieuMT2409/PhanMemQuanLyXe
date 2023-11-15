@@ -8,23 +8,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ThueXeOTo.ControlCar;
-using ThueXeOTo.ControlCars;
 
-namespace ThueXeOTo
+namespace ThueXeOTo.LichTrinh
 {
-    public partial class DanhSachHoaDon : Form
+    public partial class DanhSachLichTrinh : Form
     {
         string conectionString = @"Data Source=HIEUMT-2491310\HIEUMT; Integrated Security=true; Database=CarDB";
 
-        public DanhSachHoaDon()
+        public DanhSachLichTrinh()
         {
             InitializeComponent();
         }
 
-        private void DanhSachHoaDon_Load(object sender, EventArgs e)
+        private void dataKH_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            dataOrder.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+        }
+
+        private void DanhSachLichTrinh_Load(object sender, EventArgs e)
+        {
+            dataLichTrinh.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             using (SqlConnection connection = new SqlConnection(conectionString))
             {
                 connection.Open();
@@ -38,18 +41,9 @@ namespace ThueXeOTo
                     adapter.Fill(dataTable);
 
                     // Gán dữ liệu vào DataGridView
-                    this.dataOrder.DataSource = dataTable;
+                    this.dataLichTrinh.DataSource = dataTable;
                 }
-                connection.Close();
             }
-        }
-
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void dataOrder_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
         }
     }
 }

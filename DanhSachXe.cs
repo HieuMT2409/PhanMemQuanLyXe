@@ -42,7 +42,9 @@ namespace ThueXeOTo
 
                     // Gán dữ liệu vào DataGridView
                     this.dataCar.DataSource = dataTable;
+                    this.dataCar.Refresh();
                 }
+                connection.Close();
             }
         }
 
@@ -68,6 +70,7 @@ namespace ThueXeOTo
                     // Gán dữ liệu vào DataGridView
                     this.dataCar.DataSource = dataTable;
                 }
+                connection.Close();
             }
         }
 
@@ -114,6 +117,7 @@ namespace ThueXeOTo
                     // Gán dữ liệu vào DataGridView
                     this.dataCar.DataSource = dataTable;
                 }
+                connection.Close();
             }
         }
 
@@ -134,7 +138,29 @@ namespace ThueXeOTo
                     int rowCount = command.ExecuteNonQuery();
                     LoadData();
                 }
+                connection.Close();
             }
+        }
+
+        private void carBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void carDBContextBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void initDBcarBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void txbSearch_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
         }
     }
 }

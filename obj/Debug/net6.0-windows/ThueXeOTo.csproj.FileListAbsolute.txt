@@ -139,3 +139,7 @@ D:\.NET\PhanMemQuanLyXe\obj\Debug\net6.0-windows\ThueXeOTo.ControlCar.AddCar.res
 D:\.NET\PhanMemQuanLyXe\obj\Debug\net6.0-windows\ThueXeOTo.ControlCars.FixCar.resources
 D:\.NET\PhanMemQuanLyXe\obj\Debug\net6.0-windows\ThueXeOTo.OrderCar.ChooseCar.resources
 D:\.NET\PhanMemQuanLyXe\obj\Debug\net6.0-windows\ThueXeOTo.DanhSachHoaDon.resources
+D:\.NET\PhanMemQuanLyXe\obj\Debug\net6.0-windows\ThueXeOTo.OrderCar.ThongTinHoaDon.resources
+D:\.NET\PhanMemQuanLyXe\obj\Debug\net6.0-windows\ThueXeOTo.KhachHang.DanhSachKH.resources
+D:\.NET\PhanMemQuanLyXe\obj\Debug\net6.0-windows\ThueXeOTo.KhachHang.FixKH.resources
+D:\.NET\PhanMemQuanLyXe\obj\Debug\net6.0-windows\ThueXeOTo.LichTrinh.DanhSachLichTrinh.resources

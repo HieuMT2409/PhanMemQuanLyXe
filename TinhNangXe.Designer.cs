@@ -53,6 +53,7 @@
             label4 = new Label();
             txtXe = new Label();
             label6 = new Label();
+            btnBack = new Button();
             SuspendLayout();
             // 
             // label1
@@ -264,7 +265,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(273, 444);
+            button1.Location = new Point(549, 444);
             button1.Name = "button1";
             button1.Size = new Size(119, 50);
             button1.TabIndex = 20;
@@ -313,12 +314,23 @@
             label6.TabIndex = 24;
             label6.Text = "------------------------------------------------------------------------------------";
             // 
+            // btnBack
+            // 
+            btnBack.Location = new Point(37, 444);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(116, 50);
+            btnBack.TabIndex = 25;
+            btnBack.Text = "Quay lại";
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
+            // 
             // TinhNangXe
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLightLight;
             ClientSize = new Size(680, 506);
+            Controls.Add(btnBack);
             Controls.Add(label6);
             Controls.Add(txtXe);
             Controls.Add(label4);
@@ -378,5 +390,6 @@
         private Label label4;
         private Label txtXe;
         private Label label6;
+        private Button btnBack;
     }
 }

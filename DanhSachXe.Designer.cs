@@ -120,6 +120,7 @@ namespace ThueXeOTo
             // carBindingSource
             // 
             carBindingSource.DataSource = typeof(Car);
+            carBindingSource.CurrentChanged += carBindingSource_CurrentChanged;
             // 
             // btnDel
             // 
@@ -157,10 +158,12 @@ namespace ThueXeOTo
             // carDBContextBindingSource
             // 
             carDBContextBindingSource.DataSource = typeof(CarDBContext);
+            carDBContextBindingSource.CurrentChanged += carDBContextBindingSource_CurrentChanged;
             // 
             // initDBcarBindingSource
             // 
             initDBcarBindingSource.DataSource = typeof(Migrations.InitDBcar);
+            initDBcarBindingSource.CurrentChanged += initDBcarBindingSource_CurrentChanged;
             // 
             // txbSearch
             // 
@@ -168,6 +171,7 @@ namespace ThueXeOTo
             txbSearch.Name = "txbSearch";
             txbSearch.Size = new Size(315, 27);
             txbSearch.TabIndex = 7;
+            txbSearch.TextChanged += txbSearch_TextChanged;
             // 
             // btnSearch
             // 
@@ -188,6 +192,7 @@ namespace ThueXeOTo
             label2.Size = new Size(99, 20);
             label2.TabIndex = 9;
             label2.Text = "Nhập từ khóa";
+            label2.Click += label2_Click;
             // 
             // DanhSachXe
             // 

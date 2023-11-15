@@ -8,43 +8,34 @@ using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ThueXeOTo.OrderCar;
 
 namespace ThueXeOTo
 {
     public partial class TinhNangXe : Form
     {
+        ThongTinThueXe thongTinThueXe = new ThongTinThueXe();
+
         public TinhNangXe()
         {
             InitializeComponent();
         }
-        private void HideItem()
+
+        private void ShowForm()
         {
-            cbBando.Visible = false;
-            cbCameraCaple.Visible = false;
-            cbCambien.Visible = false;
-            cbCuaso.Visible = false;
-            cbUSB.Visible = false;
-            cbNap.Visible = false;
-            cb360.Visible = false;
-            cbLop.Visible = false;
-            cbGPS.Visible = false;
-            cbVar.Visible = false;
-            cbCameraHT.Visible = false;
-            cbBluetooth.Visible = false;
-            cbCanhbao.Visible = false;
-            cbCameraLui.Visible = false;
-            label1.Visible = false;
-            label2.Visible = false;
-            txtXe.Visible = false;
-            label3.Visible = false;
-            label4.Visible = false;
-            label6.Visible = false;
-            rbAll.Visible = false;
-            rbXang.Visible = false;
-            rbDau.Visible = false;
-            rbDien.Visible = false;
-            button1.Visible = false;
+            Home_New homeForm = this.ParentForm as Home_New;
+
+            if (homeForm != null)
+            {
+                thongTinThueXe.TopLevel = false;
+                homeForm.panel1.Controls.Clear();
+                homeForm.panel1.Controls.Add(thongTinThueXe);
+                thongTinThueXe.FormBorderStyle = FormBorderStyle.None;
+                thongTinThueXe.Dock = DockStyle.Fill;
+                thongTinThueXe.Show();
+            }
         }
+
         private void checkBox4_CheckedChanged(object sender, EventArgs e)
         {
 
@@ -58,6 +49,8 @@ namespace ThueXeOTo
         private void button1_Click(object sender, EventArgs e)
         {
             List<string> list = new List<string>();
+            bool radioButtonChecked = false;
+
             foreach (Control control in this.Controls)
             {
                 if (control is CheckBox)
@@ -74,21 +67,18 @@ namespace ThueXeOTo
                     if (radio.Checked)
                     {
                         list.Add((string)radio.Text);
+                        radioButtonChecked = true;
                     }
                 }
             }
 
-            ThongTinThueXe thongTinThueXe = new ThongTinThueXe();
-
-            thongTinThueXe.UpdateLabel(txtXe.Text);
+            if (!radioButtonChecked)
+            {
+                MessageBox.Show("Vui lòng chọn loại nhiên liệu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             thongTinThueXe.UpdateData(list);
-
-            thongTinThueXe.TopLevel = false;
-            this.Controls.Add(thongTinThueXe);
-            thongTinThueXe.FormBorderStyle = FormBorderStyle.None;
-            thongTinThueXe.Dock = DockStyle.Fill;
-            HideItem();
-            thongTinThueXe.Show();
+            thongTinThueXe.UpdateLabel(txtXe.Text);
+            ShowForm();
         }
 
         private void txtXe_Click(object sender, EventArgs e)
@@ -104,6 +94,22 @@ namespace ThueXeOTo
         private void cbUSB_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            Home_New homeForm = this.ParentForm as Home_New;
+
+            if (homeForm != null)
+            {
+                TinhNangXe tinhNangXe = new TinhNangXe();
+                tinhNangXe.TopLevel = false;
+                homeForm.panel1.Controls.Clear();
+                homeForm.panel1.Controls.Add(tinhNangXe);
+                tinhNangXe.FormBorderStyle = FormBorderStyle.None;
+                tinhNangXe.Dock = DockStyle.Fill;
+                tinhNangXe.Show();
+            }
         }
     }
 }

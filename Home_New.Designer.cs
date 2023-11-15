@@ -129,6 +129,7 @@
             label5.Size = new Size(98, 23);
             label5.TabIndex = 11;
             label5.Text = "Lịch Trình";
+            label5.Click += label5_Click;
             // 
             // label4
             // 
@@ -150,6 +151,7 @@
             label3.Size = new Size(113, 23);
             label3.TabIndex = 9;
             label3.Text = "Khách Hàng";
+            label3.Click += label3_Click;
             // 
             // label2
             // 
@@ -191,6 +193,7 @@
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 3;
             pictureBox2.TabStop = false;
+            pictureBox2.Click += pictureBox2_Click;
             // 
             // pictureBox5
             // 
@@ -212,6 +215,7 @@
             pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox6.TabIndex = 7;
             pictureBox6.TabStop = false;
+            pictureBox6.Click += pictureBox6_Click;
             // 
             // pictureBox1
             // 
@@ -244,6 +248,7 @@
             Controls.Add(panel1);
             Name = "Home_New";
             Text = "Home_New";
+            Load += Home_New_Load;
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();

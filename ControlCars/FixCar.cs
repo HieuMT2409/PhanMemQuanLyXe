@@ -47,6 +47,7 @@ namespace ThueXeOTo.ControlCars
                     
                     this.Close();
                 }
+                connection.Close();
             }
         }
     }

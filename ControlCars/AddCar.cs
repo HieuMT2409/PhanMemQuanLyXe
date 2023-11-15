@@ -38,6 +38,7 @@ namespace ThueXeOTo.ControlCar
                     int rowCount = command.ExecuteNonQuery();
                     this.Close();
                 }
+                connection.Close();
             }
         }
     }

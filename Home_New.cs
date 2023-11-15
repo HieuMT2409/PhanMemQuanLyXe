@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ThueXeOTo.KhachHang;
+using ThueXeOTo.LichTrinh;
 using ThueXeOTo.OrderCar;
 
 namespace ThueXeOTo
@@ -18,7 +20,8 @@ namespace ThueXeOTo
         DanhSachHoaDon danhsachHoaDon = new DanhSachHoaDon();
         Listcars listcars = new Listcars();
         ThongTinThueXe thongtinthuexe = new ThongTinThueXe();
-        ChooseCar chooseCar = new ChooseCar();
+        DanhSachKH danhSachKH = new DanhSachKH();
+        DanhSachLichTrinh danhSachLichTrinh = new DanhSachLichTrinh();
         public Home_New()
         {
             InitializeComponent();
@@ -31,9 +34,14 @@ namespace ThueXeOTo
             danhSachXe.Show();
         }
 
+        private void Home_New_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-            
+
         }
 
         public void UpdateLabel(string username)
@@ -134,5 +142,55 @@ namespace ThueXeOTo
             thongtinthuexe.Dock = DockStyle.Fill;
             thongtinthuexe.Show();
         }
+
+        //Danh sách Khách hàng
+        public void LoadDanhSachKHForm()
+        {
+            danhSachKH.TopLevel = false;
+            panel1.Controls.Clear();
+            panel1.Controls.Add(danhSachKH);
+            danhSachKH.FormBorderStyle = FormBorderStyle.None;
+            danhSachKH.Dock = DockStyle.Fill;
+
+
+            danhSachKH.Show();
+        }
+
+        private void pictureBox6_Click(object sender, EventArgs e)
+        {
+            LoadDanhSachKHForm();
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            LoadDanhSachKHForm();
+
+        }
+
+
+        //Danh sách lịch trình
+        public void LoadDanhSachLTForm()
+        {
+            danhSachLichTrinh.TopLevel = false;
+            panel1.Controls.Clear();
+            panel1.Controls.Add(danhSachLichTrinh);
+            danhSachLichTrinh.FormBorderStyle = FormBorderStyle.None;
+            danhSachLichTrinh.Dock = DockStyle.Fill;
+
+            danhSachLichTrinh.Show();
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+            LoadDanhSachLTForm();
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            LoadDanhSachLTForm();
+
+        }
+
+        
     }
 }

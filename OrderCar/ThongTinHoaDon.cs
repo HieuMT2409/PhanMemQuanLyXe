@@ -43,5 +43,10 @@ namespace ThueXeOTo.OrderCar
             txtTimeOut.Text = timeout;
             txtPay.Text = typepay;
         }
+
+        private void ThongTinHoaDon_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

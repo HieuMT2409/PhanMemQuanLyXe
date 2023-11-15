@@ -13,33 +13,47 @@ namespace ThueXeOTo.OrderCar
 {
     public partial class ChooseCar : Form
     {
+        TinhNangXe tinhNangXe = new TinhNangXe();
+
         public ChooseCar()
         {
             InitializeComponent();
         }
 
-        private void HideItem()
+        private void ShowForm()
         {
-            dataDetailCar.Hide();
-            btnBack.Hide();
-            btnChoose.Hide();
+            Home_New homeForm = this.ParentForm as Home_New;
+
+            if (homeForm != null)
+            {
+                tinhNangXe.TopLevel = false;
+                homeForm.panel1.Controls.Clear();
+                homeForm.panel1.Controls.Add(tinhNangXe);
+                tinhNangXe.FormBorderStyle = FormBorderStyle.None;
+                tinhNangXe.Dock = DockStyle.Fill;
+
+                tinhNangXe.Show();
+            }
         }
 
         private void btnChoose_Click(object sender, EventArgs e)
         {
             DataGridViewRow selectedRow = dataDetailCar.SelectedRows[0];
             string name = selectedRow.Cells["nameDataGridViewTextBoxColumn"].Value.ToString();
+            string state = selectedRow.Cells["stateDataGridViewTextBoxColumn"].Value.ToString();
 
-            TinhNangXe tinhNangXe = new TinhNangXe();
+            if(state == "Trống")
+            {
+                tinhNangXe.UpdateLabel(name);
 
-            tinhNangXe.UpdateLabel(name);
+                ShowForm();
+            }
+            else
+            {
+                MessageBox.Show("Xe đang được thuê, vui lòng tham khảo loại khác.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-            tinhNangXe.TopLevel = false;
-            this.Controls.Add(tinhNangXe);
-            tinhNangXe.FormBorderStyle = FormBorderStyle.None;
-            tinhNangXe.Dock = DockStyle.Fill;
-            HideItem();
-            tinhNangXe.Show();
+            }
+
         }
 
         private void ChooseCar_Load(object sender, EventArgs e)
@@ -49,14 +63,18 @@ namespace ThueXeOTo.OrderCar
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Listcars listcars = new Listcars();
+            Home_New homeForm = this.ParentForm as Home_New;
 
-            listcars.TopLevel = false;
-            this.Controls.Add(listcars);
-            listcars.FormBorderStyle = FormBorderStyle.None;
-            listcars.Dock = DockStyle.Fill;
-            HideItem();
-            listcars.Show();
+            if (homeForm != null)
+            {
+                Listcars listcars = new Listcars();
+                listcars.TopLevel = false;
+                homeForm.panel1.Controls.Clear();
+                homeForm.panel1.Controls.Add(listcars);
+                listcars.FormBorderStyle = FormBorderStyle.None;
+                listcars.Dock = DockStyle.Fill;
+                listcars.Show();
+            }
         }
     }
 }

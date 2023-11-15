@@ -10,13 +10,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using ThueXeOTo.KhachHang;
+using ThueXeOTo.OrderCar;
 
 namespace ThueXeOTo
 {
     public partial class ThongTinThueXe : Form
     {
         string conectionString = @"Data Source=HIEUMT-2491310\HIEUMT; Integrated Security=true; Database=CarDB";
-
         public ThongTinThueXe()
         {
             InitializeComponent();
@@ -45,6 +46,23 @@ namespace ThueXeOTo
 
         }
 
+        public void LoadDanhSachXeForm()
+        {
+            Home_New homeForm = this.ParentForm as Home_New;
+
+            if (homeForm != null)
+            {
+                DanhSachHoaDon xe = new DanhSachHoaDon();
+
+                xe.TopLevel = false;
+                homeForm.panel1.Controls.Clear();
+                homeForm.panel1.Controls.Add(xe);
+                xe.FormBorderStyle = FormBorderStyle.None;
+                xe.Dock = DockStyle.Fill;
+                xe.Show();
+            }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             //Lấy thông tin của Listbox
@@ -62,55 +80,59 @@ namespace ThueXeOTo
                 MessageBox.Show("Cần nhập đủ các thông tin.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
-
-            //Kiểm tra thời gian checkin checkout
-            DateTime checkin = dtIN.Value;
-            DateTime checkout = dtOUT.Value;
-
-            if (checkout <= checkin)
-            {
-                MessageBox.Show("Thời gian checkout phải lớn hơn thời gian checkin. Vui lòng chọn lại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
             else
             {
-                using (SqlConnection connection = new SqlConnection(conectionString))
+                //Kiểm tra thời gian checkin checkout
+                DateTime checkin = dtIN.Value;
+                DateTime checkout = dtOUT.Value;
+
+                if (checkout <= checkin)
                 {
-                    connection.Open();
-
-                    // Truy vấn dữ liệu
-                    string query = "INSERT INTO Orders(NameUser, SDT, NameCar, TimeIn, TimeOut, TypePay, Address, Feature) VALUES (@nameuser, @sdt, @namecar, @timein, @timeout, @typepay, @address, @feature)";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    MessageBox.Show("Thời gian checkout phải lớn hơn thời gian checkin. Vui lòng chọn lại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    using (SqlConnection connection = new SqlConnection(conectionString))
                     {
-                        command.Parameters.Add("@nameuser", SqlDbType.NVarChar).Value = txtNameUser.Text;
-                        command.Parameters.Add("@sdt", SqlDbType.NVarChar).Value = txtSDT.Text;
-                        command.Parameters.Add("@namecar", SqlDbType.NVarChar).Value = txtXethue.Text;
-                        command.Parameters.Add("@timein", SqlDbType.DateTime2).Value = dtIN.Text;
-                        command.Parameters.Add("@timeout", SqlDbType.DateTime2).Value = dtOUT.Text;
-                        command.Parameters.Add("@typepay", SqlDbType.NVarChar).Value = cbPAY.Text;
-                        command.Parameters.Add("@address", SqlDbType.NVarChar).Value = txtAddress.Text;
-                        command.Parameters.Add("@feature", SqlDbType.NVarChar).Value = combinedValues;
+                        connection.Open();
 
-                        int rowCount = command.ExecuteNonQuery();
+                        // Truy vấn dữ liệu
+                        string query = "INSERT INTO Orders(NameUser, SDT, NameCar, TimeIn, TimeOut, TypePay, Address, Feature) VALUES (@nameuser, @sdt, @namecar, @timein, @timeout, @typepay, @address, @feature)";
 
-                        //Upload thành công thì cập nhật lại giá trị State của xe
-                        if (rowCount > 0)
+                        using (SqlCommand command = new SqlCommand(query, connection))
                         {
-                            string updateQuery = "UPDATE Cars SET State = N'Đang cho thuê' WHERE Name = @namecar";
+                            command.Parameters.Add("@nameuser", SqlDbType.NVarChar).Value = txtNameUser.Text;
+                            command.Parameters.Add("@sdt", SqlDbType.NVarChar).Value = txtSDT.Text;
+                            command.Parameters.Add("@namecar", SqlDbType.NVarChar).Value = txtXethue.Text;
+                            command.Parameters.Add("@timein", SqlDbType.DateTime2).Value = dtIN.Text;
+                            command.Parameters.Add("@timeout", SqlDbType.DateTime2).Value = dtOUT.Text;
+                            command.Parameters.Add("@typepay", SqlDbType.NVarChar).Value = cbPAY.Text;
+                            command.Parameters.Add("@address", SqlDbType.NVarChar).Value = txtAddress.Text;
+                            command.Parameters.Add("@feature", SqlDbType.NVarChar).Value = combinedValues;
 
-                            using (SqlCommand updateCommand = new SqlCommand(updateQuery, connection))
+                            int rowCount = command.ExecuteNonQuery();
+
+                            //Upload thành công thì cập nhật lại giá trị State của xe
+                            if (rowCount > 0)
                             {
-                                updateCommand.Parameters.Add("@namecar", SqlDbType.NVarChar).Value = txtXethue.Text;
+                                string updateQuery = "UPDATE Cars SET State = N'Đang cho thuê' WHERE Name = @namecar";
 
-                                updateCommand.ExecuteNonQuery();
+                                using (SqlCommand updateCommand = new SqlCommand(updateQuery, connection))
+                                {
+                                    updateCommand.Parameters.Add("@namecar", SqlDbType.NVarChar).Value = txtXethue.Text;
+
+                                    updateCommand.ExecuteNonQuery();
+                                }
                             }
-                        }
-                        MessageBox.Show("Dữ liệu đã được thêm thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Dữ liệu đã được thêm thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        this.Hide();
+                            LoadDanhSachXeForm();
+                        }
+                        connection.Close();
                     }
                 }
             }
+            
         }
     }
 }

@@ -19,6 +19,15 @@
     <Compile Update="Home_New.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="KhachHang\DanhSachKH.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="KhachHang\FixKH.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="LichTrinh\DanhSachLichTrinh.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="ListCars.cs">
       <SubType>Form</SubType>
     </Compile>

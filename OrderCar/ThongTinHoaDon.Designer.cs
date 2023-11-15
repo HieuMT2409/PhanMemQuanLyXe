@@ -246,6 +246,7 @@
             Controls.Add(txthoadon);
             Name = "ThongTinHoaDon";
             Text = "ThongTinHoaDon";
+            Load += ThongTinHoaDon_Load;
             ResumeLayout(false);
             PerformLayout();
         }

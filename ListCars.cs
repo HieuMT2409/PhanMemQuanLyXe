@@ -25,24 +25,19 @@ namespace ThueXeOTo
             InitializeComponent();
         }
 
-        private void HideItem()
+        private void ShowForm()
         {
-            pictureBox1.Hide();
-            pictureBox2.Hide();
-            pictureBox3.Hide();
-            pictureBox4.Hide();
-            pictureBox5.Hide();
-            pictureBox6.Hide();
-            pictureBox7.Hide();
+            Home_New homeForm = this.ParentForm as Home_New;
 
-            label2.Hide();
-            label3.Hide();
-            label4.Hide();
-            label5.Hide();
-            label6.Hide();
-            label7.Hide();
-            label8.Hide();
-
+            if (homeForm != null)
+            {
+                chooseCar.TopLevel = false;
+                homeForm.panel1.Controls.Clear();
+                homeForm.panel1.Controls.Add(chooseCar);
+                chooseCar.FormBorderStyle = FormBorderStyle.None;
+                chooseCar.Dock = DockStyle.Fill;
+                chooseCar.Show();
+            }
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -63,12 +58,10 @@ namespace ThueXeOTo
                     chooseCar.dataDetailCar.DataSource = dataTable;
                 }
             }
-            chooseCar.TopLevel = false;
-            this.Controls.Add(chooseCar);
-            chooseCar.FormBorderStyle = FormBorderStyle.None;
-            chooseCar.Dock = DockStyle.Fill;
-            HideItem();
-            chooseCar.Show();
+
+            ShowForm();
+
+
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -89,12 +82,8 @@ namespace ThueXeOTo
                     chooseCar.dataDetailCar.DataSource = dataTable;
                 }
             }
-            chooseCar.TopLevel = false;
-            this.Controls.Add(chooseCar);
-            chooseCar.FormBorderStyle = FormBorderStyle.None;
-            chooseCar.Dock = DockStyle.Fill;
-            HideItem();
-            chooseCar.Show();
+            ShowForm();
+
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
@@ -115,12 +104,8 @@ namespace ThueXeOTo
                     chooseCar.dataDetailCar.DataSource = dataTable;
                 }
             }
-            chooseCar.TopLevel = false;
-            this.Controls.Add(chooseCar);
-            chooseCar.FormBorderStyle = FormBorderStyle.None;
-            chooseCar.Dock = DockStyle.Fill;
-            HideItem();
-            chooseCar.Show();
+            ShowForm();
+
         }
 
         private void pictureBox5_Click(object sender, EventArgs e)
@@ -141,12 +126,8 @@ namespace ThueXeOTo
                     chooseCar.dataDetailCar.DataSource = dataTable;
                 }
             }
-            chooseCar.TopLevel = false;
-            this.Controls.Add(chooseCar);
-            chooseCar.FormBorderStyle = FormBorderStyle.None;
-            chooseCar.Dock = DockStyle.Fill;
-            HideItem();
-            chooseCar.Show();
+            ShowForm();
+
         }
 
         private void pictureBox4_Click(object sender, EventArgs e)
@@ -167,12 +148,8 @@ namespace ThueXeOTo
                     chooseCar.dataDetailCar.DataSource = dataTable;
                 }
             }
-            chooseCar.TopLevel = false;
-            this.Controls.Add(chooseCar);
-            chooseCar.FormBorderStyle = FormBorderStyle.None;
-            chooseCar.Dock = DockStyle.Fill;
-            HideItem();
-            chooseCar.Show();
+            ShowForm();
+
         }
 
         private void pictureBox6_Click(object sender, EventArgs e)
@@ -193,12 +170,8 @@ namespace ThueXeOTo
                     chooseCar.dataDetailCar.DataSource = dataTable;
                 }
             }
-            chooseCar.TopLevel = false;
-            this.Controls.Add(chooseCar);
-            chooseCar.FormBorderStyle = FormBorderStyle.None;
-            chooseCar.Dock = DockStyle.Fill;
-            HideItem();
-            chooseCar.Show();
+            ShowForm();
+
         }
 
         private void pictureBox7_Click(object sender, EventArgs e)
@@ -219,12 +192,8 @@ namespace ThueXeOTo
                     chooseCar.dataDetailCar.DataSource = dataTable;
                 }
             }
-            chooseCar.TopLevel = false;
-            this.Controls.Add(chooseCar);
-            chooseCar.FormBorderStyle = FormBorderStyle.None;
-            chooseCar.Dock = DockStyle.Fill;
-            HideItem();
-            chooseCar.Show();
+            ShowForm();
+
         }
 
         private void label1_Click(object sender, EventArgs e)
