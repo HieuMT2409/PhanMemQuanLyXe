@@ -38,6 +38,13 @@ namespace ThueXeOTo.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("OrderID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Price")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("State")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -48,10 +55,12 @@ namespace ThueXeOTo.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("OrderID");
+
                     b.ToTable("Cars");
                 });
 
-            modelBuilder.Entity("ThueXeOTo.Database.Order", b =>
+            modelBuilder.Entity("ThueXeOTo.Database.Customer", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -62,6 +71,30 @@ namespace ThueXeOTo.Migrations
                     b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SDT")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("ThueXeOTo.Database.Order", b =>
+                {
+                    b.Property<int>("OrderID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderID"));
+
+                    b.Property<int?>("CustomerID")
+                        .HasColumnType("int");
 
                     b.Property<string>("Feature")
                         .IsRequired()
@@ -75,21 +108,15 @@ namespace ThueXeOTo.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SDT")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("TimeIn")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("TimeOut")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("TypePay")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("OrderID");
 
-                    b.HasKey("ID");
+                    b.HasIndex("CustomerID");
 
                     b.ToTable("Orders");
                 });
@@ -113,6 +140,30 @@ namespace ThueXeOTo.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("ThueXeOTo.Database.Car", b =>
+                {
+                    b.HasOne("ThueXeOTo.Database.Order", null)
+                        .WithMany("Cars")
+                        .HasForeignKey("OrderID");
+                });
+
+            modelBuilder.Entity("ThueXeOTo.Database.Order", b =>
+                {
+                    b.HasOne("ThueXeOTo.Database.Customer", null)
+                        .WithMany("Orders")
+                        .HasForeignKey("CustomerID");
+                });
+
+            modelBuilder.Entity("ThueXeOTo.Database.Customer", b =>
+                {
+                    b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("ThueXeOTo.Database.Order", b =>
+                {
+                    b.Navigation("Cars");
                 });
 #pragma warning restore 612, 618
         }

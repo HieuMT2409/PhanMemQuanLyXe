@@ -37,6 +37,7 @@ namespace ThueXeOTo
             typeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             companyDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             stateDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            Price = new DataGridViewTextBoxColumn();
             carBindingSource = new BindingSource(components);
             btnDel = new Button();
             btnFix = new Button();
@@ -46,6 +47,7 @@ namespace ThueXeOTo
             txbSearch = new TextBox();
             btnSearch = new Button();
             label2 = new Label();
+            txtRole = new Label();
             ((System.ComponentModel.ISupportInitialize)dataCar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)carBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)carDBContextBindingSource).BeginInit();
@@ -59,7 +61,7 @@ namespace ThueXeOTo
             dataCar.AutoGenerateColumns = false;
             dataCar.BackgroundColor = SystemColors.ControlLightLight;
             dataCar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataCar.Columns.AddRange(new DataGridViewColumn[] { Id, nameDataGridViewTextBoxColumn, typeDataGridViewTextBoxColumn, companyDataGridViewTextBoxColumn, stateDataGridViewTextBoxColumn });
+            dataCar.Columns.AddRange(new DataGridViewColumn[] { Id, nameDataGridViewTextBoxColumn, typeDataGridViewTextBoxColumn, companyDataGridViewTextBoxColumn, stateDataGridViewTextBoxColumn, Price });
             dataCar.DataSource = carBindingSource;
             dataCar.Location = new Point(12, 60);
             dataCar.Margin = new Padding(3, 4, 3, 4);
@@ -117,6 +119,15 @@ namespace ThueXeOTo
             stateDataGridViewTextBoxColumn.Name = "stateDataGridViewTextBoxColumn";
             stateDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // Price
+            // 
+            Price.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Price.DataPropertyName = "Price";
+            Price.HeaderText = "Giá Thuê";
+            Price.MinimumWidth = 6;
+            Price.Name = "Price";
+            Price.ReadOnly = true;
+            // 
             // carBindingSource
             // 
             carBindingSource.DataSource = typeof(Car);
@@ -162,7 +173,6 @@ namespace ThueXeOTo
             // 
             // initDBcarBindingSource
             // 
-            initDBcarBindingSource.DataSource = typeof(Migrations.InitDBcar);
             initDBcarBindingSource.CurrentChanged += initDBcarBindingSource_CurrentChanged;
             // 
             // txbSearch
@@ -194,12 +204,23 @@ namespace ThueXeOTo
             label2.Text = "Nhập từ khóa";
             label2.Click += label2_Click;
             // 
+            // txtRole
+            // 
+            txtRole.AutoSize = true;
+            txtRole.Location = new Point(778, 25);
+            txtRole.Name = "txtRole";
+            txtRole.Size = new Size(41, 20);
+            txtRole.TabIndex = 16;
+            txtRole.Text = "TEST";
+            txtRole.Visible = false;
+            // 
             // DanhSachXe
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLightLight;
             ClientSize = new Size(843, 557);
+            Controls.Add(txtRole);
             Controls.Add(label2);
             Controls.Add(btnSearch);
             Controls.Add(txbSearch);
@@ -236,5 +257,7 @@ namespace ThueXeOTo
         private DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn companyDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn stateDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn Price;
+        public Label txtRole;
     }
 }

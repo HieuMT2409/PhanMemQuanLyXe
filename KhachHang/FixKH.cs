@@ -9,6 +9,7 @@ using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ThueXeOTo.Database;
 
 namespace ThueXeOTo.KhachHang
 {
@@ -21,15 +22,12 @@ namespace ThueXeOTo.KhachHang
             InitializeComponent();
         }
 
-        public void UpdateInfo(string id, string name, string sdt, string address, string nameCar, string timein, string timeout)
+        public void UpdateInfo(string id, string name, string sdt, string address)
         {
             ID = id;
             txtName.Text = name;
             txtSDT.Text = sdt;
             txtAddress.Text = address;
-            txtNamecar.Text = nameCar;
-            dtIN.Text = timein;
-            dtOUT.Text = timeout;
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -44,28 +42,21 @@ namespace ThueXeOTo.KhachHang
 
         private void button1_Click(object sender, EventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(conectionString))
+            using (var context = new CarDBContext())
             {
-                connection.Open();
+                context.UpdateCustomer(ID, txtName.Text, txtSDT.Text, txtAddress.Text);
 
-                // Truy vấn dữ liệu
-                string query = "UPDATE Orders SET NameUser = @name, SDT = @sdt, Address = @address, NameCar = @namecar, TimeIn = @timein, TimeOut = @timeout WHERE ID = @id";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.Add("@name", SqlDbType.NVarChar).Value = txtName.Text;
-                    command.Parameters.Add("@sdt", SqlDbType.NVarChar).Value = txtSDT.Text;
-                    command.Parameters.Add("@address", SqlDbType.NVarChar).Value = txtAddress.Text;
-                    command.Parameters.Add("@namecar", SqlDbType.NVarChar).Value = txtNamecar.Text;
-                    command.Parameters.Add("@id", SqlDbType.NVarChar).Value = ID;
-                    command.Parameters.Add("@timein", SqlDbType.DateTime2).Value = dtIN.Text;
-                    command.Parameters.Add("@timeout", SqlDbType.DateTime2).Value = dtOUT.Text;
-
-                    int rowCount = command.ExecuteNonQuery();
-
-                    this.Close();
-                }
-                connection.Close();
+                this.Close();
             }
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtIN_ValueChanged(object sender, EventArgs e)
+        {
         }
     }
 }

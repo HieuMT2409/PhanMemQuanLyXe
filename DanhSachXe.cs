@@ -13,13 +13,13 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using ThueXeOTo.ControlCar;
 using ThueXeOTo.ControlCars;
+using ThueXeOTo.Database;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ThueXeOTo
 {
     public partial class DanhSachXe : Form
     {
-        string conectionString = @"Data Source=HIEUMT-2491310\HIEUMT; Integrated Security=true; Database=CarDB";
         public DanhSachXe()
         {
             InitializeComponent();
@@ -28,24 +28,18 @@ namespace ThueXeOTo
         private void DanhSachXe_Load(object sender, EventArgs e)
         {
             dataCar.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            using (SqlConnection connection = new SqlConnection(conectionString))
+            using (var context = new CarDBContext())
             {
-                connection.Open();
+                var cars = context.Cars.ToList();
 
-                // Truy vấn dữ liệu
-                string query = "SELECT * FROM Cars";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    SqlDataAdapter adapter = new SqlDataAdapter(command);
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
-
-                    // Gán dữ liệu vào DataGridView
-                    this.dataCar.DataSource = dataTable;
-                    this.dataCar.Refresh();
-                }
-                connection.Close();
+                this.dataCar.DataSource = cars;
+                this.dataCar.Refresh();
             }
+        }
+
+        public void UpdateLabel(string username)
+        {
+            txtRole.Text = username;
         }
 
         private void dataCar_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -55,90 +49,96 @@ namespace ThueXeOTo
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(conectionString))
+            using (var context = new CarDBContext())
             {
-                connection.Open();
+                var query = from car in context.Cars
+                            where EF.Functions.Like(car.Company, "%" + txbSearch.Text + "%")
+                                  || EF.Functions.Like(car.Type, "%" + txbSearch.Text + "%")
+                                  || EF.Functions.Like(car.Name, "%" + txbSearch.Text + "%")
+                            select car;
 
-                // Truy vấn dữ liệu
-                string query = "SELECT * FROM Cars WHERE Company LIKE N'%" + txbSearch.Text + "%' OR Type LIKE N'%" + txbSearch.Text + "%' OR Name LIKE N'%" + txbSearch.Text + "%'";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    SqlDataAdapter adapter = new SqlDataAdapter(command);
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
-
-                    // Gán dữ liệu vào DataGridView
-                    this.dataCar.DataSource = dataTable;
-                }
-                connection.Close();
+                this.dataCar.DataSource = query.ToList();
             }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
-        {
-            AddCar addCar = new AddCar();
+        {            
+            if (txtRole.Text == "admin")
+            {
+                AddCar addCar = new AddCar();
 
-            addCar.FormClosed += (s, args) => LoadData();
+                addCar.FormClosed += (s, args) => LoadData();
 
-            addCar.ShowDialog();
+                addCar.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Bạn không có quyền để thực hiện chức năng này. Vui lòng liên hệ quản trị viên để biết thêm thông tin!", "Không thể thực hiện chức năng", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnFix_Click(object sender, EventArgs e)
         {
-            DataGridViewRow selectedRow = dataCar.SelectedRows[0];
-            string id = selectedRow.Cells["Id"].Value.ToString();
-            string name = selectedRow.Cells["nameDataGridViewTextBoxColumn"].Value.ToString();
-            string type = selectedRow.Cells["typeDataGridViewTextBoxColumn"].Value.ToString();
-            string company = selectedRow.Cells["companyDataGridViewTextBoxColumn"].Value.ToString();
+            Home_New home_New = new Home_New();
+            if (txtRole.Text == "admin")
+            {
+                DataGridViewRow selectedRow = dataCar.SelectedRows[0];
+                string id = selectedRow.Cells["Id"].Value.ToString();
+                string name = selectedRow.Cells["nameDataGridViewTextBoxColumn"].Value.ToString();
+                string type = selectedRow.Cells["typeDataGridViewTextBoxColumn"].Value.ToString();
+                string company = selectedRow.Cells["companyDataGridViewTextBoxColumn"].Value.ToString();
+                string price = selectedRow.Cells["Price"].Value.ToString();
 
-            FixCar fixCar = new FixCar();
-            fixCar.UpdateInfo(id, name, type, company);
+                FixCar fixCar = new FixCar();
+                fixCar.UpdateInfo(id, name, type, company, price);
 
-            fixCar.FormClosed += (s, args) => LoadData();
+                fixCar.FormClosed += (s, args) => LoadData();
 
-            fixCar.ShowDialog();
+                fixCar.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Bạn không có quyền để thực hiện chức năng này. Vui lòng liên hệ quản trị viên để biết thêm thông tin!", "Không thể thực hiện chức năng", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void LoadData()
         {
             dataCar.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            using (SqlConnection connection = new SqlConnection(conectionString))
+            using (var context = new CarDBContext())
             {
-                connection.Open();
+                var cars = context.Cars.ToList();
 
-                // Truy vấn dữ liệu
-                string query = "SELECT * FROM Cars";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    SqlDataAdapter adapter = new SqlDataAdapter(command);
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
-
-                    // Gán dữ liệu vào DataGridView
-                    this.dataCar.DataSource = dataTable;
-                }
-                connection.Close();
+                this.dataCar.DataSource = cars;
+                this.dataCar.Refresh();
             }
         }
 
         private void btnDel_Click(object sender, EventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(conectionString))
+            Home_New home_New = new Home_New();
+            if (txtRole.Text == "admin")
             {
-                connection.Open();
-
-                // Truy vấn dữ liệu
-                string query = "DELETE FROM Cars WHERE ID = @id";
-                using (SqlCommand command = new SqlCommand(query, connection))
+                using (var context = new CarDBContext())
                 {
-                    DataGridViewRow selectedRow = dataCar.SelectedRows[0];
-                    string id = selectedRow.Cells["Id"].Value.ToString();
-                    command.Parameters.Add("@id", SqlDbType.NVarChar).Value = id;
+                    // Lấy ID của dòng được chọn trong DataGridView
+                    if (dataCar.SelectedRows.Count > 0)
+                    {
+                        DataGridViewRow selectedRow = dataCar.SelectedRows[0];
+                        if (selectedRow.Cells["Id"].Value != null)
+                        {
+                            int id = Convert.ToInt32(selectedRow.Cells["Id"].Value);
 
-                    int rowCount = command.ExecuteNonQuery();
-                    LoadData();
+                            context.DeleteCar(id);
+
+                            LoadData();
+                        }
+                    }
                 }
-                connection.Close();
+            }
+            else
+            {
+                MessageBox.Show("Bạn không có quyền để thực hiện chức năng này. Vui lòng liên hệ quản trị viên để biết thêm thông tin!", "Không thể thực hiện chức năng", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

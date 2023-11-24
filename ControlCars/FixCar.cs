@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ThueXeOTo.Database;
 
 namespace ThueXeOTo.ControlCars
 {
@@ -20,34 +21,22 @@ namespace ThueXeOTo.ControlCars
             InitializeComponent();
         }
 
-        public void UpdateInfo(string id, string name, string type, string company)
+        public void UpdateInfo(string id, string name, string type, string company, string price)
         {
             ID = id;
             txtName.Text = name;
             txtCompany.Text = company;
             cbType.Text = type;
+            txtPrice.Text = price;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(conectionString))
+            using (var context = new CarDBContext())
             {
-                connection.Open();
+                context.UpdateCar(ID, txtName.Text, cbType.Text, txtCompany.Text, txtPrice.Text);
 
-                // Truy vấn dữ liệu
-                string query = "UPDATE Cars SET Name = @name, Type = @type, Company = @company WHERE ID = @id";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.Add("@name", SqlDbType.NVarChar).Value = txtName.Text;
-                    command.Parameters.Add("@type", SqlDbType.NVarChar).Value = cbType.Text;
-                    command.Parameters.Add("@company", SqlDbType.NVarChar).Value = txtCompany.Text;
-                    command.Parameters.Add("@id", SqlDbType.NVarChar).Value = ID;
-
-                    int rowCount = command.ExecuteNonQuery();
-                    
-                    this.Close();
-                }
-                connection.Close();
+                this.Close();
             }
         }
     }

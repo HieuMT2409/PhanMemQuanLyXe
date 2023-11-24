@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using System.Data;
+using ThueXeOTo.Database;
 
 namespace ThueXeOTo
 {
@@ -18,38 +19,25 @@ namespace ThueXeOTo
 
         }
 
-        public string GetUser()
-        {
-            return username.Text;
-        }
-        //
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(conectionString))
+            using (CarDBContext context = new CarDBContext())
             {
-                connection.Open();
+                int userCount = context.Users
+                    .Where(u => u.NameUser == username.Text && u.Password == password.Text)
+                    .Count();
 
-                string query = "SELECT COUNT(*) FROM Users WHERE NameUser = @Username AND Password = @Password";
-
-                using (SqlCommand command = new SqlCommand(query, connection))
+                if (userCount > 0)
                 {
-                    command.Parameters.AddWithValue("@Username", username.Text);
-                    command.Parameters.AddWithValue("@Password", password.Text);
-
-                    int userCount = (int)command.ExecuteScalar();
-
-                    if (userCount > 0)
-                    {
-                        Home_New home = new Home_New();
-                        home.UpdateLabel(username.Text);
-                        home.Show();
-                        home.FormClosed += (s, args) => this.Close();
-                        this.Hide();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Tên người dùng hoặc mật khẩu không đúng. Vui lòng thử lại.");
-                    }
+                    Home_New home = new Home_New();
+                    home.UpdateLabel(username.Text);
+                    home.Show();
+                    home.FormClosed += (s, args) => this.Close();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Tên người dùng hoặc mật khẩu không đúng. Vui lòng thử lại.");
                 }
             }
         }

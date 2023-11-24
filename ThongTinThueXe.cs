@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using ThueXeOTo.Database;
 using ThueXeOTo.KhachHang;
 using ThueXeOTo.OrderCar;
 
@@ -25,12 +27,26 @@ namespace ThueXeOTo
 
         private void ThongTinThueXe_Load(object sender, EventArgs e)
         {
-
         }
 
         public void UpdateLabel(string text)
         {
             txtXethue.Text = text;
+        }
+
+        public void UpdateInfo(int id, string name)
+        {
+            using (var context = new CarDBContext())
+            {
+                var query = context.Customers.Where(customer => customer.ID == id);
+
+                Customer result = query.FirstOrDefault();
+
+
+                txtNameUser.Text = result.Name;
+                txtSDT.Text = result.SDT;
+                txtAddress.Text = result.Address;
+            }
         }
 
         public void UpdateData(List<string> data)
@@ -75,7 +91,7 @@ namespace ThueXeOTo
             string combinedValues = string.Join(", ", allValues);
 
             //Kiểm tra yêu cầu nhập đủ các trường dữ liệu
-            if (txtNameUser.Text == "" || txtXethue.Text == "" || txtSDT.Text == "" || cbPAY.Text == "")
+            if (txtNameUser.Text == "" || txtXethue.Text == "" || txtSDT.Text == "")
             {
                 MessageBox.Show("Cần nhập đủ các thông tin.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
@@ -97,20 +113,27 @@ namespace ThueXeOTo
                         connection.Open();
 
                         // Truy vấn dữ liệu
-                        string query = "INSERT INTO Orders(NameUser, SDT, NameCar, TimeIn, TimeOut, TypePay, Address, Feature) VALUES (@nameuser, @sdt, @namecar, @timein, @timeout, @typepay, @address, @feature)";
+                        string query = "INSERT INTO Orders(NameUser, NameCar, TimeIn, TimeOut, Feature) VALUES (@nameuser, @namecar, @timein, @timeout, @feature)";
+                        string query1 = "INSERT INTO Customers(Name, SDT, Address) VALUES (@nameuser, @sdt, @address)";
 
                         using (SqlCommand command = new SqlCommand(query, connection))
                         {
                             command.Parameters.Add("@nameuser", SqlDbType.NVarChar).Value = txtNameUser.Text;
-                            command.Parameters.Add("@sdt", SqlDbType.NVarChar).Value = txtSDT.Text;
                             command.Parameters.Add("@namecar", SqlDbType.NVarChar).Value = txtXethue.Text;
                             command.Parameters.Add("@timein", SqlDbType.DateTime2).Value = dtIN.Text;
                             command.Parameters.Add("@timeout", SqlDbType.DateTime2).Value = dtOUT.Text;
-                            command.Parameters.Add("@typepay", SqlDbType.NVarChar).Value = cbPAY.Text;
-                            command.Parameters.Add("@address", SqlDbType.NVarChar).Value = txtAddress.Text;
                             command.Parameters.Add("@feature", SqlDbType.NVarChar).Value = combinedValues;
 
                             int rowCount = command.ExecuteNonQuery();
+
+                            using (SqlCommand insertCustomer = new SqlCommand(query1, connection))
+                            {
+                                insertCustomer.Parameters.Add("@nameuser", SqlDbType.NVarChar).Value = txtNameUser.Text;
+                                insertCustomer.Parameters.Add("@sdt", SqlDbType.NVarChar).Value = txtSDT.Text;
+                                insertCustomer.Parameters.Add("@address", SqlDbType.NVarChar).Value = txtAddress.Text;
+
+                                insertCustomer.ExecuteNonQuery();
+                            }
 
                             //Upload thành công thì cập nhật lại giá trị State của xe
                             if (rowCount > 0)
@@ -132,7 +155,7 @@ namespace ThueXeOTo
                     }
                 }
             }
-            
+
         }
     }
 }

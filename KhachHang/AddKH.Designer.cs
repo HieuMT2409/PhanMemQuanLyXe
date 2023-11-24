@@ -1,6 +1,6 @@
 ﻿namespace ThueXeOTo.KhachHang
 {
-    partial class FixKH
+    partial class AddKH
     {
         /// <summary>
         /// Required designer variable.
@@ -29,118 +29,117 @@
         private void InitializeComponent()
         {
             button1 = new Button();
-            txtAddress = new TextBox();
+            txtSDT = new TextBox();
             label4 = new Label();
-            label3 = new Label();
             txtName = new TextBox();
             label2 = new Label();
             label1 = new Label();
-            txtSDT = new TextBox();
+            txtAddress = new TextBox();
+            label3 = new Label();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(311, 239);
+            button1.Location = new Point(307, 215);
             button1.Name = "button1";
-            button1.Size = new Size(147, 60);
-            button1.TabIndex = 28;
-            button1.Text = "Cập nhật";
+            button1.Size = new Size(140, 45);
+            button1.TabIndex = 22;
+            button1.Text = "Thêm";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // txtAddress
+            // txtSDT
             // 
-            txtAddress.Location = new Point(189, 158);
-            txtAddress.Name = "txtAddress";
-            txtAddress.Size = new Size(376, 27);
-            txtAddress.TabIndex = 25;
+            txtSDT.Location = new Point(544, 92);
+            txtSDT.Name = "txtSDT";
+            txtSDT.Size = new Size(157, 27);
+            txtSDT.TabIndex = 19;
+            txtSDT.TextChanged += txtSDT_TextChanged;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(26, 157);
+            label4.Location = new Point(413, 96);
             label4.Name = "label4";
-            label4.Size = new Size(75, 23);
-            label4.TabIndex = 24;
-            label4.Text = "Địa chỉ:";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(440, 88);
-            label3.Name = "label3";
-            label3.Size = new Size(125, 23);
-            label3.TabIndex = 22;
-            label3.Text = "Số điện thoại:";
+            label4.Size = new Size(125, 23);
+            label4.TabIndex = 18;
+            label4.Text = "Số điện thoại:";
             // 
             // txtName
             // 
-            txtName.Location = new Point(189, 84);
+            txtName.Location = new Point(172, 92);
             txtName.Name = "txtName";
             txtName.Size = new Size(219, 27);
-            txtName.TabIndex = 21;
+            txtName.TabIndex = 15;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(26, 88);
+            label2.Location = new Point(17, 96);
             label2.Name = "label2";
-            label2.Size = new Size(157, 23);
-            label2.TabIndex = 20;
-            label2.Text = "Tên Khách Hàng:";
-            label2.Click += label2_Click;
+            label2.Size = new Size(149, 23);
+            label2.TabIndex = 14;
+            label2.Text = "Tên khách hàng:";
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.BackColor = SystemColors.ControlLightLight;
             label1.Font = new Font("Times New Roman", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(170, 21);
+            label1.Location = new Point(212, 24);
             label1.Name = "label1";
-            label1.Size = new Size(474, 35);
-            label1.TabIndex = 19;
-            label1.Text = "SỬA THÔNG TIN KHÁCH HÀNG";
-            label1.Click += label1_Click;
+            label1.Size = new Size(326, 35);
+            label1.TabIndex = 13;
+            label1.Text = "THÊM KHÁCH HÀNG";
             // 
-            // txtSDT
+            // txtAddress
             // 
-            txtSDT.Location = new Point(571, 84);
-            txtSDT.Name = "txtSDT";
-            txtSDT.Size = new Size(178, 27);
-            txtSDT.TabIndex = 29;
+            txtAddress.Location = new Point(172, 144);
+            txtAddress.Name = "txtAddress";
+            txtAddress.Size = new Size(366, 27);
+            txtAddress.TabIndex = 24;
             // 
-            // FixKH
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Location = new Point(17, 148);
+            label3.Name = "label3";
+            label3.Size = new Size(75, 23);
+            label3.TabIndex = 23;
+            label3.Text = "Địa chỉ:";
+            // 
+            // AddKH
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLightLight;
-            ClientSize = new Size(759, 338);
-            Controls.Add(txtSDT);
-            Controls.Add(button1);
+            ClientSize = new Size(732, 288);
             Controls.Add(txtAddress);
-            Controls.Add(label4);
             Controls.Add(label3);
+            Controls.Add(button1);
+            Controls.Add(txtSDT);
+            Controls.Add(label4);
             Controls.Add(txtName);
             Controls.Add(label2);
             Controls.Add(label1);
-            Name = "FixKH";
-            Text = "FixKH";
+            Name = "AddKH";
+            Text = "AddKH";
+            Load += AddKH_Load;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
         private Button button1;
-        private TextBox txtAddress;
+        private TextBox txtSDT;
         private Label label4;
-        private Label label3;
         private TextBox txtName;
         private Label label2;
         private Label label1;
-        private TextBox txtSDT;
+        private TextBox txtAddress;
+        private Label label3;
     }
 }

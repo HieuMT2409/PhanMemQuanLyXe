@@ -12,8 +12,8 @@ using ThueXeOTo.Database;
 namespace ThueXeOTo.Migrations
 {
     [DbContext(typeof(CarDBContext))]
-    [Migration("20231111142630_UpdateDB")]
-    partial class UpdateDB
+    [Migration("20231123034736_InitDB")]
+    partial class InitDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,6 +41,12 @@ namespace ThueXeOTo.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("OrdersOrderID")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
                     b.Property<string>("State")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -51,10 +57,12 @@ namespace ThueXeOTo.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("OrdersOrderID");
+
                     b.ToTable("Cars");
                 });
 
-            modelBuilder.Entity("ThueXeOTo.Database.Order", b =>
+            modelBuilder.Entity("ThueXeOTo.Database.Customer", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -65,6 +73,30 @@ namespace ThueXeOTo.Migrations
                     b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SDT")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("ThueXeOTo.Database.Order", b =>
+                {
+                    b.Property<int>("OrderID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderID"));
+
+                    b.Property<int>("CustomersID")
+                        .HasColumnType("int");
 
                     b.Property<string>("Feature")
                         .IsRequired()
@@ -78,21 +110,15 @@ namespace ThueXeOTo.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SDT")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("TimeIn")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("TimeOut")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("TypePay")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("OrderID");
 
-                    b.HasKey("ID");
+                    b.HasIndex("CustomersID");
 
                     b.ToTable("Orders");
                 });
@@ -116,6 +142,38 @@ namespace ThueXeOTo.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("ThueXeOTo.Database.Car", b =>
+                {
+                    b.HasOne("ThueXeOTo.Database.Order", "Orders")
+                        .WithMany("Cars")
+                        .HasForeignKey("OrdersOrderID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("ThueXeOTo.Database.Order", b =>
+                {
+                    b.HasOne("ThueXeOTo.Database.Customer", "Customers")
+                        .WithMany("Orders")
+                        .HasForeignKey("CustomersID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customers");
+                });
+
+            modelBuilder.Entity("ThueXeOTo.Database.Customer", b =>
+                {
+                    b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("ThueXeOTo.Database.Order", b =>
+                {
+                    b.Navigation("Cars");
                 });
 #pragma warning restore 612, 618
         }

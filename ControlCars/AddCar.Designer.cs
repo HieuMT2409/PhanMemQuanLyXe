@@ -38,6 +38,9 @@
             label5 = new Label();
             txtState = new TextBox();
             button1 = new Button();
+            txtPrice = new TextBox();
+            label6 = new Label();
+            txtday = new Label();
             SuspendLayout();
             // 
             // label1
@@ -108,7 +111,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.Location = new Point(353, 165);
+            label5.Location = new Point(18, 225);
             label5.Name = "label5";
             label5.Size = new Size(104, 23);
             label5.TabIndex = 7;
@@ -120,7 +123,7 @@
             txtState.BorderStyle = BorderStyle.None;
             txtState.Enabled = false;
             txtState.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtState.Location = new Point(466, 166);
+            txtState.Location = new Point(128, 226);
             txtState.Name = "txtState";
             txtState.Size = new Size(154, 23);
             txtState.TabIndex = 8;
@@ -128,7 +131,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(257, 213);
+            button1.Location = new Point(270, 275);
             button1.Name = "button1";
             button1.Size = new Size(140, 45);
             button1.TabIndex = 9;
@@ -136,12 +139,42 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // txtPrice
+            // 
+            txtPrice.Location = new Point(449, 161);
+            txtPrice.Name = "txtPrice";
+            txtPrice.Size = new Size(79, 27);
+            txtPrice.TabIndex = 11;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label6.Location = new Point(353, 165);
+            label6.Name = "label6";
+            label6.Size = new Size(95, 23);
+            label6.TabIndex = 10;
+            label6.Text = "Giá Thuê:";
+            // 
+            // txtday
+            // 
+            txtday.AutoSize = true;
+            txtday.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtday.Location = new Point(534, 162);
+            txtday.Name = "txtday";
+            txtday.Size = new Size(118, 22);
+            txtday.TabIndex = 12;
+            txtday.Text = " triệu / 1 ngày";
+            // 
             // AddCar
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLightLight;
-            ClientSize = new Size(647, 270);
+            ClientSize = new Size(660, 345);
+            Controls.Add(txtday);
+            Controls.Add(txtPrice);
+            Controls.Add(label6);
             Controls.Add(button1);
             Controls.Add(txtState);
             Controls.Add(label5);
@@ -170,5 +203,8 @@
         private Label label5;
         private TextBox txtState;
         private Button button1;
+        private TextBox txtPrice;
+        private Label label6;
+        private Label txtday;
     }
 }

@@ -143,3 +143,5 @@ D:\.NET\PhanMemQuanLyXe\obj\Debug\net6.0-windows\ThueXeOTo.OrderCar.ThongTinHoaD
 D:\.NET\PhanMemQuanLyXe\obj\Debug\net6.0-windows\ThueXeOTo.KhachHang.DanhSachKH.resources
 D:\.NET\PhanMemQuanLyXe\obj\Debug\net6.0-windows\ThueXeOTo.KhachHang.FixKH.resources
 D:\.NET\PhanMemQuanLyXe\obj\Debug\net6.0-windows\ThueXeOTo.LichTrinh.DanhSachLichTrinh.resources
+D:\.NET\PhanMemQuanLyXe\obj\Debug\net6.0-windows\ThueXeOTo.KhachHang.AddKH.resources
+D:\.NET\PhanMemQuanLyXe\obj\Debug\net6.0-windows\ThueXeOTo.HoaDon.resources

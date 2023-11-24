@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ThueXeOTo.Database;
 using ThueXeOTo.OrderCar;
 
 namespace ThueXeOTo
@@ -17,8 +19,6 @@ namespace ThueXeOTo
 
     public partial class Listcars : Form
     {
-        string conectionString = @"Data Source=HIEUMT-2491310\HIEUMT; Integrated Security=true; Database=CarDB";
-
         public ChooseCar chooseCar = new ChooseCar();
         public Listcars()
         {
@@ -42,21 +42,13 @@ namespace ThueXeOTo
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(conectionString))
+            using (var context = new CarDBContext())
             {
-                connection.Open();
+                var cars = context.Cars.ToList();
 
-                // Truy vấn dữ liệu
-                string query = "SELECT * FROM Cars WHERE Type = N'4 Chỗ (Mini)'";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    SqlDataAdapter adapter = new SqlDataAdapter(command);
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
+                List<Car> carsList = context.Cars.Where(c => c.Type == "4 Chỗ (Mini)").ToList();
 
-                    // Gán dữ liệu vào DataGridView
-                    chooseCar.dataDetailCar.DataSource = dataTable;
-                }
+                chooseCar.dataDetailCar.DataSource = carsList;
             }
 
             ShowForm();
@@ -66,21 +58,13 @@ namespace ThueXeOTo
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(conectionString))
+            using (var context = new CarDBContext())
             {
-                connection.Open();
+                var cars = context.Cars.ToList();
 
-                // Truy vấn dữ liệu
-                string query = "SELECT * FROM Cars WHERE Type = N'4 Chỗ (Sedan)'";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    SqlDataAdapter adapter = new SqlDataAdapter(command);
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
+                List<Car> carsList = context.Cars.Where(c => c.Type == "4 Chỗ (Sedan)").ToList();
 
-                    // Gán dữ liệu vào DataGridView
-                    chooseCar.dataDetailCar.DataSource = dataTable;
-                }
+                chooseCar.dataDetailCar.DataSource = carsList;
             }
             ShowForm();
 
@@ -88,21 +72,13 @@ namespace ThueXeOTo
 
         private void pictureBox3_Click(object sender, EventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(conectionString))
+            using (var context = new CarDBContext())
             {
-                connection.Open();
+                var cars = context.Cars.ToList();
 
-                // Truy vấn dữ liệu
-                string query = "SELECT * FROM Cars WHERE Type = N'4 Chỗ (Hatchback)'";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    SqlDataAdapter adapter = new SqlDataAdapter(command);
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
+                List<Car> carsList = context.Cars.Where(c => c.Type == "4 Chỗ (Hatchback)").ToList();
 
-                    // Gán dữ liệu vào DataGridView
-                    chooseCar.dataDetailCar.DataSource = dataTable;
-                }
+                chooseCar.dataDetailCar.DataSource = carsList;
             }
             ShowForm();
 
@@ -110,21 +86,13 @@ namespace ThueXeOTo
 
         private void pictureBox5_Click(object sender, EventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(conectionString))
+            using (var context = new CarDBContext())
             {
-                connection.Open();
+                var cars = context.Cars.ToList();
 
-                // Truy vấn dữ liệu
-                string query = "SELECT * FROM Cars WHERE Type = N'5 Chỗ (SUV Gầm cao)'";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    SqlDataAdapter adapter = new SqlDataAdapter(command);
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
+                List<Car> carsList = context.Cars.Where(c => c.Type == "5 Chỗ (SUV Gầm cao)").ToList();
 
-                    // Gán dữ liệu vào DataGridView
-                    chooseCar.dataDetailCar.DataSource = dataTable;
-                }
+                chooseCar.dataDetailCar.DataSource = carsList;
             }
             ShowForm();
 
@@ -132,21 +100,13 @@ namespace ThueXeOTo
 
         private void pictureBox4_Click(object sender, EventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(conectionString))
+            using (var context = new CarDBContext())
             {
-                connection.Open();
+                var cars = context.Cars.ToList();
 
-                // Truy vấn dữ liệu
-                string query = "SELECT * FROM Cars WHERE Type = N'7 Chỗ (SUV Gầm cao)'";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    SqlDataAdapter adapter = new SqlDataAdapter(command);
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
+                List<Car> carsList = context.Cars.Where(c => c.Type == "7 Chỗ (SUV Gầm cao)").ToList();
 
-                    // Gán dữ liệu vào DataGridView
-                    chooseCar.dataDetailCar.DataSource = dataTable;
-                }
+                chooseCar.dataDetailCar.DataSource = carsList;
             }
             ShowForm();
 
@@ -154,21 +114,13 @@ namespace ThueXeOTo
 
         private void pictureBox6_Click(object sender, EventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(conectionString))
+            using (var context = new CarDBContext())
             {
-                connection.Open();
+                var cars = context.Cars.ToList();
 
-                // Truy vấn dữ liệu
-                string query = "SELECT * FROM Cars WHERE Type = N'7 Chỗ (MPV Gầm thấp)'";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    SqlDataAdapter adapter = new SqlDataAdapter(command);
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
+                List<Car> carsList = context.Cars.Where(c => c.Type == "7 Chỗ (MPV Gầm thấp)").ToList();
 
-                    // Gán dữ liệu vào DataGridView
-                    chooseCar.dataDetailCar.DataSource = dataTable;
-                }
+                chooseCar.dataDetailCar.DataSource = carsList;
             }
             ShowForm();
 
@@ -176,21 +128,13 @@ namespace ThueXeOTo
 
         private void pictureBox7_Click(object sender, EventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(conectionString))
+            using (var context = new CarDBContext())
             {
-                connection.Open();
+                var cars = context.Cars.ToList();
 
-                // Truy vấn dữ liệu
-                string query = "SELECT * FROM Cars WHERE Type = N'Bán tải'";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    SqlDataAdapter adapter = new SqlDataAdapter(command);
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
+                List<Car> carsList = context.Cars.Where(c => c.Type == "Bán tải").ToList();
 
-                    // Gán dữ liệu vào DataGridView
-                    chooseCar.dataDetailCar.DataSource = dataTable;
-                }
+                chooseCar.dataDetailCar.DataSource = carsList;
             }
             ShowForm();
 

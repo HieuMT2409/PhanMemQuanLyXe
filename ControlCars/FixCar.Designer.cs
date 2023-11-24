@@ -38,6 +38,8 @@
             label3 = new Label();
             txtName = new TextBox();
             label2 = new Label();
+            txtPrice = new TextBox();
+            label6 = new Label();
             SuspendLayout();
             // 
             // label1
@@ -53,7 +55,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(253, 211);
+            button1.Location = new Point(254, 287);
             button1.Name = "button1";
             button1.Size = new Size(140, 45);
             button1.TabIndex = 18;
@@ -67,7 +69,7 @@
             txtState.BorderStyle = BorderStyle.None;
             txtState.Enabled = false;
             txtState.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtState.Location = new Point(466, 154);
+            txtState.Location = new Point(128, 217);
             txtState.Name = "txtState";
             txtState.Size = new Size(154, 23);
             txtState.TabIndex = 17;
@@ -77,7 +79,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.Location = new Point(353, 153);
+            label5.Location = new Point(18, 217);
             label5.Name = "label5";
             label5.Size = new Size(104, 23);
             label5.TabIndex = 16;
@@ -136,12 +138,31 @@
             label2.TabIndex = 10;
             label2.Text = "Tên Xe:";
             // 
+            // txtPrice
+            // 
+            txtPrice.Location = new Point(449, 149);
+            txtPrice.Name = "txtPrice";
+            txtPrice.Size = new Size(171, 27);
+            txtPrice.TabIndex = 20;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label6.Location = new Point(353, 153);
+            label6.Name = "label6";
+            label6.Size = new Size(95, 23);
+            label6.TabIndex = 19;
+            label6.Text = "Giá Thuê:";
+            // 
             // FixCar
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLightLight;
-            ClientSize = new Size(655, 283);
+            ClientSize = new Size(655, 357);
+            Controls.Add(txtPrice);
+            Controls.Add(label6);
             Controls.Add(button1);
             Controls.Add(txtState);
             Controls.Add(label5);
@@ -170,5 +191,7 @@
         private Label label3;
         private TextBox txtName;
         private Label label2;
+        private TextBox txtPrice;
+        private Label label6;
     }
 }

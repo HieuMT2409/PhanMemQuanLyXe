@@ -1,33 +1,42 @@
-﻿using Microsoft.Data.SqlClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ThueXeOTo.Database;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
-namespace ThueXeOTo.ControlCar
+namespace ThueXeOTo.KhachHang
 {
-    public partial class AddCar : Form
+    public partial class AddKH : Form
     {
-        public AddCar()
+        public AddKH()
         {
             InitializeComponent();
+        }
+
+        private void AddKH_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             using (var context = new CarDBContext())
             {
-                context.AddCar(txtName.Text, cbType.Text, txtCompany.Text, txtState.Text, txtPrice.Text + txtday.Text);
+                context.AddCustomer(txtName.Text, txtSDT.Text, txtAddress.Text);
 
                 this.Close();
             }
+        }
+
+        private void txtSDT_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

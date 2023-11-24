@@ -44,8 +44,6 @@
             label8 = new Label();
             label9 = new Label();
             dtOUT = new DateTimePicker();
-            cbPAY = new ComboBox();
-            label10 = new Label();
             SuspendLayout();
             // 
             // label1
@@ -196,33 +194,12 @@
             dtOUT.Size = new Size(242, 27);
             dtOUT.TabIndex = 18;
             // 
-            // cbPAY
-            // 
-            cbPAY.FormattingEnabled = true;
-            cbPAY.Items.AddRange(new object[] { "Thanh toán 1 lần", "Thanh toán chuyển khoản", "Đặt cọc 50%" });
-            cbPAY.Location = new Point(558, 327);
-            cbPAY.Name = "cbPAY";
-            cbPAY.Size = new Size(230, 28);
-            cbPAY.TabIndex = 20;
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Times New Roman", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label10.Location = new Point(448, 335);
-            label10.Name = "label10";
-            label10.Size = new Size(104, 20);
-            label10.TabIndex = 21;
-            label10.Text = "Thanh toán:";
-            // 
             // ThongTinThueXe
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLightLight;
             ClientSize = new Size(800, 450);
-            Controls.Add(label10);
-            Controls.Add(cbPAY);
             Controls.Add(label9);
             Controls.Add(dtOUT);
             Controls.Add(label8);
@@ -267,7 +244,5 @@
         private Label label8;
         private Label label9;
         public DateTimePicker dtOUT;
-        public ComboBox cbPAY;
-        private Label label10;
     }
 }

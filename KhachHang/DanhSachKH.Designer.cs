@@ -30,15 +30,12 @@
         {
             components = new System.ComponentModel.Container();
             dataKH = new DataGridView();
-            iDDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            nameUserDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            sDTDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            addressDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            nameCarDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            featureDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            timeInDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            timeOutDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            typePayDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            ID = new DataGridViewTextBoxColumn();
+            Name = new DataGridViewTextBoxColumn();
+            SDT = new DataGridViewTextBoxColumn();
+            Address = new DataGridViewTextBoxColumn();
+            ordersDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            customerBindingSource = new BindingSource(components);
             orderBindingSource = new BindingSource(components);
             carBindingSource = new BindingSource(components);
             btnFix = new Button();
@@ -48,7 +45,9 @@
             label2 = new Label();
             btnSearch = new Button();
             txbSearch = new TextBox();
+            btnAdd = new Button();
             ((System.ComponentModel.ISupportInitialize)dataKH).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)customerBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)orderBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)carBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)carDBContextBindingSource).BeginInit();
@@ -62,8 +61,8 @@
             dataKH.AutoGenerateColumns = false;
             dataKH.BackgroundColor = SystemColors.ControlLightLight;
             dataKH.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataKH.Columns.AddRange(new DataGridViewColumn[] { iDDataGridViewTextBoxColumn, nameUserDataGridViewTextBoxColumn, sDTDataGridViewTextBoxColumn, addressDataGridViewTextBoxColumn, nameCarDataGridViewTextBoxColumn, featureDataGridViewTextBoxColumn, timeInDataGridViewTextBoxColumn, timeOutDataGridViewTextBoxColumn, typePayDataGridViewTextBoxColumn });
-            dataKH.DataSource = orderBindingSource;
+            dataKH.Columns.AddRange(new DataGridViewColumn[] { ID, Name, SDT, Address, ordersDataGridViewTextBoxColumn });
+            dataKH.DataSource = customerBindingSource;
             dataKH.Location = new Point(6, 55);
             dataKH.Margin = new Padding(3, 4, 3, 4);
             dataKH.Name = "dataKH";
@@ -74,91 +73,55 @@
             dataKH.TabIndex = 10;
             dataKH.CellContentClick += dataKH_CellContentClick;
             // 
-            // iDDataGridViewTextBoxColumn
+            // ID
             // 
-            iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            iDDataGridViewTextBoxColumn.MinimumWidth = 6;
-            iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            iDDataGridViewTextBoxColumn.ReadOnly = true;
-            iDDataGridViewTextBoxColumn.Visible = false;
-            iDDataGridViewTextBoxColumn.Width = 125;
+            ID.DataPropertyName = "ID";
+            ID.HeaderText = "ID";
+            ID.MinimumWidth = 6;
+            ID.Name = "ID";
+            ID.ReadOnly = true;
+            ID.Visible = false;
+            ID.Width = 125;
             // 
-            // nameUserDataGridViewTextBoxColumn
+            // Name
             // 
-            nameUserDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            nameUserDataGridViewTextBoxColumn.DataPropertyName = "NameUser";
-            nameUserDataGridViewTextBoxColumn.HeaderText = "Tên khách hàng";
-            nameUserDataGridViewTextBoxColumn.MinimumWidth = 6;
-            nameUserDataGridViewTextBoxColumn.Name = "nameUserDataGridViewTextBoxColumn";
-            nameUserDataGridViewTextBoxColumn.ReadOnly = true;
+            Name.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Name.DataPropertyName = "Name";
+            Name.HeaderText = "Tên khách hàng";
+            Name.MinimumWidth = 6;
+            Name.Name = "Name";
+            Name.ReadOnly = true;
             // 
-            // sDTDataGridViewTextBoxColumn
+            // SDT
             // 
-            sDTDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            sDTDataGridViewTextBoxColumn.DataPropertyName = "SDT";
-            sDTDataGridViewTextBoxColumn.HeaderText = "Số điện thoại";
-            sDTDataGridViewTextBoxColumn.MinimumWidth = 6;
-            sDTDataGridViewTextBoxColumn.Name = "sDTDataGridViewTextBoxColumn";
-            sDTDataGridViewTextBoxColumn.ReadOnly = true;
+            SDT.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            SDT.DataPropertyName = "SDT";
+            SDT.HeaderText = "Số điện thoại";
+            SDT.MinimumWidth = 6;
+            SDT.Name = "SDT";
+            SDT.ReadOnly = true;
             // 
-            // addressDataGridViewTextBoxColumn
+            // Address
             // 
-            addressDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
-            addressDataGridViewTextBoxColumn.HeaderText = "Địa chỉ";
-            addressDataGridViewTextBoxColumn.MinimumWidth = 6;
-            addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
-            addressDataGridViewTextBoxColumn.ReadOnly = true;
+            Address.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Address.DataPropertyName = "Address";
+            Address.HeaderText = "Địa chỉ";
+            Address.MinimumWidth = 6;
+            Address.Name = "Address";
+            Address.ReadOnly = true;
             // 
-            // nameCarDataGridViewTextBoxColumn
+            // ordersDataGridViewTextBoxColumn
             // 
-            nameCarDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            nameCarDataGridViewTextBoxColumn.DataPropertyName = "NameCar";
-            nameCarDataGridViewTextBoxColumn.HeaderText = "Xe đang thuê";
-            nameCarDataGridViewTextBoxColumn.MinimumWidth = 6;
-            nameCarDataGridViewTextBoxColumn.Name = "nameCarDataGridViewTextBoxColumn";
-            nameCarDataGridViewTextBoxColumn.ReadOnly = true;
+            ordersDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            ordersDataGridViewTextBoxColumn.DataPropertyName = "Orders";
+            ordersDataGridViewTextBoxColumn.HeaderText = "Số hóa đơn";
+            ordersDataGridViewTextBoxColumn.MinimumWidth = 6;
+            ordersDataGridViewTextBoxColumn.Name = "ordersDataGridViewTextBoxColumn";
+            ordersDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // featureDataGridViewTextBoxColumn
+            // customerBindingSource
             // 
-            featureDataGridViewTextBoxColumn.DataPropertyName = "Feature";
-            featureDataGridViewTextBoxColumn.HeaderText = "Feature";
-            featureDataGridViewTextBoxColumn.MinimumWidth = 6;
-            featureDataGridViewTextBoxColumn.Name = "featureDataGridViewTextBoxColumn";
-            featureDataGridViewTextBoxColumn.ReadOnly = true;
-            featureDataGridViewTextBoxColumn.Visible = false;
-            featureDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // timeInDataGridViewTextBoxColumn
-            // 
-            timeInDataGridViewTextBoxColumn.DataPropertyName = "TimeIn";
-            timeInDataGridViewTextBoxColumn.HeaderText = "TimeIn";
-            timeInDataGridViewTextBoxColumn.MinimumWidth = 6;
-            timeInDataGridViewTextBoxColumn.Name = "timeInDataGridViewTextBoxColumn";
-            timeInDataGridViewTextBoxColumn.ReadOnly = true;
-            timeInDataGridViewTextBoxColumn.Visible = false;
-            timeInDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // timeOutDataGridViewTextBoxColumn
-            // 
-            timeOutDataGridViewTextBoxColumn.DataPropertyName = "TimeOut";
-            timeOutDataGridViewTextBoxColumn.HeaderText = "TimeOut";
-            timeOutDataGridViewTextBoxColumn.MinimumWidth = 6;
-            timeOutDataGridViewTextBoxColumn.Name = "timeOutDataGridViewTextBoxColumn";
-            timeOutDataGridViewTextBoxColumn.ReadOnly = true;
-            timeOutDataGridViewTextBoxColumn.Visible = false;
-            timeOutDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // typePayDataGridViewTextBoxColumn
-            // 
-            typePayDataGridViewTextBoxColumn.DataPropertyName = "TypePay";
-            typePayDataGridViewTextBoxColumn.HeaderText = "TypePay";
-            typePayDataGridViewTextBoxColumn.MinimumWidth = 6;
-            typePayDataGridViewTextBoxColumn.Name = "typePayDataGridViewTextBoxColumn";
-            typePayDataGridViewTextBoxColumn.ReadOnly = true;
-            typePayDataGridViewTextBoxColumn.Visible = false;
-            typePayDataGridViewTextBoxColumn.Width = 125;
+            customerBindingSource.DataSource = typeof(Database.Customer);
             // 
             // orderBindingSource
             // 
@@ -170,7 +133,7 @@
             // 
             // btnFix
             // 
-            btnFix.Location = new Point(525, 11);
+            btnFix.Location = new Point(600, 11);
             btnFix.Margin = new Padding(3, 4, 3, 4);
             btnFix.Name = "btnFix";
             btnFix.Size = new Size(69, 36);
@@ -181,7 +144,7 @@
             // 
             // btnDel
             // 
-            btnDel.Location = new Point(600, 11);
+            btnDel.Location = new Point(675, 11);
             btnDel.Margin = new Padding(3, 4, 3, 4);
             btnDel.Name = "btnDel";
             btnDel.Size = new Size(70, 36);
@@ -193,10 +156,6 @@
             // carDBContextBindingSource
             // 
             carDBContextBindingSource.DataSource = typeof(Database.CarDBContext);
-            // 
-            // initDBcarBindingSource
-            // 
-            initDBcarBindingSource.DataSource = typeof(Migrations.InitDBcar);
             // 
             // label2
             // 
@@ -225,22 +184,34 @@
             txbSearch.Size = new Size(315, 27);
             txbSearch.TabIndex = 14;
             // 
+            // btnAdd
+            // 
+            btnAdd.Location = new Point(524, 11);
+            btnAdd.Margin = new Padding(3, 4, 3, 4);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(70, 36);
+            btnAdd.TabIndex = 17;
+            btnAdd.Text = "Thêm";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
+            // 
             // DanhSachKH
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLightLight;
             ClientSize = new Size(843, 557);
+            Controls.Add(btnAdd);
             Controls.Add(dataKH);
             Controls.Add(btnFix);
             Controls.Add(btnDel);
             Controls.Add(label2);
             Controls.Add(btnSearch);
             Controls.Add(txbSearch);
-            Name = "DanhSachKH";
             Text = "DanhSachKH";
             Load += DanhSachKH_Load;
             ((System.ComponentModel.ISupportInitialize)dataKH).EndInit();
+            ((System.ComponentModel.ISupportInitialize)customerBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)orderBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)carBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)carDBContextBindingSource).EndInit();
@@ -261,14 +232,16 @@
         private Button btnSearch;
         private TextBox txbSearch;
         private DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn nameUserDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn sDTDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn nameCarDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn featureDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn timeInDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn timeOutDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn typePayDataGridViewTextBoxColumn;
         private BindingSource orderBindingSource;
+        private BindingSource customerBindingSource;
+        private DataGridViewTextBoxColumn ID;
+        private DataGridViewTextBoxColumn Name;
+        private DataGridViewTextBoxColumn SDT;
+        private DataGridViewTextBoxColumn Address;
+        private DataGridViewTextBoxColumn ordersDataGridViewTextBoxColumn;
+        private Button btnAdd;
     }
 }

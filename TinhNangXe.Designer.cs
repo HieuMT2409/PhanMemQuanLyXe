@@ -265,6 +265,7 @@
             // 
             // button1
             // 
+            button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             button1.Location = new Point(549, 444);
             button1.Name = "button1";
             button1.Size = new Size(119, 50);
@@ -316,6 +317,7 @@
             // 
             // btnBack
             // 
+            btnBack.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnBack.Location = new Point(37, 444);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(116, 50);

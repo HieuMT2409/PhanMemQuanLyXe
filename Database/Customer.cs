@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace ThueXeOTo.Database
 {
-    public class Car
+    public class Customer
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public string Type { get; set; }
-        public string State { get; set; }
-        public string Company { get; set; }
-        public string Price { get; set; }
+        public string Address { get; set; }
+        public string SDT { get; set; }
+        public ICollection<Order> Orders { get; set; }
     }
 }

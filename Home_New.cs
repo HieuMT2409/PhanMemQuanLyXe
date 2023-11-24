@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ThueXeOTo.Database;
 using ThueXeOTo.KhachHang;
 using ThueXeOTo.LichTrinh;
 using ThueXeOTo.OrderCar;
@@ -18,6 +19,7 @@ namespace ThueXeOTo
     {
         DanhSachXe danhSachXe = new DanhSachXe();
         DanhSachHoaDon danhsachHoaDon = new DanhSachHoaDon();
+        HoaDon hoaDon = new HoaDon();
         Listcars listcars = new Listcars();
         ThongTinThueXe thongtinthuexe = new ThongTinThueXe();
         DanhSachKH danhSachKH = new DanhSachKH();
@@ -36,7 +38,7 @@ namespace ThueXeOTo
 
         private void Home_New_Load(object sender, EventArgs e)
         {
-
+            danhSachXe.UpdateLabel(txtRole.Text);
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -46,7 +48,7 @@ namespace ThueXeOTo
 
         public void UpdateLabel(string username)
         {
-            user.Text = username;
+            txtRole.Text = username;
         }
 
         // Danh sách hóa đơn
@@ -63,7 +65,7 @@ namespace ThueXeOTo
             danhsachHoaDon.Show();
         }
 
-        //List Car
+        //Listcar
         public void LoadListCarForm()
         {
             listcars.TopLevel = false;
@@ -74,11 +76,30 @@ namespace ThueXeOTo
             listcars.Show();
         }
 
-        private void DanhSachHoaDon_ButtonClick(object sender, EventArgs e)
+        //Hóa đơn
+        public void LoadHoaDonForm()
         {
-            LoadListCarForm();
+            hoaDon.TopLevel = false;
+            panel1.Controls.Clear();
+            panel1.Controls.Add(hoaDon);
+            hoaDon.FormBorderStyle = FormBorderStyle.None;
+            hoaDon.Dock = DockStyle.Fill;
+            hoaDon.btnChoose.Click += HoaDon_ButtonClick;
+            hoaDon.Show();
         }
 
+        private void DanhSachHoaDon_ButtonClick(object sender, EventArgs e)
+        {
+            LoadHoaDonForm();
+        }
+
+        private void HoaDon_ButtonClick(object sender, EventArgs e)
+        {
+            Customer selectedCustomer = (Customer)hoaDon.comboBoxCustomers.SelectedItem;
+            ThongTinThueXe thongTinThueXe = new ThongTinThueXe();
+            thongTinThueXe.UpdateInfo(selectedCustomer.ID, selectedCustomer.Name);
+            LoadListCarForm();
+        }
         private void DataOrder_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -191,6 +212,39 @@ namespace ThueXeOTo
 
         }
 
-        
+        private void txtRole_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void user_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+        }
     }
 }

@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home_New));
             panel1 = new Panel();
             panel2 = new Panel();
-            user = new Label();
+            txtRole = new Label();
             label7 = new Label();
             label6 = new Label();
             label5 = new Label();
@@ -69,7 +69,7 @@
             // 
             panel2.BackColor = Color.Cornsilk;
             panel2.BorderStyle = BorderStyle.FixedSingle;
-            panel2.Controls.Add(user);
+            panel2.Controls.Add(txtRole);
             panel2.Controls.Add(label7);
             panel2.Controls.Add(label6);
             panel2.Controls.Add(label5);
@@ -89,16 +89,18 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(274, 587);
             panel2.TabIndex = 1;
+            panel2.Paint += panel2_Paint;
             // 
-            // user
+            // txtRole
             // 
-            user.AutoSize = true;
-            user.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            user.Location = new Point(82, 63);
-            user.Name = "user";
-            user.Size = new Size(0, 23);
-            user.TabIndex = 14;
-            user.Visible = false;
+            txtRole.AutoSize = true;
+            txtRole.Location = new Point(32, 54);
+            txtRole.Name = "txtRole";
+            txtRole.Size = new Size(41, 20);
+            txtRole.TabIndex = 15;
+            txtRole.Text = "TEST";
+            txtRole.Visible = false;
+            txtRole.Click += txtRole_Click;
             // 
             // label7
             // 
@@ -109,6 +111,7 @@
             label7.Size = new Size(173, 23);
             label7.TabIndex = 13;
             label7.Text = "Nhập - Xuất dữ liệu";
+            label7.Click += label7_Click;
             // 
             // label6
             // 
@@ -119,6 +122,7 @@
             label6.Size = new Size(185, 23);
             label6.TabIndex = 12;
             label6.Text = "Báo cáo và Thống kê";
+            label6.Click += label6_Click;
             // 
             // label5
             // 
@@ -173,6 +177,7 @@
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox3.TabIndex = 4;
             pictureBox3.TabStop = false;
+            pictureBox3.Click += pictureBox3_Click;
             // 
             // pictureBox4
             // 
@@ -183,6 +188,7 @@
             pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox4.TabIndex = 5;
             pictureBox4.TabStop = false;
+            pictureBox4.Click += pictureBox4_Click;
             // 
             // pictureBox2
             // 
@@ -220,7 +226,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(3, 82);
+            pictureBox1.Location = new Point(3, 77);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(73, 63);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -232,11 +238,12 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Elephant", 16.1999989F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            label1.Location = new Point(12, 19);
+            label1.Location = new Point(11, 19);
             label1.Name = "label1";
             label1.Size = new Size(249, 35);
             label1.TabIndex = 1;
             label1.Text = "REFUND CAR";
+            label1.Click += label1_Click;
             // 
             // Home_New
             // 
@@ -277,6 +284,6 @@
         private Label label5;
         private Label label4;
         private Label label3;
-        private Label user;
+        public Label txtRole;
     }
 }

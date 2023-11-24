@@ -1,7 +1,12 @@
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Data;
+using ThueXeOTo.Database;
+
 namespace ThueXeOTo
 {
     internal static class Program
-    {
+    { 
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>

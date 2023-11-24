@@ -35,15 +35,13 @@
             carDBContextBindingSource = new BindingSource(components);
             initDBcarBindingSource = new BindingSource(components);
             btnAdd = new Button();
-            IdOrder = new DataGridViewTextBoxColumn();
             Address = new DataGridViewTextBoxColumn();
             Feature = new DataGridViewTextBoxColumn();
             TimeIn = new DataGridViewTextBoxColumn();
+            OrderID = new DataGridViewTextBoxColumn();
             TimeOut = new DataGridViewTextBoxColumn();
             nameUserDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            sDTDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             nameCarDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            typePayDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dataOrder).BeginInit();
             ((System.ComponentModel.ISupportInitialize)orderBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)carBindingSource).BeginInit();
@@ -58,7 +56,7 @@
             dataOrder.AutoGenerateColumns = false;
             dataOrder.BackgroundColor = SystemColors.ControlLightLight;
             dataOrder.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataOrder.Columns.AddRange(new DataGridViewColumn[] { IdOrder, Address, Feature, TimeIn, TimeOut, nameUserDataGridViewTextBoxColumn, sDTDataGridViewTextBoxColumn, nameCarDataGridViewTextBoxColumn, typePayDataGridViewTextBoxColumn });
+            dataOrder.Columns.AddRange(new DataGridViewColumn[] { Address, Feature, TimeIn, OrderID, TimeOut, nameUserDataGridViewTextBoxColumn, nameCarDataGridViewTextBoxColumn });
             dataOrder.DataSource = orderBindingSource;
             dataOrder.Location = new Point(0, 0);
             dataOrder.Margin = new Padding(3, 4, 3, 4);
@@ -82,10 +80,6 @@
             // 
             carDBContextBindingSource.DataSource = typeof(Database.CarDBContext);
             // 
-            // initDBcarBindingSource
-            // 
-            initDBcarBindingSource.DataSource = typeof(Migrations.InitDBcar);
-            // 
             // btnAdd
             // 
             btnAdd.Location = new Point(727, 522);
@@ -95,16 +89,6 @@
             btnAdd.Text = "Tạo hóa đơn";
             btnAdd.UseVisualStyleBackColor = true;
             btnAdd.Click += btnAdd_Click;
-            // 
-            // IdOrder
-            // 
-            IdOrder.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            IdOrder.DataPropertyName = "ID";
-            IdOrder.HeaderText = "ID";
-            IdOrder.MinimumWidth = 6;
-            IdOrder.Name = "IdOrder";
-            IdOrder.ReadOnly = true;
-            IdOrder.Visible = false;
             // 
             // Address
             // 
@@ -136,6 +120,15 @@
             TimeIn.Visible = false;
             TimeIn.Width = 125;
             // 
+            // OrderID
+            // 
+            OrderID.DataPropertyName = "OrderID";
+            OrderID.HeaderText = "Số hóa đơn";
+            OrderID.MinimumWidth = 6;
+            OrderID.Name = "OrderID";
+            OrderID.ReadOnly = true;
+            OrderID.Width = 125;
+            // 
             // TimeOut
             // 
             TimeOut.DataPropertyName = "TimeOut";
@@ -156,15 +149,6 @@
             nameUserDataGridViewTextBoxColumn.ReadOnly = true;
             nameUserDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.True;
             // 
-            // sDTDataGridViewTextBoxColumn
-            // 
-            sDTDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            sDTDataGridViewTextBoxColumn.DataPropertyName = "SDT";
-            sDTDataGridViewTextBoxColumn.HeaderText = "Số điện thoại";
-            sDTDataGridViewTextBoxColumn.MinimumWidth = 6;
-            sDTDataGridViewTextBoxColumn.Name = "sDTDataGridViewTextBoxColumn";
-            sDTDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
             // nameCarDataGridViewTextBoxColumn
             // 
             nameCarDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -173,15 +157,6 @@
             nameCarDataGridViewTextBoxColumn.MinimumWidth = 6;
             nameCarDataGridViewTextBoxColumn.Name = "nameCarDataGridViewTextBoxColumn";
             nameCarDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // typePayDataGridViewTextBoxColumn
-            // 
-            typePayDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            typePayDataGridViewTextBoxColumn.DataPropertyName = "TypePay";
-            typePayDataGridViewTextBoxColumn.HeaderText = "Hình thức thanh toán";
-            typePayDataGridViewTextBoxColumn.MinimumWidth = 6;
-            typePayDataGridViewTextBoxColumn.Name = "typePayDataGridViewTextBoxColumn";
-            typePayDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // DanhSachHoaDon
             // 
@@ -211,13 +186,14 @@
         private BindingSource orderBindingSource;
         public Button btnAdd;
         private DataGridViewTextBoxColumn IdOrder;
+        private DataGridViewTextBoxColumn sDTDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn typePayDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn Address;
         private DataGridViewTextBoxColumn Feature;
         private DataGridViewTextBoxColumn TimeIn;
+        private DataGridViewTextBoxColumn OrderID;
         private DataGridViewTextBoxColumn TimeOut;
         private DataGridViewTextBoxColumn nameUserDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn sDTDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn nameCarDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn typePayDataGridViewTextBoxColumn;
     }
 }
