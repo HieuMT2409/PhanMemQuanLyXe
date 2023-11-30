@@ -103,7 +103,6 @@ namespace ThueXeOTo
                 homeForm.panel1.Controls.Add(xe);
                 xe.FormBorderStyle = FormBorderStyle.None;
                 xe.Dock = DockStyle.Fill;
-                MessageBox.Show(homeForm.count.ToString());
                 if (homeForm.count >= 1)
                 {
                     homeForm.hoaDon.lbCar.Items.Clear();

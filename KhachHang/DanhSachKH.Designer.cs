@@ -30,6 +30,15 @@
         {
             components = new System.ComponentModel.Container();
             dataKH = new DataGridView();
+            ID = new DataGridViewTextBoxColumn();
+            Name = new DataGridViewTextBoxColumn();
+            SDT = new DataGridViewTextBoxColumn();
+            Address = new DataGridViewTextBoxColumn();
+            iDDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            nameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            addressDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            sDTDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            ordersDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             customerBindingSource = new BindingSource(components);
             orderBindingSource = new BindingSource(components);
             carBindingSource = new BindingSource(components);
@@ -41,10 +50,6 @@
             btnSearch = new Button();
             txbSearch = new TextBox();
             btnAdd = new Button();
-            ID = new DataGridViewTextBoxColumn();
-            Name = new DataGridViewTextBoxColumn();
-            SDT = new DataGridViewTextBoxColumn();
-            Address = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dataKH).BeginInit();
             ((System.ComponentModel.ISupportInitialize)customerBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)orderBindingSource).BeginInit();
@@ -60,7 +65,7 @@
             dataKH.AutoGenerateColumns = false;
             dataKH.BackgroundColor = Color.White;
             dataKH.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataKH.Columns.AddRange(new DataGridViewColumn[] { ID, Name, SDT, Address });
+            dataKH.Columns.AddRange(new DataGridViewColumn[] { ID, Name, SDT, Address, iDDataGridViewTextBoxColumn, nameDataGridViewTextBoxColumn, addressDataGridViewTextBoxColumn, sDTDataGridViewTextBoxColumn, ordersDataGridViewTextBoxColumn });
             dataKH.DataSource = customerBindingSource;
             dataKH.Location = new Point(6, 55);
             dataKH.Margin = new Padding(3, 4, 3, 4);
@@ -71,6 +76,88 @@
             dataKH.Size = new Size(831, 491);
             dataKH.TabIndex = 10;
             dataKH.CellContentClick += dataKH_CellContentClick;
+            // 
+            // ID
+            // 
+            ID.DataPropertyName = "ID";
+            ID.HeaderText = "ID";
+            ID.MinimumWidth = 6;
+            ID.Name = "ID";
+            ID.ReadOnly = true;
+            ID.Visible = false;
+            ID.Width = 125;
+            // 
+            // Name
+            // 
+            Name.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Name.DataPropertyName = "Name";
+            Name.HeaderText = "Tên khách hàng";
+            Name.MinimumWidth = 6;
+            Name.Name = "Name";
+            Name.ReadOnly = true;
+            // 
+            // SDT
+            // 
+            SDT.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            SDT.DataPropertyName = "SDT";
+            SDT.HeaderText = "Số điện thoại";
+            SDT.MinimumWidth = 6;
+            SDT.Name = "SDT";
+            SDT.ReadOnly = true;
+            // 
+            // Address
+            // 
+            Address.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Address.DataPropertyName = "Address";
+            Address.HeaderText = "Địa chỉ";
+            Address.MinimumWidth = 6;
+            Address.Name = "Address";
+            Address.ReadOnly = true;
+            // 
+            // iDDataGridViewTextBoxColumn
+            // 
+            iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            iDDataGridViewTextBoxColumn.HeaderText = "ID";
+            iDDataGridViewTextBoxColumn.MinimumWidth = 6;
+            iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            iDDataGridViewTextBoxColumn.ReadOnly = true;
+            iDDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            nameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            nameDataGridViewTextBoxColumn.ReadOnly = true;
+            nameDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // addressDataGridViewTextBoxColumn
+            // 
+            addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
+            addressDataGridViewTextBoxColumn.HeaderText = "Address";
+            addressDataGridViewTextBoxColumn.MinimumWidth = 6;
+            addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
+            addressDataGridViewTextBoxColumn.ReadOnly = true;
+            addressDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // sDTDataGridViewTextBoxColumn
+            // 
+            sDTDataGridViewTextBoxColumn.DataPropertyName = "SDT";
+            sDTDataGridViewTextBoxColumn.HeaderText = "SDT";
+            sDTDataGridViewTextBoxColumn.MinimumWidth = 6;
+            sDTDataGridViewTextBoxColumn.Name = "sDTDataGridViewTextBoxColumn";
+            sDTDataGridViewTextBoxColumn.ReadOnly = true;
+            sDTDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // ordersDataGridViewTextBoxColumn
+            // 
+            ordersDataGridViewTextBoxColumn.DataPropertyName = "Orders";
+            ordersDataGridViewTextBoxColumn.HeaderText = "Orders";
+            ordersDataGridViewTextBoxColumn.MinimumWidth = 6;
+            ordersDataGridViewTextBoxColumn.Name = "ordersDataGridViewTextBoxColumn";
+            ordersDataGridViewTextBoxColumn.ReadOnly = true;
+            ordersDataGridViewTextBoxColumn.Width = 125;
             // 
             // customerBindingSource
             // 
@@ -115,6 +202,7 @@
             // label2
             // 
             label2.AutoSize = true;
+            label2.ForeColor = Color.Black;
             label2.Location = new Point(6, 20);
             label2.Name = "label2";
             label2.Size = new Size(99, 20);
@@ -152,43 +240,6 @@
             btnAdd.UseVisualStyleBackColor = true;
             btnAdd.Click += btnAdd_Click;
             // 
-            // ID
-            // 
-            ID.DataPropertyName = "ID";
-            ID.HeaderText = "ID";
-            ID.MinimumWidth = 6;
-            ID.Name = "ID";
-            ID.ReadOnly = true;
-            ID.Visible = false;
-            ID.Width = 125;
-            // 
-            // Name
-            // 
-            Name.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Name.DataPropertyName = "Name";
-            Name.HeaderText = "Tên khách hàng";
-            Name.MinimumWidth = 6;
-            Name.Name = "Name";
-            Name.ReadOnly = true;
-            // 
-            // SDT
-            // 
-            SDT.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            SDT.DataPropertyName = "SDT";
-            SDT.HeaderText = "Số điện thoại";
-            SDT.MinimumWidth = 6;
-            SDT.Name = "SDT";
-            SDT.ReadOnly = true;
-            // 
-            // Address
-            // 
-            Address.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Address.DataPropertyName = "Address";
-            Address.HeaderText = "Địa chỉ";
-            Address.MinimumWidth = 6;
-            Address.Name = "Address";
-            Address.ReadOnly = true;
-            // 
             // DanhSachKH
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -203,6 +254,7 @@
             Controls.Add(btnSearch);
             Controls.Add(txbSearch);
             ForeColor = Color.CornflowerBlue;
+            Name = "DanhSachKH";
             Text = "DanhSachKH";
             Load += DanhSachKH_Load;
             ((System.ComponentModel.ISupportInitialize)dataKH).EndInit();
@@ -234,5 +286,10 @@
         private new DataGridViewTextBoxColumn Name;
         private DataGridViewTextBoxColumn SDT;
         private DataGridViewTextBoxColumn Address;
+        private DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn sDTDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn ordersDataGridViewTextBoxColumn;
     }
 }
