@@ -8,6 +8,7 @@ using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using ThueXeOTo.OrderCar;
 
 namespace ThueXeOTo
@@ -21,6 +22,26 @@ namespace ThueXeOTo
             InitializeComponent();
         }
 
+        public void Reset()
+        {
+            foreach (Control control in Controls)
+            {
+                if (control is CheckBox checkBox)
+                {
+                    checkBox.Checked = false;
+                }
+                else if (control is RadioButton radioButton)
+                {
+                    radioButton.Checked = false;
+                }
+            }
+        }
+
+        public void UpdateLabel(string id, string name)
+        {
+            txtID.Text = id;
+            txtName.Text = name;
+        }
         private void ShowForm()
         {
             Home_New homeForm = this.ParentForm as Home_New;
@@ -76,8 +97,9 @@ namespace ThueXeOTo
             {
                 MessageBox.Show("Vui lòng chọn loại nhiên liệu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            thongTinThueXe.Reset();
             thongTinThueXe.UpdateData(list);
-            thongTinThueXe.UpdateLabel(txtXe.Text);
+            thongTinThueXe.UpdateInfo(txtID.Text, txtName.Text, txtXe.Text);
             ShowForm();
         }
 
@@ -94,22 +116,6 @@ namespace ThueXeOTo
         private void cbUSB_CheckedChanged(object sender, EventArgs e)
         {
 
-        }
-
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            Home_New homeForm = this.ParentForm as Home_New;
-
-            if (homeForm != null)
-            {
-                TinhNangXe tinhNangXe = new TinhNangXe();
-                tinhNangXe.TopLevel = false;
-                homeForm.panel1.Controls.Clear();
-                homeForm.panel1.Controls.Add(tinhNangXe);
-                tinhNangXe.FormBorderStyle = FormBorderStyle.None;
-                tinhNangXe.Dock = DockStyle.Fill;
-                tinhNangXe.Show();
-            }
         }
     }
 }

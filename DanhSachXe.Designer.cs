@@ -59,7 +59,7 @@ namespace ThueXeOTo
             dataCar.AllowUserToAddRows = false;
             dataCar.AllowUserToDeleteRows = false;
             dataCar.AutoGenerateColumns = false;
-            dataCar.BackgroundColor = SystemColors.ControlLightLight;
+            dataCar.BackgroundColor = Color.White;
             dataCar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataCar.Columns.AddRange(new DataGridViewColumn[] { Id, nameDataGridViewTextBoxColumn, typeDataGridViewTextBoxColumn, companyDataGridViewTextBoxColumn, stateDataGridViewTextBoxColumn, Price });
             dataCar.DataSource = carBindingSource;
@@ -218,7 +218,7 @@ namespace ThueXeOTo
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ControlLightLight;
+            BackColor = Color.White;
             ClientSize = new Size(843, 557);
             Controls.Add(txtRole);
             Controls.Add(label2);
@@ -228,6 +228,7 @@ namespace ThueXeOTo
             Controls.Add(btnFix);
             Controls.Add(btnDel);
             Controls.Add(dataCar);
+            ForeColor = Color.Black;
             Margin = new Padding(3, 4, 3, 4);
             Name = "DanhSachXe";
             Text = "DanhSachXe";
@@ -248,7 +249,6 @@ namespace ThueXeOTo
         private BindingSource carBindingSource;
         private BindingSource carDBContextBindingSource;
         private BindingSource initDBcarBindingSource;
-        private Label label1;
         private TextBox txbSearch;
         private Button btnSearch;
         private Label label2;

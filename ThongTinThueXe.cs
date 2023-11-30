@@ -14,12 +14,13 @@ using System.Xml.Linq;
 using ThueXeOTo.Database;
 using ThueXeOTo.KhachHang;
 using ThueXeOTo.OrderCar;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ThueXeOTo
 {
     public partial class ThongTinThueXe : Form
     {
-        string conectionString = @"Data Source=HIEUMT-2491310\HIEUMT; Integrated Security=true; Database=CarDB";
+        private List<string> carLists = new List<string>();
         public ThongTinThueXe()
         {
             InitializeComponent();
@@ -29,24 +30,51 @@ namespace ThueXeOTo
         {
         }
 
-        public void UpdateLabel(string text)
+        public void Reset()
         {
-            txtXethue.Text = text;
+            foreach (Control control in Controls)
+            {
+                if (control is ListBox listBox)
+                {
+                    listBox.Items.Clear();
+                }
+                else if (control is DateTimePicker dateTimePicker)
+                {
+                    dateTimePicker.Value = DateTime.Now; // Đặt lại ngày giờ mặc định (hoặc giá trị bạn muốn)
+                }
+            }
         }
 
-        public void UpdateInfo(int id, string name)
+        public List<string> GetCarlist()
+        {
+            return carLists;
+        }
+
+        public void AddCartoList(string name)
+        {
+            carLists.Add(name);
+        }
+
+        public void UpdateInfo(string id, string name, string nameCar)
         {
             using (var context = new CarDBContext())
             {
-                var query = context.Customers.Where(customer => customer.ID == id);
+                var query = context.Customers.Where(customer => customer.ID == int.Parse(id) && customer.Name == name);
 
                 Customer result = query.FirstOrDefault();
-
 
                 txtNameUser.Text = result.Name;
                 txtSDT.Text = result.SDT;
                 txtAddress.Text = result.Address;
+
+                txtXethue.Text = nameCar;
+                txtID.Text = id;
             }
+        }
+
+        public string GetID()
+        {
+            return txtID.Text;
         }
 
         public void UpdateData(List<string> data)
@@ -62,13 +90,37 @@ namespace ThueXeOTo
 
         }
 
+        public void LoadHoaDonForm(int id, string name)
+        {
+            Home_New homeForm = this.ParentForm as Home_New;
+
+            if (homeForm != null)
+            {
+                HoaDon xe = new HoaDon();
+
+                xe.TopLevel = false;
+                homeForm.panel1.Controls.Clear();
+                homeForm.panel1.Controls.Add(xe);
+                xe.FormBorderStyle = FormBorderStyle.None;
+                xe.Dock = DockStyle.Fill;
+                MessageBox.Show(homeForm.count.ToString());
+                if (homeForm.count >= 1)
+                {
+                    homeForm.hoaDon.lbCar.Items.Clear();
+                }
+                xe.UpdateData(id, name);
+                xe.LoadButton();
+                xe.Show();
+            }
+        }
+
         public void LoadDanhSachXeForm()
         {
             Home_New homeForm = this.ParentForm as Home_New;
 
             if (homeForm != null)
             {
-                DanhSachHoaDon xe = new DanhSachHoaDon();
+                Listcars xe = new Listcars();
 
                 xe.TopLevel = false;
                 homeForm.panel1.Controls.Clear();
@@ -81,7 +133,7 @@ namespace ThueXeOTo
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //Lấy thông tin của Listbox
+            // Lấy thông tin của Listbox
             List<string> allValues = new List<string>();
 
             foreach (var item in lbFeature.Items)
@@ -90,72 +142,36 @@ namespace ThueXeOTo
             }
             string combinedValues = string.Join(", ", allValues);
 
-            //Kiểm tra yêu cầu nhập đủ các trường dữ liệu
-            if (txtNameUser.Text == "" || txtXethue.Text == "" || txtSDT.Text == "")
-            {
-                MessageBox.Show("Cần nhập đủ các thông tin.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            // Kiểm tra yêu cầu nhập đủ các trường dữ liệu
+            // Kiểm tra thời gian checkin checkout
+            DateTime checkin = dtIN.Value;
+            DateTime checkout = dtOUT.Value;
 
+            if (checkout <= checkin)
+            {
+                MessageBox.Show("Thời gian checkout phải lớn hơn thời gian checkin. Vui lòng chọn lại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                //Kiểm tra thời gian checkin checkout
-                DateTime checkin = dtIN.Value;
-                DateTime checkout = dtOUT.Value;
-
-                if (checkout <= checkin)
+                using (var context = new CarDBContext())
                 {
-                    MessageBox.Show("Thời gian checkout phải lớn hơn thời gian checkin. Vui lòng chọn lại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    using (SqlConnection connection = new SqlConnection(conectionString))
+                    var order = new Order
                     {
-                        connection.Open();
+                        NameUser = txtNameUser.Text,
+                        NameCar = txtXethue.Text,
+                        TimeIn = dtIN.Value,
+                        TimeOut = dtOUT.Value,
+                        CustomerID = int.Parse(txtID.Text),
+                        Feature = combinedValues
+                    };
 
-                        // Truy vấn dữ liệu
-                        string query = "INSERT INTO Orders(NameUser, NameCar, TimeIn, TimeOut, Feature) VALUES (@nameuser, @namecar, @timein, @timeout, @feature)";
-                        string query1 = "INSERT INTO Customers(Name, SDT, Address) VALUES (@nameuser, @sdt, @address)";
+                    context.Orders.Add(order);
+                    context.SaveChanges();
 
-                        using (SqlCommand command = new SqlCommand(query, connection))
-                        {
-                            command.Parameters.Add("@nameuser", SqlDbType.NVarChar).Value = txtNameUser.Text;
-                            command.Parameters.Add("@namecar", SqlDbType.NVarChar).Value = txtXethue.Text;
-                            command.Parameters.Add("@timein", SqlDbType.DateTime2).Value = dtIN.Text;
-                            command.Parameters.Add("@timeout", SqlDbType.DateTime2).Value = dtOUT.Text;
-                            command.Parameters.Add("@feature", SqlDbType.NVarChar).Value = combinedValues;
 
-                            int rowCount = command.ExecuteNonQuery();
-
-                            using (SqlCommand insertCustomer = new SqlCommand(query1, connection))
-                            {
-                                insertCustomer.Parameters.Add("@nameuser", SqlDbType.NVarChar).Value = txtNameUser.Text;
-                                insertCustomer.Parameters.Add("@sdt", SqlDbType.NVarChar).Value = txtSDT.Text;
-                                insertCustomer.Parameters.Add("@address", SqlDbType.NVarChar).Value = txtAddress.Text;
-
-                                insertCustomer.ExecuteNonQuery();
-                            }
-
-                            //Upload thành công thì cập nhật lại giá trị State của xe
-                            if (rowCount > 0)
-                            {
-                                string updateQuery = "UPDATE Cars SET State = N'Đang cho thuê' WHERE Name = @namecar";
-
-                                using (SqlCommand updateCommand = new SqlCommand(updateQuery, connection))
-                                {
-                                    updateCommand.Parameters.Add("@namecar", SqlDbType.NVarChar).Value = txtXethue.Text;
-
-                                    updateCommand.ExecuteNonQuery();
-                                }
-                            }
-                            MessageBox.Show("Dữ liệu đã được thêm thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                            LoadDanhSachXeForm();
-                        }
-                        connection.Close();
-                    }
+                    LoadHoaDonForm(order.CustomerID, order.NameCar);
                 }
             }
-
         }
     }
 }

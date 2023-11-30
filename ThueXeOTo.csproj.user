@@ -22,6 +22,9 @@
     <Compile Update="Home_New.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Input-Output\InOut.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="KhachHang\AddKH.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -40,7 +43,13 @@
     <Compile Update="OrderCar\ChooseCar.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="OrderCar\ThanhToan.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="OrderCar\ThongTinHoaDon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Report\BaoCaoThongKe.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="ThongTinThueXe.cs">

@@ -27,6 +27,23 @@ namespace ThueXeOTo.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Reports",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NameCar = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Company = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TimeRent = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Price = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Reports", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -51,14 +68,14 @@ namespace ThueXeOTo.Migrations
                     Feature = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TimeIn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TimeOut = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CustomersID = table.Column<int>(type: "int", nullable: false)
+                    CustomerID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Orders", x => x.OrderID);
                     table.ForeignKey(
-                        name: "FK_Orders_Customers_CustomersID",
-                        column: x => x.CustomersID,
+                        name: "FK_Orders_Customers_CustomerID",
+                        column: x => x.CustomerID,
                         principalTable: "Customers",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
@@ -74,29 +91,28 @@ namespace ThueXeOTo.Migrations
                     Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     State = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Company = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<double>(type: "float", nullable: false),
-                    OrdersOrderID = table.Column<int>(type: "int", nullable: false)
+                    Price = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    OrderID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cars", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Cars_Orders_OrdersOrderID",
-                        column: x => x.OrdersOrderID,
+                        name: "FK_Cars_Orders_OrderID",
+                        column: x => x.OrderID,
                         principalTable: "Orders",
-                        principalColumn: "OrderID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "OrderID");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cars_OrdersOrderID",
+                name: "IX_Cars_OrderID",
                 table: "Cars",
-                column: "OrdersOrderID");
+                column: "OrderID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Orders_CustomersID",
+                name: "IX_Orders_CustomerID",
                 table: "Orders",
-                column: "CustomersID");
+                column: "CustomerID");
         }
 
         /// <inheritdoc />
@@ -104,6 +120,9 @@ namespace ThueXeOTo.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Cars");
+
+            migrationBuilder.DropTable(
+                name: "Reports");
 
             migrationBuilder.DropTable(
                 name: "Users");

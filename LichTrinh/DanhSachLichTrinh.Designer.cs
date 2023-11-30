@@ -30,16 +30,14 @@
         {
             components = new System.ComponentModel.Container();
             dataLichTrinh = new DataGridView();
-            iDDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             nameUserDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            sDTDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            addressDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            OrderID = new DataGridViewTextBoxColumn();
             nameCarDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             featureDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             timeInDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             timeOutDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            typePayDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             orderBindingSource = new BindingSource(components);
+            btnPay = new Button();
             ((System.ComponentModel.ISupportInitialize)dataLichTrinh).BeginInit();
             ((System.ComponentModel.ISupportInitialize)orderBindingSource).BeginInit();
             SuspendLayout();
@@ -49,29 +47,19 @@
             dataLichTrinh.AllowUserToAddRows = false;
             dataLichTrinh.AllowUserToDeleteRows = false;
             dataLichTrinh.AutoGenerateColumns = false;
-            dataLichTrinh.BackgroundColor = SystemColors.ControlLightLight;
+            dataLichTrinh.BackgroundColor = Color.White;
             dataLichTrinh.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataLichTrinh.Columns.AddRange(new DataGridViewColumn[] { iDDataGridViewTextBoxColumn, nameUserDataGridViewTextBoxColumn, sDTDataGridViewTextBoxColumn, addressDataGridViewTextBoxColumn, nameCarDataGridViewTextBoxColumn, featureDataGridViewTextBoxColumn, timeInDataGridViewTextBoxColumn, timeOutDataGridViewTextBoxColumn, typePayDataGridViewTextBoxColumn });
+            dataLichTrinh.Columns.AddRange(new DataGridViewColumn[] { nameUserDataGridViewTextBoxColumn, OrderID, nameCarDataGridViewTextBoxColumn, featureDataGridViewTextBoxColumn, timeInDataGridViewTextBoxColumn, timeOutDataGridViewTextBoxColumn });
             dataLichTrinh.DataSource = orderBindingSource;
-            dataLichTrinh.Location = new Point(1, 1);
+            dataLichTrinh.Location = new Point(0, 0);
             dataLichTrinh.Margin = new Padding(3, 4, 3, 4);
             dataLichTrinh.Name = "dataLichTrinh";
             dataLichTrinh.ReadOnly = true;
             dataLichTrinh.RowHeadersWidth = 51;
             dataLichTrinh.RowTemplate.Height = 25;
-            dataLichTrinh.Size = new Size(842, 491);
+            dataLichTrinh.Size = new Size(843, 492);
             dataLichTrinh.TabIndex = 11;
             dataLichTrinh.CellContentClick += dataKH_CellContentClick;
-            // 
-            // iDDataGridViewTextBoxColumn
-            // 
-            iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            iDDataGridViewTextBoxColumn.MinimumWidth = 6;
-            iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            iDDataGridViewTextBoxColumn.ReadOnly = true;
-            iDDataGridViewTextBoxColumn.Visible = false;
-            iDDataGridViewTextBoxColumn.Width = 125;
             // 
             // nameUserDataGridViewTextBoxColumn
             // 
@@ -82,25 +70,15 @@
             nameUserDataGridViewTextBoxColumn.Name = "nameUserDataGridViewTextBoxColumn";
             nameUserDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // sDTDataGridViewTextBoxColumn
+            // OrderID
             // 
-            sDTDataGridViewTextBoxColumn.DataPropertyName = "SDT";
-            sDTDataGridViewTextBoxColumn.HeaderText = "SDT";
-            sDTDataGridViewTextBoxColumn.MinimumWidth = 6;
-            sDTDataGridViewTextBoxColumn.Name = "sDTDataGridViewTextBoxColumn";
-            sDTDataGridViewTextBoxColumn.ReadOnly = true;
-            sDTDataGridViewTextBoxColumn.Visible = false;
-            sDTDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // addressDataGridViewTextBoxColumn
-            // 
-            addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
-            addressDataGridViewTextBoxColumn.HeaderText = "Address";
-            addressDataGridViewTextBoxColumn.MinimumWidth = 6;
-            addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
-            addressDataGridViewTextBoxColumn.ReadOnly = true;
-            addressDataGridViewTextBoxColumn.Visible = false;
-            addressDataGridViewTextBoxColumn.Width = 125;
+            OrderID.DataPropertyName = "OrderID";
+            OrderID.HeaderText = "OrderID";
+            OrderID.MinimumWidth = 6;
+            OrderID.Name = "OrderID";
+            OrderID.ReadOnly = true;
+            OrderID.Visible = false;
+            OrderID.Width = 125;
             // 
             // nameCarDataGridViewTextBoxColumn
             // 
@@ -139,25 +117,28 @@
             timeOutDataGridViewTextBoxColumn.Name = "timeOutDataGridViewTextBoxColumn";
             timeOutDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // typePayDataGridViewTextBoxColumn
-            // 
-            typePayDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            typePayDataGridViewTextBoxColumn.DataPropertyName = "TypePay";
-            typePayDataGridViewTextBoxColumn.HeaderText = "Thanh toán";
-            typePayDataGridViewTextBoxColumn.MinimumWidth = 6;
-            typePayDataGridViewTextBoxColumn.Name = "typePayDataGridViewTextBoxColumn";
-            typePayDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
             // orderBindingSource
             // 
             orderBindingSource.DataSource = typeof(Database.Order);
+            // 
+            // btnPay
+            // 
+            btnPay.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnPay.Location = new Point(718, 512);
+            btnPay.Name = "btnPay";
+            btnPay.Size = new Size(114, 54);
+            btnPay.TabIndex = 12;
+            btnPay.Text = "Trả xe";
+            btnPay.UseVisualStyleBackColor = true;
+            btnPay.Click += btnPay_Click;
             // 
             // DanhSachLichTrinh
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ControlLightLight;
-            ClientSize = new Size(843, 557);
+            BackColor = Color.White;
+            ClientSize = new Size(853, 591);
+            Controls.Add(btnPay);
             Controls.Add(dataLichTrinh);
             Name = "DanhSachLichTrinh";
             Text = "DanhSachLichTrinh";
@@ -172,13 +153,15 @@
         public DataGridView dataLichTrinh;
         private BindingSource orderBindingSource;
         private DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn nameUserDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn sDTDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn typePayDataGridViewTextBoxColumn;
+        private Button btnPay;
+        private DataGridViewTextBoxColumn nameUserDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn OrderID;
         private DataGridViewTextBoxColumn nameCarDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn featureDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn timeInDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn timeOutDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn typePayDataGridViewTextBoxColumn;
     }
 }

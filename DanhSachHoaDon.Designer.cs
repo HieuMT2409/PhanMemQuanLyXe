@@ -30,18 +30,18 @@
         {
             components = new System.ComponentModel.Container();
             dataOrder = new DataGridView();
+            Address = new DataGridViewTextBoxColumn();
+            Feature = new DataGridViewTextBoxColumn();
+            TimeIn = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            TimeOut = new DataGridViewTextBoxColumn();
+            nameUserDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            nameCarDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             orderBindingSource = new BindingSource(components);
             carBindingSource = new BindingSource(components);
             carDBContextBindingSource = new BindingSource(components);
             initDBcarBindingSource = new BindingSource(components);
             btnAdd = new Button();
-            Address = new DataGridViewTextBoxColumn();
-            Feature = new DataGridViewTextBoxColumn();
-            TimeIn = new DataGridViewTextBoxColumn();
-            OrderID = new DataGridViewTextBoxColumn();
-            TimeOut = new DataGridViewTextBoxColumn();
-            nameUserDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            nameCarDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dataOrder).BeginInit();
             ((System.ComponentModel.ISupportInitialize)orderBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)carBindingSource).BeginInit();
@@ -54,9 +54,9 @@
             dataOrder.AllowUserToAddRows = false;
             dataOrder.AllowUserToDeleteRows = false;
             dataOrder.AutoGenerateColumns = false;
-            dataOrder.BackgroundColor = SystemColors.ControlLightLight;
+            dataOrder.BackgroundColor = Color.White;
             dataOrder.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataOrder.Columns.AddRange(new DataGridViewColumn[] { Address, Feature, TimeIn, OrderID, TimeOut, nameUserDataGridViewTextBoxColumn, nameCarDataGridViewTextBoxColumn });
+            dataOrder.Columns.AddRange(new DataGridViewColumn[] { Address, Feature, TimeIn, dataGridViewTextBoxColumn1, TimeOut, nameUserDataGridViewTextBoxColumn, nameCarDataGridViewTextBoxColumn });
             dataOrder.DataSource = orderBindingSource;
             dataOrder.Location = new Point(0, 0);
             dataOrder.Margin = new Padding(3, 4, 3, 4);
@@ -67,28 +67,6 @@
             dataOrder.Size = new Size(858, 515);
             dataOrder.TabIndex = 10;
             dataOrder.CellContentClick += dataOrder_CellContentClick;
-            // 
-            // orderBindingSource
-            // 
-            orderBindingSource.DataSource = typeof(Database.Order);
-            // 
-            // carBindingSource
-            // 
-            carBindingSource.DataSource = typeof(Database.Car);
-            // 
-            // carDBContextBindingSource
-            // 
-            carDBContextBindingSource.DataSource = typeof(Database.CarDBContext);
-            // 
-            // btnAdd
-            // 
-            btnAdd.Location = new Point(727, 522);
-            btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(122, 53);
-            btnAdd.TabIndex = 11;
-            btnAdd.Text = "Tạo hóa đơn";
-            btnAdd.UseVisualStyleBackColor = true;
-            btnAdd.Click += btnAdd_Click;
             // 
             // Address
             // 
@@ -120,14 +98,14 @@
             TimeIn.Visible = false;
             TimeIn.Width = 125;
             // 
-            // OrderID
+            // dataGridViewTextBoxColumn1
             // 
-            OrderID.DataPropertyName = "OrderID";
-            OrderID.HeaderText = "Số hóa đơn";
-            OrderID.MinimumWidth = 6;
-            OrderID.Name = "OrderID";
-            OrderID.ReadOnly = true;
-            OrderID.Width = 125;
+            dataGridViewTextBoxColumn1.DataPropertyName = "OrderID";
+            dataGridViewTextBoxColumn1.HeaderText = "Số hóa đơn";
+            dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.ReadOnly = true;
+            dataGridViewTextBoxColumn1.Width = 125;
             // 
             // TimeOut
             // 
@@ -158,11 +136,33 @@
             nameCarDataGridViewTextBoxColumn.Name = "nameCarDataGridViewTextBoxColumn";
             nameCarDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // orderBindingSource
+            // 
+            orderBindingSource.DataSource = typeof(Database.Order);
+            // 
+            // carBindingSource
+            // 
+            carBindingSource.DataSource = typeof(Database.Car);
+            // 
+            // carDBContextBindingSource
+            // 
+            carDBContextBindingSource.DataSource = typeof(Database.CarDBContext);
+            // 
+            // btnAdd
+            // 
+            btnAdd.Location = new Point(727, 522);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(122, 53);
+            btnAdd.TabIndex = 11;
+            btnAdd.Text = "Tạo hóa đơn";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
+            // 
             // DanhSachHoaDon
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ControlLightLight;
+            BackColor = Color.White;
             ClientSize = new Size(861, 587);
             Controls.Add(btnAdd);
             Controls.Add(dataOrder);
@@ -185,13 +185,12 @@
         private BindingSource initDBcarBindingSource;
         private BindingSource orderBindingSource;
         public Button btnAdd;
-        private DataGridViewTextBoxColumn IdOrder;
         private DataGridViewTextBoxColumn sDTDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn typePayDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn Address;
         private DataGridViewTextBoxColumn Feature;
         private DataGridViewTextBoxColumn TimeIn;
-        private DataGridViewTextBoxColumn OrderID;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn TimeOut;
         private DataGridViewTextBoxColumn nameUserDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn nameCarDataGridViewTextBoxColumn;

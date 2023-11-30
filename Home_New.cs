@@ -9,21 +9,29 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ThueXeOTo.Database;
+using ThueXeOTo.Input_Output;
 using ThueXeOTo.KhachHang;
 using ThueXeOTo.LichTrinh;
 using ThueXeOTo.OrderCar;
+using ThueXeOTo.Report;
 
 namespace ThueXeOTo
 {
     public partial class Home_New : Form
     {
-        DanhSachXe danhSachXe = new DanhSachXe();
-        DanhSachHoaDon danhsachHoaDon = new DanhSachHoaDon();
-        HoaDon hoaDon = new HoaDon();
-        Listcars listcars = new Listcars();
-        ThongTinThueXe thongtinthuexe = new ThongTinThueXe();
-        DanhSachKH danhSachKH = new DanhSachKH();
-        DanhSachLichTrinh danhSachLichTrinh = new DanhSachLichTrinh();
+
+        public DanhSachXe danhSachXe = new DanhSachXe();
+        public DanhSachHoaDon danhsachHoaDon = new DanhSachHoaDon();
+        public HoaDon hoaDon = new HoaDon();
+        public Listcars listcars = new Listcars();
+        public ThongTinThueXe thongtinthuexe = new ThongTinThueXe();
+        public DanhSachKH danhSachKH = new DanhSachKH();
+        public DanhSachLichTrinh danhSachLichTrinh = new DanhSachLichTrinh();
+        public TinhNangXe tinhNangXe = new TinhNangXe();
+        public BaoCaoThongKe thongKe = new BaoCaoThongKe();
+        public InOut inOut = new InOut();
+        public int count = 0;
+
         public Home_New()
         {
             InitializeComponent();
@@ -60,8 +68,8 @@ namespace ThueXeOTo
             danhsachHoaDon.FormBorderStyle = FormBorderStyle.None;
             danhsachHoaDon.Dock = DockStyle.Fill;
             danhsachHoaDon.btnAdd.Click += DanhSachHoaDon_ButtonClick;
-
             danhsachHoaDon.dataOrder.CellDoubleClick += DataOrder_CellDoubleClick;
+            danhsachHoaDon.Load_Data();
             danhsachHoaDon.Show();
         }
 
@@ -84,39 +92,37 @@ namespace ThueXeOTo
             panel1.Controls.Add(hoaDon);
             hoaDon.FormBorderStyle = FormBorderStyle.None;
             hoaDon.Dock = DockStyle.Fill;
+            hoaDon.btnChoose.Click -= HoaDon_ButtonClick;
             hoaDon.btnChoose.Click += HoaDon_ButtonClick;
             hoaDon.Show();
         }
 
         private void DanhSachHoaDon_ButtonClick(object sender, EventArgs e)
         {
+            count++;
             LoadHoaDonForm();
         }
 
-        private void HoaDon_ButtonClick(object sender, EventArgs e)
+        public void HoaDon_ButtonClick(object sender, EventArgs e)
         {
             Customer selectedCustomer = (Customer)hoaDon.comboBoxCustomers.SelectedItem;
-            ThongTinThueXe thongTinThueXe = new ThongTinThueXe();
-            thongTinThueXe.UpdateInfo(selectedCustomer.ID, selectedCustomer.Name);
+            listcars.UpdateLabel(selectedCustomer.ID, selectedCustomer.Name);
             LoadListCarForm();
         }
         private void DataOrder_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
 
             DataGridViewRow selectedRow = danhsachHoaDon.dataOrder.SelectedRows[0];
-            string id = selectedRow.Cells["IdOrder"].Value.ToString();
+            string id = selectedRow.Cells["dataGridViewTextBoxColumn1"].Value.ToString();
             string name = selectedRow.Cells["nameUserDataGridViewTextBoxColumn"].Value.ToString();
-            string sdt = selectedRow.Cells["sDTDataGridViewTextBoxColumn"].Value.ToString();
-            string address = selectedRow.Cells["Address"].Value.ToString();
             string nameCar = selectedRow.Cells["nameCarDataGridViewTextBoxColumn"].Value.ToString();
             string feature = selectedRow.Cells["Feature"].Value.ToString();
             string timein = selectedRow.Cells["TimeIn"].Value.ToString();
             string timeout = selectedRow.Cells["TimeOut"].Value.ToString();
-            string pay = selectedRow.Cells["typePayDataGridViewTextBoxColumn"].Value.ToString();
 
             ThongTinHoaDon thongTinHoaDon = new ThongTinHoaDon();
 
-            thongTinHoaDon.UpdateData(id, name, sdt, address, nameCar, feature, timein, timeout, pay);
+            thongTinHoaDon.UpdateData(id, name, nameCar, feature, timein, timeout);
             thongTinHoaDon.Show();
 
         }
@@ -129,6 +135,7 @@ namespace ThueXeOTo
             panel1.Controls.Add(danhSachXe);
             danhSachXe.FormBorderStyle = FormBorderStyle.None;
             danhSachXe.Dock = DockStyle.Fill;
+            danhSachXe.Load_data();
             danhSachXe.Show();
         }
 
@@ -161,6 +168,7 @@ namespace ThueXeOTo
             panel1.Controls.Add(thongtinthuexe);
             thongtinthuexe.FormBorderStyle = FormBorderStyle.None;
             thongtinthuexe.Dock = DockStyle.Fill;
+            thongtinthuexe.Reset();
             thongtinthuexe.Show();
         }
 
@@ -197,8 +205,20 @@ namespace ThueXeOTo
             panel1.Controls.Add(danhSachLichTrinh);
             danhSachLichTrinh.FormBorderStyle = FormBorderStyle.None;
             danhSachLichTrinh.Dock = DockStyle.Fill;
-
+            danhSachLichTrinh.Load_Data();
             danhSachLichTrinh.Show();
+        }
+
+        //Tính năng xe
+        public void LoadTinhNangForm()
+        {
+            tinhNangXe.TopLevel = false;
+            panel1.Controls.Clear();
+            panel1.Controls.Add(tinhNangXe);
+            tinhNangXe.FormBorderStyle = FormBorderStyle.None;
+            tinhNangXe.Dock = DockStyle.Fill;
+            tinhNangXe.Reset();
+            tinhNangXe.Show();
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -210,6 +230,50 @@ namespace ThueXeOTo
         {
             LoadDanhSachLTForm();
 
+        }
+
+        //Báo cáo thống kê
+        public void LoadThongKeForm()
+        {
+            thongKe.TopLevel = false;
+            panel1.Controls.Clear();
+            panel1.Controls.Add(thongKe);
+            thongKe.FormBorderStyle = FormBorderStyle.None;
+            thongKe.Dock = DockStyle.Fill;
+            thongKe.LoadData();
+            thongKe.Show();
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            LoadThongKeForm();
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+            LoadThongKeForm();
+        }
+
+        //Nhập - Xuất dữ liệu
+        public void LoadInOutForm()
+        {
+            inOut.TopLevel = false;
+            panel1.Controls.Clear();
+            panel1.Controls.Add(inOut);
+            inOut.FormBorderStyle = FormBorderStyle.None;
+            inOut.Dock = DockStyle.Fill;
+            inOut.LoadData();
+            inOut.Show();
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+            LoadInOutForm();
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            LoadInOutForm();
         }
 
         private void txtRole_Click(object sender, EventArgs e)
@@ -226,23 +290,6 @@ namespace ThueXeOTo
         {
 
         }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void pictureBox3_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void pictureBox4_Click(object sender, EventArgs e)
-        {
-        }
-
         private void label1_Click(object sender, EventArgs e)
         {
         }

@@ -20,6 +20,12 @@ namespace ThueXeOTo.OrderCar
             InitializeComponent();
         }
 
+        public void UpdateLabel(string id, string name)
+        {
+            txtID.Text = id;
+            txtName.Text = name;
+        }
+
         private void ShowForm()
         {
             Home_New homeForm = this.ParentForm as Home_New;
@@ -31,8 +37,11 @@ namespace ThueXeOTo.OrderCar
                 homeForm.panel1.Controls.Add(tinhNangXe);
                 tinhNangXe.FormBorderStyle = FormBorderStyle.None;
                 tinhNangXe.Dock = DockStyle.Fill;
-
+                tinhNangXe.UpdateLabel(txtID.Text, txtName.Text);
+                tinhNangXe.Reset();
                 tinhNangXe.Show();
+
+
             }
         }
 
@@ -42,7 +51,7 @@ namespace ThueXeOTo.OrderCar
             string name = selectedRow.Cells["nameDataGridViewTextBoxColumn"].Value.ToString();
             string state = selectedRow.Cells["stateDataGridViewTextBoxColumn"].Value.ToString();
 
-            if(state == "Trống")
+            if (state == "Trống")
             {
                 tinhNangXe.UpdateLabel(name);
 

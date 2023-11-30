@@ -238,6 +238,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Elephant", 16.1999989F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            label1.ForeColor = Color.CornflowerBlue;
             label1.Location = new Point(11, 19);
             label1.Name = "label1";
             label1.Size = new Size(249, 35);

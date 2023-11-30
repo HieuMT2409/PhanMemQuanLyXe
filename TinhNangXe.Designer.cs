@@ -53,7 +53,8 @@
             label4 = new Label();
             txtXe = new Label();
             label6 = new Label();
-            btnBack = new Button();
+            txtID = new Label();
+            txtName = new Label();
             SuspendLayout();
             // 
             // label1
@@ -62,9 +63,9 @@
             label1.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label1.Location = new Point(43, 127);
             label1.Name = "label1";
-            label1.Size = new Size(94, 23);
+            label1.Size = new Size(323, 23);
             label1.TabIndex = 0;
-            label1.Text = "Tính năng";
+            label1.Text = "Tính năng : 200.000đ / 1 món / 1 ngày";
             // 
             // cbBando
             // 
@@ -266,12 +267,14 @@
             // button1
             // 
             button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            button1.BackColor = Color.White;
+            button1.ForeColor = Color.Black;
             button1.Location = new Point(549, 444);
             button1.Name = "button1";
             button1.Size = new Size(119, 50);
             button1.TabIndex = 20;
             button1.Text = "Thuê Xe";
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // label3
@@ -315,24 +318,36 @@
             label6.TabIndex = 24;
             label6.Text = "------------------------------------------------------------------------------------";
             // 
-            // btnBack
+            // txtID
             // 
-            btnBack.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnBack.Location = new Point(37, 444);
-            btnBack.Name = "btnBack";
-            btnBack.Size = new Size(116, 50);
-            btnBack.TabIndex = 25;
-            btnBack.Text = "Quay lại";
-            btnBack.UseVisualStyleBackColor = true;
-            btnBack.Click += btnBack_Click;
+            txtID.AutoSize = true;
+            txtID.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            txtID.Location = new Point(496, 255);
+            txtID.Name = "txtID";
+            txtID.Size = new Size(25, 23);
+            txtID.TabIndex = 26;
+            txtID.Text = "id";
+            txtID.Visible = false;
+            // 
+            // txtName
+            // 
+            txtName.AutoSize = true;
+            txtName.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            txtName.Location = new Point(496, 298);
+            txtName.Name = "txtName";
+            txtName.Size = new Size(55, 23);
+            txtName.TabIndex = 27;
+            txtName.Text = "name";
+            txtName.Visible = false;
             // 
             // TinhNangXe
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ControlLightLight;
+            BackColor = Color.White;
             ClientSize = new Size(680, 506);
-            Controls.Add(btnBack);
+            Controls.Add(txtName);
+            Controls.Add(txtID);
             Controls.Add(label6);
             Controls.Add(txtXe);
             Controls.Add(label4);
@@ -392,6 +407,7 @@
         private Label label4;
         private Label txtXe;
         private Label label6;
-        private Button btnBack;
+        private Label txtID;
+        private Label txtName;
     }
 }

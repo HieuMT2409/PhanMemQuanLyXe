@@ -32,16 +32,16 @@
             label1 = new Label();
             label2 = new Label();
             comboBoxCustomers = new ComboBox();
-            customerBindingSource1 = new BindingSource(components);
             customerBindingSource = new BindingSource(components);
+            customerBindingSource1 = new BindingSource(components);
             label3 = new Label();
             label4 = new Label();
             button1 = new Button();
-            listBox1 = new ListBox();
-            listBox2 = new ListBox();
+            lbCar = new ListBox();
+            lbFeature = new ListBox();
             btnChoose = new Button();
-            ((System.ComponentModel.ISupportInitialize)customerBindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)customerBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)customerBindingSource1).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -66,7 +66,7 @@
             // 
             // comboBoxCustomers
             // 
-            comboBoxCustomers.DataSource = customerBindingSource1;
+            comboBoxCustomers.DataSource = customerBindingSource;
             comboBoxCustomers.DisplayMember = "Name";
             comboBoxCustomers.FormattingEnabled = true;
             comboBoxCustomers.Location = new Point(183, 120);
@@ -75,13 +75,13 @@
             comboBoxCustomers.TabIndex = 2;
             comboBoxCustomers.ValueMember = "ID";
             // 
-            // customerBindingSource1
-            // 
-            customerBindingSource1.DataSource = typeof(Database.Customer);
-            // 
             // customerBindingSource
             // 
             customerBindingSource.DataSource = typeof(Database.Customer);
+            // 
+            // customerBindingSource1
+            // 
+            customerBindingSource1.DataSource = typeof(Database.Customer);
             // 
             // label3
             // 
@@ -106,6 +106,7 @@
             // button1
             // 
             button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            button1.ForeColor = Color.Black;
             button1.Location = new Point(705, 523);
             button1.Name = "button1";
             button1.Size = new Size(130, 52);
@@ -114,54 +115,57 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // listBox1
+            // lbCar
             // 
-            listBox1.FormattingEnabled = true;
-            listBox1.ItemHeight = 20;
-            listBox1.Location = new Point(34, 230);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(351, 264);
-            listBox1.TabIndex = 6;
+            lbCar.FormattingEnabled = true;
+            lbCar.ItemHeight = 20;
+            lbCar.Location = new Point(34, 230);
+            lbCar.Name = "lbCar";
+            lbCar.Size = new Size(351, 264);
+            lbCar.TabIndex = 6;
             // 
-            // listBox2
+            // lbFeature
             // 
-            listBox2.FormattingEnabled = true;
-            listBox2.ItemHeight = 20;
-            listBox2.Location = new Point(441, 230);
-            listBox2.Name = "listBox2";
-            listBox2.Size = new Size(394, 264);
-            listBox2.TabIndex = 7;
+            lbFeature.FormattingEnabled = true;
+            lbFeature.ItemHeight = 20;
+            lbFeature.Location = new Point(441, 230);
+            lbFeature.Name = "lbFeature";
+            lbFeature.Size = new Size(394, 264);
+            lbFeature.TabIndex = 7;
             // 
             // btnChoose
             // 
             btnChoose.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnChoose.ForeColor = Color.Black;
             btnChoose.Location = new Point(34, 523);
             btnChoose.Name = "btnChoose";
             btnChoose.Size = new Size(130, 52);
             btnChoose.TabIndex = 8;
             btnChoose.Text = "Chọn xe";
             btnChoose.UseVisualStyleBackColor = true;
-            btnChoose.Click += button2_Click;
+            btnChoose.Click += btnChoose_Click;
             // 
             // HoaDon
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ControlLightLight;
+            BackColor = Color.White;
             ClientSize = new Size(861, 587);
             Controls.Add(btnChoose);
-            Controls.Add(listBox2);
-            Controls.Add(listBox1);
+            Controls.Add(lbFeature);
+            Controls.Add(lbCar);
             Controls.Add(button1);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(comboBoxCustomers);
             Controls.Add(label2);
             Controls.Add(label1);
+            ForeColor = Color.CornflowerBlue;
             Name = "HoaDon";
             Text = "HoaDon";
-            ((System.ComponentModel.ISupportInitialize)customerBindingSource1).EndInit();
+            Load += HoaDon_Load;
             ((System.ComponentModel.ISupportInitialize)customerBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)customerBindingSource1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -175,8 +179,8 @@
         private Label label3;
         private Label label4;
         private Button button1;
-        private ListBox listBox1;
-        private ListBox listBox2;
+        public ListBox lbCar;
+        private ListBox lbFeature;
         public Button btnChoose;
         private BindingSource customerBindingSource1;
     }

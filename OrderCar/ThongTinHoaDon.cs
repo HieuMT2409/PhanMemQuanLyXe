@@ -13,7 +13,6 @@ namespace ThueXeOTo.OrderCar
 {
     public partial class ThongTinHoaDon : Form
     {
-        string conectionString = @"Data Source=HIEUMT-2491310\HIEUMT; Integrated Security=true; Database=CarDB";
 
         public ThongTinHoaDon()
         {
@@ -25,7 +24,7 @@ namespace ThueXeOTo.OrderCar
 
         }
 
-        public void UpdateData(string id, string name, string sdt, string address, string namecar, string feature, string timein, string timeout, string typepay)
+        public void UpdateData(string id, string name, string namecar, string feature, string timein, string timeout)
         {
             string[] elements = feature.Split(',');
             foreach (string element in elements)
@@ -36,12 +35,9 @@ namespace ThueXeOTo.OrderCar
 
             txthoadon.Text = "HÓA ĐƠN #" + id;
             txtName.Text = name;
-            txtSDT.Text = sdt;
-            txtAddress.Text = address;
             txtXethue.Text = namecar;
             txtTimeIn.Text = timein;
             txtTimeOut.Text = timeout;
-            txtPay.Text = typepay;
         }
 
         private void ThongTinHoaDon_Load(object sender, EventArgs e)

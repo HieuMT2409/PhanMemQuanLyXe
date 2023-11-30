@@ -44,6 +44,7 @@
             label8 = new Label();
             label9 = new Label();
             dtOUT = new DateTimePicker();
+            txtID = new Label();
             SuspendLayout();
             // 
             // label1
@@ -68,6 +69,8 @@
             // 
             // txtNameUser
             // 
+            txtNameUser.BackColor = Color.White;
+            txtNameUser.Enabled = false;
             txtNameUser.Location = new Point(193, 102);
             txtNameUser.Name = "txtNameUser";
             txtNameUser.Size = new Size(279, 27);
@@ -75,6 +78,8 @@
             // 
             // txtAddress
             // 
+            txtAddress.BackColor = Color.White;
+            txtAddress.Enabled = false;
             txtAddress.Location = new Point(193, 160);
             txtAddress.Name = "txtAddress";
             txtAddress.Size = new Size(279, 27);
@@ -134,6 +139,8 @@
             // 
             // txtSDT
             // 
+            txtSDT.BackColor = Color.White;
+            txtSDT.Enabled = false;
             txtSDT.Location = new Point(601, 102);
             txtSDT.Name = "txtSDT";
             txtSDT.Size = new Size(187, 27);
@@ -152,11 +159,13 @@
             // 
             // button1
             // 
+            button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            button1.ForeColor = Color.Black;
             button1.Location = new Point(626, 383);
             button1.Name = "button1";
             button1.Size = new Size(162, 55);
             button1.TabIndex = 15;
-            button1.Text = "Tạo đơn";
+            button1.Text = "Tiếp tục";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
@@ -194,12 +203,24 @@
             dtOUT.Size = new Size(242, 27);
             dtOUT.TabIndex = 18;
             // 
+            // txtID
+            // 
+            txtID.AutoSize = true;
+            txtID.Font = new Font("Times New Roman", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
+            txtID.Location = new Point(20, 339);
+            txtID.Name = "txtID";
+            txtID.Size = new Size(22, 20);
+            txtID.TabIndex = 20;
+            txtID.Text = "id";
+            txtID.Visible = false;
+            // 
             // ThongTinThueXe
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ControlLightLight;
+            BackColor = Color.White;
             ClientSize = new Size(800, 450);
+            Controls.Add(txtID);
             Controls.Add(label9);
             Controls.Add(dtOUT);
             Controls.Add(label8);
@@ -216,6 +237,7 @@
             Controls.Add(txtNameUser);
             Controls.Add(label2);
             Controls.Add(label1);
+            ForeColor = Color.CornflowerBlue;
             Name = "ThongTinThueXe";
             Text = "ThongTinThueXe";
             Load += ThongTinThueXe_Load;
@@ -228,7 +250,6 @@
         private Label label1;
         private Label label2;
         public TextBox txtNameUser;
-        private Label label3;
         public RadioButton radioButton1;
         public RadioButton radioButton2;
         public TextBox txtAddress;
@@ -244,5 +265,6 @@
         private Label label8;
         private Label label9;
         public DateTimePicker dtOUT;
+        public Label txtID;
     }
 }

@@ -14,7 +14,8 @@ namespace ThueXeOTo.Database
         public string Feature { get; set; }
         public DateTime TimeIn { get; set; }
         public DateTime TimeOut { get; set; }
-       
+        public int CustomerID { get; set; }
         public ICollection<Car> Cars { get; set; }
+        public Customer Customer { get; set; }
     }
 }

@@ -12,7 +12,7 @@ using ThueXeOTo.Database;
 namespace ThueXeOTo.Migrations
 {
     [DbContext(typeof(CarDBContext))]
-    [Migration("20231123034736_InitDB")]
+    [Migration("20231129034442_InitDB")]
     partial class InitDB
     {
         /// <inheritdoc />
@@ -41,11 +41,12 @@ namespace ThueXeOTo.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("OrdersOrderID")
+                    b.Property<int?>("OrderID")
                         .HasColumnType("int");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
+                    b.Property<string>("Price")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("State")
                         .IsRequired()
@@ -57,7 +58,7 @@ namespace ThueXeOTo.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("OrdersOrderID");
+                    b.HasIndex("OrderID");
 
                     b.ToTable("Cars");
                 });
@@ -95,7 +96,7 @@ namespace ThueXeOTo.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderID"));
 
-                    b.Property<int>("CustomersID")
+                    b.Property<int>("CustomerID")
                         .HasColumnType("int");
 
                     b.Property<string>("Feature")
@@ -118,9 +119,41 @@ namespace ThueXeOTo.Migrations
 
                     b.HasKey("OrderID");
 
-                    b.HasIndex("CustomersID");
+                    b.HasIndex("CustomerID");
 
                     b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("ThueXeOTo.Database.Report", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Company")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NameCar")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Price")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("TimeRent")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Reports");
                 });
 
             modelBuilder.Entity("ThueXeOTo.Database.User", b =>
@@ -146,24 +179,20 @@ namespace ThueXeOTo.Migrations
 
             modelBuilder.Entity("ThueXeOTo.Database.Car", b =>
                 {
-                    b.HasOne("ThueXeOTo.Database.Order", "Orders")
+                    b.HasOne("ThueXeOTo.Database.Order", null)
                         .WithMany("Cars")
-                        .HasForeignKey("OrdersOrderID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Orders");
+                        .HasForeignKey("OrderID");
                 });
 
             modelBuilder.Entity("ThueXeOTo.Database.Order", b =>
                 {
-                    b.HasOne("ThueXeOTo.Database.Customer", "Customers")
+                    b.HasOne("ThueXeOTo.Database.Customer", "Customer")
                         .WithMany("Orders")
-                        .HasForeignKey("CustomersID")
+                        .HasForeignKey("CustomerID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Customers");
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("ThueXeOTo.Database.Customer", b =>

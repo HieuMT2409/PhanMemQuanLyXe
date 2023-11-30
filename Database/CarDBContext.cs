@@ -14,6 +14,7 @@ namespace ThueXeOTo.Database
         public DbSet<User> Users { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Report> Reports { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -30,7 +31,7 @@ namespace ThueXeOTo.Database
                 Type = type,
                 Company = company,
                 State = state,
-                Price = price
+                Price = price,
             };
 
             Cars.Add(car);
@@ -92,16 +93,22 @@ namespace ThueXeOTo.Database
                     var customer = Customers.Find(customerId);
                     if (customer != null)
                     {
+                        //cập nhật trạng thái xe
+                        var orders = Orders.Where(c => c.NameUser == customer.Name).ToList();
+                        foreach (var car in orders)
+                        {
+                            var cars = Cars.Where(c => c.Name == car.NameCar && c.State == "Đang cho thuê");
+                            foreach (var item in cars)
+                            {
+                                item.State = "Trống";
+                            }
+                        }
+                        SaveChanges();
+
+
                         Customers.Remove(customer);
                         SaveChanges();
 
-                        //cập nhật trạng thái xe
-                        var carsToUpdate = Cars.Where(c => c.Name == customer.Name && c.State == "Đang cho thuê").ToList();
-                        foreach (var car in carsToUpdate)
-                        {
-                            car.State = "Trống";
-                        }
-                        SaveChanges();
 
                         //nếu tất cả câu lệnh đều hoàn tất thì commit
                         transaction.Commit();
@@ -132,7 +139,22 @@ namespace ThueXeOTo.Database
                 SaveChanges();
             }
         }
-        //Orders
+        //Report
+        public void AddReport(string name, string company, string type, DateTime timein, DateTime timeout, string price)
+        {
+            var report = new Report
+            {
+                NameCar = name,
+                Company = company,
+                Type = type,
+                TimeIn = timein,
+                TimeOut = timeout,
+                Price = price
+            };
+
+            Reports.Add(report);
+            SaveChanges();
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -142,6 +164,7 @@ namespace ThueXeOTo.Database
             modelBuilder.Entity<User>().Property(e => e.Id).IsRequired();
             modelBuilder.Entity<Order>().Property(e => e.OrderID).IsRequired();
             modelBuilder.Entity<Customer>().Property(e => e.ID).IsRequired();
+            modelBuilder.Entity<Report>().Property(e => e.Id).IsRequired();
         }
     }
 }

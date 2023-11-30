@@ -37,7 +37,8 @@
             stateDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             carBindingSource = new BindingSource(components);
             btnChoose = new Button();
-            btnBack = new Button();
+            txtID = new Label();
+            txtName = new Label();
             ((System.ComponentModel.ISupportInitialize)dataDetailCar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)carBindingSource).BeginInit();
             SuspendLayout();
@@ -47,7 +48,7 @@
             dataDetailCar.AllowUserToAddRows = false;
             dataDetailCar.AllowUserToDeleteRows = false;
             dataDetailCar.AutoGenerateColumns = false;
-            dataDetailCar.BackgroundColor = SystemColors.ControlLightLight;
+            dataDetailCar.BackgroundColor = Color.White;
             dataDetailCar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataDetailCar.Columns.AddRange(new DataGridViewColumn[] { iDDataGridViewTextBoxColumn, nameDataGridViewTextBoxColumn, typeDataGridViewTextBoxColumn, companyDataGridViewTextBoxColumn, stateDataGridViewTextBoxColumn });
             dataDetailCar.DataSource = carBindingSource;
@@ -121,16 +122,25 @@
             btnChoose.UseVisualStyleBackColor = true;
             btnChoose.Click += btnChoose_Click;
             // 
-            // btnBack
+            // txtID
             // 
-            btnBack.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnBack.Location = new Point(23, 376);
-            btnBack.Name = "btnBack";
-            btnBack.Size = new Size(116, 62);
-            btnBack.TabIndex = 2;
-            btnBack.Text = "Quay lại";
-            btnBack.UseVisualStyleBackColor = true;
-            btnBack.Click += button1_Click;
+            txtID.AutoSize = true;
+            txtID.Location = new Point(197, 397);
+            txtID.Name = "txtID";
+            txtID.Size = new Size(22, 20);
+            txtID.TabIndex = 3;
+            txtID.Text = "id";
+            txtID.Visible = false;
+            // 
+            // txtName
+            // 
+            txtName.AutoSize = true;
+            txtName.Location = new Point(280, 397);
+            txtName.Name = "txtName";
+            txtName.Size = new Size(46, 20);
+            txtName.TabIndex = 4;
+            txtName.Text = "name";
+            txtName.Visible = false;
             // 
             // ChooseCar
             // 
@@ -138,7 +148,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLightLight;
             ClientSize = new Size(800, 450);
-            Controls.Add(btnBack);
+            Controls.Add(txtName);
+            Controls.Add(txtID);
             Controls.Add(btnChoose);
             Controls.Add(dataDetailCar);
             Name = "ChooseCar";
@@ -147,6 +158,7 @@
             ((System.ComponentModel.ISupportInitialize)dataDetailCar).EndInit();
             ((System.ComponentModel.ISupportInitialize)carBindingSource).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -159,6 +171,7 @@
         private DataGridViewTextBoxColumn companyDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn stateDataGridViewTextBoxColumn;
         public Button btnChoose;
-        private Button btnBack;
+        private Label txtID;
+        private Label txtName;
     }
 }

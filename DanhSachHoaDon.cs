@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,6 +24,18 @@ namespace ThueXeOTo
         }
 
         private void DanhSachHoaDon_Load(object sender, EventArgs e)
+        {
+            dataOrder.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            using (var context = new CarDBContext())
+            {
+                var cars = context.Orders.ToList();
+
+                this.dataOrder.DataSource = cars;
+                this.dataOrder.Refresh();
+            }
+        }
+
+        public void Load_Data()
         {
             dataOrder.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             using (var context = new CarDBContext())

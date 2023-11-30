@@ -30,11 +30,6 @@
         {
             components = new System.ComponentModel.Container();
             dataKH = new DataGridView();
-            ID = new DataGridViewTextBoxColumn();
-            Name = new DataGridViewTextBoxColumn();
-            SDT = new DataGridViewTextBoxColumn();
-            Address = new DataGridViewTextBoxColumn();
-            ordersDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             customerBindingSource = new BindingSource(components);
             orderBindingSource = new BindingSource(components);
             carBindingSource = new BindingSource(components);
@@ -46,6 +41,10 @@
             btnSearch = new Button();
             txbSearch = new TextBox();
             btnAdd = new Button();
+            ID = new DataGridViewTextBoxColumn();
+            Name = new DataGridViewTextBoxColumn();
+            SDT = new DataGridViewTextBoxColumn();
+            Address = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dataKH).BeginInit();
             ((System.ComponentModel.ISupportInitialize)customerBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)orderBindingSource).BeginInit();
@@ -59,9 +58,9 @@
             dataKH.AllowUserToAddRows = false;
             dataKH.AllowUserToDeleteRows = false;
             dataKH.AutoGenerateColumns = false;
-            dataKH.BackgroundColor = SystemColors.ControlLightLight;
+            dataKH.BackgroundColor = Color.White;
             dataKH.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataKH.Columns.AddRange(new DataGridViewColumn[] { ID, Name, SDT, Address, ordersDataGridViewTextBoxColumn });
+            dataKH.Columns.AddRange(new DataGridViewColumn[] { ID, Name, SDT, Address });
             dataKH.DataSource = customerBindingSource;
             dataKH.Location = new Point(6, 55);
             dataKH.Margin = new Padding(3, 4, 3, 4);
@@ -72,6 +71,86 @@
             dataKH.Size = new Size(831, 491);
             dataKH.TabIndex = 10;
             dataKH.CellContentClick += dataKH_CellContentClick;
+            // 
+            // customerBindingSource
+            // 
+            customerBindingSource.DataSource = typeof(Database.Customer);
+            // 
+            // orderBindingSource
+            // 
+            orderBindingSource.DataSource = typeof(Database.Order);
+            // 
+            // carBindingSource
+            // 
+            carBindingSource.DataSource = typeof(Database.Car);
+            // 
+            // btnFix
+            // 
+            btnFix.ForeColor = Color.Black;
+            btnFix.Location = new Point(600, 11);
+            btnFix.Margin = new Padding(3, 4, 3, 4);
+            btnFix.Name = "btnFix";
+            btnFix.Size = new Size(69, 36);
+            btnFix.TabIndex = 12;
+            btnFix.Text = "Sửa";
+            btnFix.UseVisualStyleBackColor = true;
+            btnFix.Click += btnFix_Click;
+            // 
+            // btnDel
+            // 
+            btnDel.ForeColor = Color.Black;
+            btnDel.Location = new Point(675, 11);
+            btnDel.Margin = new Padding(3, 4, 3, 4);
+            btnDel.Name = "btnDel";
+            btnDel.Size = new Size(70, 36);
+            btnDel.TabIndex = 11;
+            btnDel.Text = "Xóa";
+            btnDel.UseVisualStyleBackColor = true;
+            btnDel.Click += btnDel_Click;
+            // 
+            // carDBContextBindingSource
+            // 
+            carDBContextBindingSource.DataSource = typeof(Database.CarDBContext);
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(6, 20);
+            label2.Name = "label2";
+            label2.Size = new Size(99, 20);
+            label2.TabIndex = 16;
+            label2.Text = "Nhập từ khóa";
+            // 
+            // btnSearch
+            // 
+            btnSearch.ForeColor = Color.Black;
+            btnSearch.Location = new Point(432, 11);
+            btnSearch.Margin = new Padding(3, 4, 3, 4);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(86, 36);
+            btnSearch.TabIndex = 15;
+            btnSearch.Text = "Tìm kiếm";
+            btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += btnSearch_Click;
+            // 
+            // txbSearch
+            // 
+            txbSearch.Location = new Point(111, 17);
+            txbSearch.Name = "txbSearch";
+            txbSearch.Size = new Size(315, 27);
+            txbSearch.TabIndex = 14;
+            // 
+            // btnAdd
+            // 
+            btnAdd.ForeColor = Color.Black;
+            btnAdd.Location = new Point(524, 11);
+            btnAdd.Margin = new Padding(3, 4, 3, 4);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(70, 36);
+            btnAdd.TabIndex = 17;
+            btnAdd.Text = "Thêm";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
             // 
             // ID
             // 
@@ -110,96 +189,11 @@
             Address.Name = "Address";
             Address.ReadOnly = true;
             // 
-            // ordersDataGridViewTextBoxColumn
-            // 
-            ordersDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            ordersDataGridViewTextBoxColumn.DataPropertyName = "Orders";
-            ordersDataGridViewTextBoxColumn.HeaderText = "Số hóa đơn";
-            ordersDataGridViewTextBoxColumn.MinimumWidth = 6;
-            ordersDataGridViewTextBoxColumn.Name = "ordersDataGridViewTextBoxColumn";
-            ordersDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // customerBindingSource
-            // 
-            customerBindingSource.DataSource = typeof(Database.Customer);
-            // 
-            // orderBindingSource
-            // 
-            orderBindingSource.DataSource = typeof(Database.Order);
-            // 
-            // carBindingSource
-            // 
-            carBindingSource.DataSource = typeof(Database.Car);
-            // 
-            // btnFix
-            // 
-            btnFix.Location = new Point(600, 11);
-            btnFix.Margin = new Padding(3, 4, 3, 4);
-            btnFix.Name = "btnFix";
-            btnFix.Size = new Size(69, 36);
-            btnFix.TabIndex = 12;
-            btnFix.Text = "Sửa";
-            btnFix.UseVisualStyleBackColor = true;
-            btnFix.Click += btnFix_Click;
-            // 
-            // btnDel
-            // 
-            btnDel.Location = new Point(675, 11);
-            btnDel.Margin = new Padding(3, 4, 3, 4);
-            btnDel.Name = "btnDel";
-            btnDel.Size = new Size(70, 36);
-            btnDel.TabIndex = 11;
-            btnDel.Text = "Xóa";
-            btnDel.UseVisualStyleBackColor = true;
-            btnDel.Click += btnDel_Click;
-            // 
-            // carDBContextBindingSource
-            // 
-            carDBContextBindingSource.DataSource = typeof(Database.CarDBContext);
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(6, 20);
-            label2.Name = "label2";
-            label2.Size = new Size(99, 20);
-            label2.TabIndex = 16;
-            label2.Text = "Nhập từ khóa";
-            // 
-            // btnSearch
-            // 
-            btnSearch.Location = new Point(432, 11);
-            btnSearch.Margin = new Padding(3, 4, 3, 4);
-            btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(86, 36);
-            btnSearch.TabIndex = 15;
-            btnSearch.Text = "Tìm kiếm";
-            btnSearch.UseVisualStyleBackColor = true;
-            btnSearch.Click += btnSearch_Click;
-            // 
-            // txbSearch
-            // 
-            txbSearch.Location = new Point(111, 17);
-            txbSearch.Name = "txbSearch";
-            txbSearch.Size = new Size(315, 27);
-            txbSearch.TabIndex = 14;
-            // 
-            // btnAdd
-            // 
-            btnAdd.Location = new Point(524, 11);
-            btnAdd.Margin = new Padding(3, 4, 3, 4);
-            btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(70, 36);
-            btnAdd.TabIndex = 17;
-            btnAdd.Text = "Thêm";
-            btnAdd.UseVisualStyleBackColor = true;
-            btnAdd.Click += btnAdd_Click;
-            // 
             // DanhSachKH
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ControlLightLight;
+            BackColor = Color.White;
             ClientSize = new Size(843, 557);
             Controls.Add(btnAdd);
             Controls.Add(dataKH);
@@ -208,6 +202,7 @@
             Controls.Add(label2);
             Controls.Add(btnSearch);
             Controls.Add(txbSearch);
+            ForeColor = Color.CornflowerBlue;
             Text = "DanhSachKH";
             Load += DanhSachKH_Load;
             ((System.ComponentModel.ISupportInitialize)dataKH).EndInit();
@@ -231,17 +226,13 @@
         private Label label2;
         private Button btnSearch;
         private TextBox txbSearch;
-        private DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn sDTDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn typePayDataGridViewTextBoxColumn;
         private BindingSource orderBindingSource;
         private BindingSource customerBindingSource;
+        private Button btnAdd;
         private DataGridViewTextBoxColumn ID;
-        private DataGridViewTextBoxColumn Name;
+        private new DataGridViewTextBoxColumn Name;
         private DataGridViewTextBoxColumn SDT;
         private DataGridViewTextBoxColumn Address;
-        private DataGridViewTextBoxColumn ordersDataGridViewTextBoxColumn;
-        private Button btnAdd;
     }
 }

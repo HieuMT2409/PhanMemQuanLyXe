@@ -14,7 +14,6 @@ namespace ThueXeOTo.ControlCars
 {
     public partial class FixCar : Form
     {
-        string conectionString = @"Data Source=HIEUMT-2491310\HIEUMT; Integrated Security=true; Database=CarDB";
         string ID;
         public FixCar()
         {

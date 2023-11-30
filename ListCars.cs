@@ -25,6 +25,12 @@ namespace ThueXeOTo
             InitializeComponent();
         }
 
+        public void UpdateLabel(int id, string name)
+        {
+            txtID.Text = id.ToString();
+            txtName.Text = name;
+        }
+
         private void ShowForm()
         {
             Home_New homeForm = this.ParentForm as Home_New;
@@ -36,6 +42,7 @@ namespace ThueXeOTo
                 homeForm.panel1.Controls.Add(chooseCar);
                 chooseCar.FormBorderStyle = FormBorderStyle.None;
                 chooseCar.Dock = DockStyle.Fill;
+                chooseCar.UpdateLabel(txtID.Text, txtName.Text);
                 chooseCar.Show();
             }
         }

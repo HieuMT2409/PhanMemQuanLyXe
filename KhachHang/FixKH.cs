@@ -15,7 +15,6 @@ namespace ThueXeOTo.KhachHang
 {
     public partial class FixKH : Form
     {
-        string conectionString = @"Data Source=HIEUMT-2491310\HIEUMT; Integrated Security=true; Database=CarDB";
         string ID;
         public FixKH()
         {

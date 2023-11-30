@@ -44,6 +44,7 @@
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Elephant", 17.9999981F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            label1.ForeColor = Color.CornflowerBlue;
             label1.Location = new Point(320, 67);
             label1.Margin = new Padding(0);
             label1.Name = "label1";
@@ -55,6 +56,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.ForeColor = Color.CornflowerBlue;
             label2.Location = new Point(186, 169);
             label2.Name = "label2";
             label2.Size = new Size(92, 22);
@@ -65,6 +67,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.ForeColor = Color.CornflowerBlue;
             label3.Location = new Point(186, 228);
             label3.Name = "label3";
             label3.Size = new Size(90, 22);
@@ -119,7 +122,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ControlLightLight;
+            BackColor = Color.White;
             ClientSize = new Size(800, 451);
             Controls.Add(btnLogin);
             Controls.Add(logo);
@@ -128,8 +131,10 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
+            ForeColor = SystemColors.ControlText;
             Name = "Form1";
             Text = "ThueXeOTo";
+            TransparencyKey = Color.Black;
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)logo).EndInit();
             ResumeLayout(false);

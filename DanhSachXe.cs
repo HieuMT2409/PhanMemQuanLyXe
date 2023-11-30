@@ -23,6 +23,19 @@ namespace ThueXeOTo
         public DanhSachXe()
         {
             InitializeComponent();
+
+        }
+
+        public void Load_data()
+        {
+            dataCar.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            using (var context = new CarDBContext())
+            {
+                var cars = context.Cars.ToList();
+
+                this.dataCar.DataSource = cars;
+                this.dataCar.Refresh();
+            }
         }
 
         private void DanhSachXe_Load(object sender, EventArgs e)
@@ -42,11 +55,6 @@ namespace ThueXeOTo
             txtRole.Text = username;
         }
 
-        private void dataCar_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
             using (var context = new CarDBContext())
@@ -62,7 +70,7 @@ namespace ThueXeOTo
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
-        {            
+        {
             if (txtRole.Text == "admin")
             {
                 AddCar addCar = new AddCar();
@@ -161,6 +169,11 @@ namespace ThueXeOTo
 
         private void label2_Click(object sender, EventArgs e)
         {
+        }
+
+        private void dataCar_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

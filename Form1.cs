@@ -6,7 +6,6 @@ namespace ThueXeOTo
 {
     public partial class Form1 : Form
     {
-        string conectionString = @"Data Source=HIEUMT-2491310\HIEUMT; Integrated Security=true; Database=CarDB";
         public Form1()
         {
             InitializeComponent();

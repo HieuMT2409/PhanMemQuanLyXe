@@ -8,40 +8,75 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ThueXeOTo.Database;
+using ThueXeOTo.OrderCar;
 
 namespace ThueXeOTo.LichTrinh
 {
     public partial class DanhSachLichTrinh : Form
     {
-        string conectionString = @"Data Source=HIEUMT-2491310\HIEUMT; Integrated Security=true; Database=CarDB";
-
         public DanhSachLichTrinh()
         {
             InitializeComponent();
+
+            dataLichTrinh.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            using (var context = new CarDBContext())
+            {
+                var orders = context.Orders.ToList();
+
+                this.dataLichTrinh.DataSource = orders;
+            }
         }
 
         private void dataKH_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            dataLichTrinh.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            using (var context = new CarDBContext())
+            {
+                var orders = context.Orders.ToList();
 
+                this.dataLichTrinh.DataSource = orders;
+            }
+        }
+
+        public void Load_Data()
+        {
+            dataLichTrinh.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            using (var context = new CarDBContext())
+            {
+                var orders = context.Orders.ToList();
+
+                this.dataLichTrinh.DataSource = orders;
+            }
         }
 
         private void DanhSachLichTrinh_Load(object sender, EventArgs e)
         {
             dataLichTrinh.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            using (SqlConnection connection = new SqlConnection(conectionString))
+            using (var context = new CarDBContext())
             {
-                connection.Open();
+                var orders = context.Orders.ToList();
 
-                // Truy vấn dữ liệu
-                string query = "SELECT * FROM Orders";
-                using (SqlCommand command = new SqlCommand(query, connection))
+                this.dataLichTrinh.DataSource = orders;
+            }
+        }
+
+        private void btnPay_Click(object sender, EventArgs e)
+        {
+            using (var context = new CarDBContext())
+            {
+                // Lấy ID của dòng được chọn trong DataGridView
+                if (dataLichTrinh.SelectedRows.Count > 0)
                 {
-                    SqlDataAdapter adapter = new SqlDataAdapter(command);
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
+                    DataGridViewRow selectedRow = dataLichTrinh.SelectedRows[0];
+                    if (selectedRow.Cells["OrderID"].Value != null)
+                    {
+                        int orderId = Convert.ToInt32(selectedRow.Cells["OrderID"].Value);
 
-                    // Gán dữ liệu vào DataGridView
-                    this.dataLichTrinh.DataSource = dataTable;
+                        ThanhToan thanhToan = new ThanhToan();
+                        thanhToan.Update_Data(orderId);
+                        thanhToan.ShowDialog();
+                    }
                 }
             }
         }
